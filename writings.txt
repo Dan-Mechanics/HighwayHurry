@@ -1,0 +1,197 @@
+// f5 is run and ctrl + f5 is run without checking basically.
+// is there a way to disable the console debug window ?
+
+// todo:
+// fullscreen V
+// make fix orcs and elves github repo ?? --> and then make new inventory in the consturcotr. V
+// make environment a little V
+// make central time loop --> fixedupdate ( are there events ?? ) V
+// make player and enemy. what do they share ? --> position.
+
+// images and textures
+// is the deltatime and fixedudpate correct VVV ish correct it was bugged and now fixed i think.
+// is the empty constructor correct ??
+// is everything correct?
+
+// fix player input. VVV
+
+// better colors.
+// constrain player to certain area. V
+// ?? player is middle of player and not topleft?? im lowkey commiting to this topleft escque space tho.
+// how to hide cursor ??
+// random thougth: if there is a method to resize the player than that method should also call move.
+// fun project for learning: move towards mouse.
+// is my use of heap and stack good here ? maybe too much on stack?
+// check if code is according to Edwin convention or something.
+// future fun idea: use z-component to quicksort all the drawables and then yeet.
+
+// future: make whole project edwins convention.
+// consturctor list use {} instead of ()
+// always destructur virtula
+// funct() {} --> funct() = defualt.
+// would composite system be better ?
+// dont forget to add comments and remove todos and then clean github.
+
+// code review required.
+
+// rename project and github.
+
+// do we really need to have default construcot and destrucor for everything??
+// its confusing AF.
+
+--- that was from main comments
+
+//Menu::Menu(sf::RenderWindow * window, sf::Font * font) : window{ window }, font{ font } { }
+
+//Menu::~Menu() = default;
+
+//Menu::Menu(sf::RenderWindow& window, sf::Font& font) : window{ window }, font{ font } { }
+
+/// <summary>
+/// Is there a way to say play.base(); in cpp ??
+/// What i would like to have happen is for there to be a 
+/// repeating loop between menu and game but then i think it would be better if we initialize all the sprites
+/// in main and textures also.
+/// </summary>
+
+---
+
+use this-> more !
+use {} with initilzaer list
+use default
+always virtual destructor 
+     {
+}
+public
+protected
+private
+make sure shit is set always otherwise random memory that happens to be there.
+
+avoid the heap and new() like the plague.
+we are currently reusing the sprites because it makes more sense to me currently.
+
+---
+
+
+    Zorg ervoor dat je een speler hebt die aan de onderkant heen en weer kan bewegen door middel van pijltjestoetsen.
+    Zorg ervoor dat bovenin het scherm objecten (enemies) spawnen die heen en weer bewegen terwijl ze naar beneden vallen.
+    Zorg ervoor dat zowel de speler als de enemies versnellen (en vertraging) door middel van forces en friction.
+    Zorg ervoor dat er onderin collision is tussen de speler en de objecten.
+    Zorg ervoor dat je punten kunt krijgen voor het vangen of ontwijken, afhankelijk van je gekozen spelvorm. 
+    Zorg ervoor dat je score ergens in beeld zichtbaar is.
+    Zorg ervoor dat de game eindigt met een win/verlies scherm.
+    Zorg ervoor dat je een eigen implementatie gebruikt van de wiskundige principes, zoals een eigen Vector2 class en Rigidbody. Je mag van SFML enkel de 'setters' (zoals setPosition) gebruiken als het gaat om berekeningen, de rest (zoals vermenigvuldigen, optellen, addforce, etc) moet in je eigen implementatie gebeuren. 
+    Eventuele eigen toevoegingen
+
+Filmpje van de gameplay van je game (max 3 minuten). Hierin ga je toelichten op wat voor manier jouw game aan de criteria van de opdracht voldoet.
+dus het hele filmpje + toelichting duurt 3 minuten of is het 3 mins gameplay en dan 30 minuten toelichting? niet heel duidelijk
+maar ik denk dat het alles in 3 minutes is.
+ZORG DAT JE ALLE CRITERUIMS UITLEGD ANDERS KRIJG JE GEEN PUNTEN.
+
+maak je eigen sprites voor alles broski,
+gebruik de kleur yeet voor de enemies.
+gebruik random.
+
+[Sidenote: should prolly rename these and remove all the trash for release.]
+
+why is /64x being commited ??
+
+---
+
+implement dot and cross product in posiiton
+implement thing to convert angle and length into the vector
+and get angle with atan2.
+
+implement friction lore and better forces for enemies
+collision also
+
+the problem was that you cannot construct a reference member from a reference member, then ur just getting
+not the actual thing but a reference to a reference or something.
+
+///
+
+make score
+player move when focus
+text centering in general and on button
+all of the previous paragraph
+
+make rigidbody better with more realistic physics.
+
+---
+
+concept of making new github project when i actually have the name
+and then deleting all the trash and also having that in the gitignore in the first place no trash.
+
+names:
+roid racer
+i need to go
+i need to pee
+road rage
+hurry highway
+hurried highway
+highway hurry
+
+haslte highway
+
+hurry highway. <--
+
+potential ideas: 
+
+maybe it would be better to rename current project and delete so that Edwin sees the commits.
+
+---
+
+renmae all to Highway Hurry
+figure out what tf they want with friction
+make fancy ass menu with buttons and all.
+give bool if is first menu.
+
+how to hide cursor ??
+
+---
+
+turn menu and game into one. ?? --> no ebcause thats dumb.
+
+dont forget to make the 0 points opdrachten for funsies.
+does that mean we need to make a highscore system ??
+
+///
+
+0.75
+make ez play option. --> with more and more obstacles being added.
+
+player one pixel higher.
+make the code flowchart more clean in terms of all the returns and shit.
+
+and fix that memory bullshit
+make more enemies spwaning the farther you go.
+
+physics friction and collison etc.
+cars NEEEED to swign left to right.
+and i want the cars to not overlap.
+
+add unique car sprites --> animation ?
+sounds ? 
+
+add better comments.
+
+try to structure the whole game flow a little better and look at canvas
+for next stuff to add. 
+
+make sure memory is good, rising difficulty etc.
+
+i think this is already pretty good so far.
+
+make the cars not overlap ? now im just reapting myself.
+
+maybe think about where the game values are stored in terms of EZ balancing.
+now you have to look around like crazy.
+
+hide cursor possbile ??
+
+random thought: minecraft has one big textures atlas whereby you isolate sprites with 
+the coordiinates. this makes less loading etc.
+
+maybe fix random ? by giving new random seed at the start ?
+
+importnat: ask feedback to rosa and edwin and keep an eye on memory etc.
