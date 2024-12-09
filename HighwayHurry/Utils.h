@@ -3,6 +3,12 @@
 #include "Vector3.h"
 #include <SFML/Graphics.hpp>
 
+// If there is a place to implement math functions for the fun of it then it would be here.
+
+//void crossProductNonAlloc(Vector3& target, Vector3 a, Vector3 b);
+//void sumNonAlloc(Vector3& target, Vector3 a, Vector3 b);
+//Vector3 sumAlloc(Vector3 a, Vector3 b);
+
 void print(std::string value);
 void print(int value);
 void print(float value);
