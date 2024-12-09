@@ -62,11 +62,28 @@ int randomInclusive(int min, int max)
 	return rand() % (max - min + 1) + min;
 }
 
-bool checkExitCondition(sf::Event& event)
+//bool checkExitCondition(sf::Event& event)
+//{
+//	return event.type == sf::Event::Closed ||
+//		(event.type == sf::Event::KeyPressed &&
+//			event.key.code == sf::Keyboard::Escape);
+//}
+
+bool checkExitCondition(sf::Event& event, sf::RenderWindow& window)
 {
-	return event.type == sf::Event::Closed ||
-		(event.type == sf::Event::KeyPressed &&
-			event.key.code == sf::Keyboard::Escape);
+	while (window.pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed ||
+			(event.type == sf::Event::KeyPressed &&
+				event.key.code == sf::Keyboard::Escape))
+		{
+			window.close();
+
+			return true;
+		}
+	}
+
+	return false;
 }
 
 sf::Color randomColor()

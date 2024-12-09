@@ -69,16 +69,9 @@ bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Fo
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) { return false; }
         
         sf::Event event;
-        while (window.pollEvent(event))
+        if (checkExitCondition(event, window)) 
         {
-            if (checkExitCondition(event))
-            {
-                window.close();
-
-                print("Force close menu.");
-
-                return true;
-            }
+            return true;
         }
 
         window.clear(sf::Color::Magenta);

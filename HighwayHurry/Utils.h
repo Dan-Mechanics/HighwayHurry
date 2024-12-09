@@ -15,7 +15,7 @@ void print(float value);
 
 int randomInclusive(int min, int max);
 
-bool checkExitCondition(sf::Event& event);
+bool checkExitCondition(sf::Event& event, sf::RenderWindow& window);
 
 sf::Color randomColor();
 

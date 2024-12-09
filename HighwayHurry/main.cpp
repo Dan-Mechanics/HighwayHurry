@@ -105,7 +105,7 @@ int main()
     Game game{ };
 
     // i think we have enough while loops here to make it work :^)
-    while (!quit && window.isOpen()) {
+    while (!quit) {
 
         quit = game.play(window, playerSprite, gameBackgroundSprite,
             obstacleSprite, score, time, scoreBoard);

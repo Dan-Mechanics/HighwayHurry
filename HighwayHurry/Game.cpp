@@ -38,11 +38,6 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
     Player player{ window, playerSprite };
     Environment environment{ window, backgroundSprite };
 
-    std::vector<Entity*> entities;
-
-    entities.push_back(&environment);
-    entities.push_back(&player);
-
     std::vector<Obstacle*> obstacles;
 
     // i basically want this to be dynaically allocated in this heap scope, 
@@ -65,32 +60,21 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
     {
         // we do this hereb ecause we dont want a dead window for the draw .. ??
         sf::Event event;
-        while (window.pollEvent(event))
+        
+        if (checkExitCondition(event, window)) 
         {
-            if (checkExitCondition(event))
+            for (int i = 0; i < obstacles.size(); i++)
             {
-                window.close();
-
-                print("Exiting game.");
-
-                // This is good I think.
-                for (int i = 0; i < obstacles.size(); i++)
-                {
-                    delete obstacles[i];
-                }
-
-                obstacles.clear();
-
-                return true;
+                delete obstacles[i];
             }
+
+            return true;
         }
 
         for (int i = 0; i < time.processFrame(); i++)
         {
-            for (int j = 0; j < entities.size(); j++)
-            {
-                entities[j]->move(time);
-            }
+            environment.move(time);
+            player.move(time);
 
             for (int j = 0; j < obstacles.size(); j++)
             {
@@ -102,8 +86,6 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
                     {
                         delete obstacles[i];
                     }
-
-                    obstacles.clear();
                     
                     // here we wanna go to next scene bascially.
                     return false;
@@ -136,13 +118,10 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
         window.display();
     }
 
-    // This is good I think.
     for (int i = 0; i < obstacles.size(); i++)
     {
         delete obstacles[i];
     }
-
-    obstacles.clear();
 
     print("Closing game.");
 
