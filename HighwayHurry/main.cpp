@@ -116,5 +116,26 @@ int main()
             quitButtonSprite, playButtonSprite);
     }
 
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (checkExitCondition(event))
+            {
+                window.close();
+
+                return 0;
+            }
+        }
+
+        window.clear(sf::Color::Magenta);
+
+        
+
+        window.display();
+    }
+
+
     return 0;
 }

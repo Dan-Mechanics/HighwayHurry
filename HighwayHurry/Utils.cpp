@@ -3,42 +3,6 @@
 #include <iostream>
 #include <random>
 
-//void crossProductNonAlloc(Vector3& target, Vector3 a, Vector3 b)
-//{
-//	target.setAll(
-//		a.yComponent * b.zComponent + a.zComponent * b.yComponent,
-//		a.zComponent * b.xComponent + a.xComponent * b.zComponent,
-//		a.xComponent * b.yComponent + a.yComponent * b.xComponent
-//	);
-//}
-//
-//void sumNonAlloc(Vector3& target, Vector3 a, Vector3 b)
-//{
-//	/*target.xComponent = a.xComponent + b.xComponent;
-//	target.yComponent = a.yComponent + b.yComponent;
-//	target.zComponent = a.zComponent + b.zComponent;*/
-//
-//	target.setAll(
-//		a.xComponent + b.xComponent,
-//		a.yComponent + b.yComponent,
-//		a.zComponent + b.zComponent
-//	);
-//
-//	// TODO: use setall. VV
-//}
-//
-//Vector3 sumAlloc(Vector3 a, Vector3 b)
-//{
-//	return Vector3(
-//		a.xComponent + b.xComponent,
-//		a.yComponent + b.yComponent,
-//		a.zComponent + b.zComponent
-//	);
-//}
-
-// you could maybe implement vector maht library here.
-// ask rosa for code feedback
-
 void print(std::string value)
 {
 	std::cout << " > " << value << std::endl;
