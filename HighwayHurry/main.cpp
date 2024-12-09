@@ -93,27 +93,24 @@ int main()
 
     //////////////////////////////////////////////////////
 
+    bool start = true;
     bool quit = false;
 
     Menu menu{ }; 
-    
-    quit = menu.open(true, score, scoreBoard, font, window, menuBackgroundSprite,
-         quitButtonSprite, playButtonSprite);
-
-    if (quit) { return 0; }
-
     Game game{ };
 
     // i think we have enough while loops here to make it work :^)
     while (!quit) {
 
-        quit = game.play(window, playerSprite, gameBackgroundSprite,
-            obstacleSprite, score, time, scoreBoard);
+        quit = menu.open(start, score, scoreBoard, font, window, menuBackgroundSprite,
+            quitButtonSprite, playButtonSprite);
+        
+        start = false;
 
         if (quit) { return 0; }
 
-        quit = menu.open(false, score, scoreBoard, font, window, menuBackgroundSprite,
-            quitButtonSprite, playButtonSprite);
+        quit = game.play(window, playerSprite, gameBackgroundSprite,
+            obstacleSprite, score, time, scoreBoard);
     }
 
     return 0;

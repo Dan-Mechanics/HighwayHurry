@@ -111,5 +111,4 @@ bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Fo
     print("Closing menu.");
 
     return false;
-    //return false;
 }
