@@ -2,8 +2,6 @@
 #include "Time.h"
 #include "Player.h"
 #include "Environment.h"
-//#include <iostream>
-//#include <string>
 #include "Utils.h"
 #include "Scoreboard.h"
 #include "Button.h"

@@ -1,3 +1,7 @@
+i just need more informaiton about physics and all and then im good i think.
+
+---
+
 // f5 is run and ctrl + f5 is run without checking basically.
 // is there a way to disable the console debug window ?
 
