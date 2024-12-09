@@ -24,6 +24,7 @@
     <ProjectGuid>{175dcaa7-bf62-499b-8cf8-3473712c6883}</ProjectGuid>
     <RootNamespace>FirstSFML</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>HighwayHurry</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
