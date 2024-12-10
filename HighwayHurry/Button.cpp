@@ -5,20 +5,12 @@
 Button::Button() = default;
 
 Button::Button(const sf::RenderWindow& const window, const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
-    const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton) : Entity{ window, sprite }, position{ position }, normalColor{ normalColor }, hoveringColor{ hoveringColor }
-{
-    applyTextBranding(text, font);
+    const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton) : Entity{ window, sprite }, position{ position },
+    normalColor{ normalColor }, hoveringColor{ hoveringColor } {
+        applyTextBranding(text, font);
 
     text.setString(textOnButton);
 }
-
-//Button::Button(sf::RenderWindow & window, sf::Sprite & sprite, Vector3 position, sf::Color normalColor, sf::Color hoveringColor, sf::Font & font, std::string textOnButton) :
-//    Entity{ window, sprite, }, position{ position }, normalColor{ normalColor }, hoveringColor{ hoveringColor } {
-//
-//    applyTextBranding(text, font);
-//
-//    text.setString(textOnButton);
-//}
 
 bool Button::getIsHovering() const {
 

@@ -4,8 +4,9 @@
 #include "Environment.h"
 //#include "Rigidbody.h" // for global var ?? not required i gues
 
-Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) : Car{ window, sprite }, score{ score }
-{
+Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) : 
+	Car{ window, sprite }, score{ score } {
+
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
 	
@@ -17,8 +18,7 @@ Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const
 	ResetPosition();
 }
 
-void Obstacle::ResetPosition()
-{
+void Obstacle::ResetPosition() {
 	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-fallingSpeedVariance, fallingSpeedVariance);
 	color = randomColor();
 
@@ -41,21 +41,13 @@ Vector3 Obstacle::getPosition() const {
 	return rigidbody.position;
 }
 
-void Obstacle::move(const Time& const time)
-{
-	//rigidbody.addAcceleraton(gravity, time);
-	//gravity.yComponent += 0.1f;
-
-	// i know this is not quite the vibe but ish.
+void Obstacle::move(const Time& const time) {
 	rigidbody.addAcceleraton(accel);
-	//accel.xComponent += randomInclusive(-5, 5);
-	//rigidbody.limitVelocity(fallingSpeed);
 
 	rigidbody.process(time);
 
 	// constrain.
-	if (rigidbody.position.xComponent < 0)
-	{
+	if (rigidbody.position.xComponent < 0) {
 		rigidbody.position.xComponent = 0;
 		rigidbody.velocity.xComponent = 0;
 
@@ -68,24 +60,21 @@ void Obstacle::move(const Time& const time)
 		rigidbody.velocity.yComponent = 0;
 	}*/
 
-	if (rigidbody.position.xComponent > maxX)
-	{
+	if (rigidbody.position.xComponent > maxX) {
 		rigidbody.position.xComponent = maxX;
 		rigidbody.velocity.xComponent = 0;
 
 		//acceleration.xComponent = -abs(acceleration.xComponent);
 	}
 
-	if (rigidbody.position.yComponent > maxY)
-	{
+	if (rigidbody.position.yComponent > maxY) {
 		ResetPosition();
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.
 	}
 }
 
-void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite)
-{
+void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 	sprite.setColor(color);
 
 	/*Vector3 roundPos(rigidbody.position);

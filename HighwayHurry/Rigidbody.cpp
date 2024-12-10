@@ -8,10 +8,8 @@ const float GRAVITY = 10;
 
 Rigidbody::Rigidbody() = default;
 
-Rigidbody::Rigidbody(float mass) 
-{
-	if (mass <= 0) 
-	{
+Rigidbody::Rigidbody(float mass) {
+	if (mass <= 0) {
 		print("if (mass <= 0) ");
 		mass = 1;
 	}
@@ -19,8 +17,7 @@ Rigidbody::Rigidbody(float mass)
 	this->mass = mass;
 }
 
-void Rigidbody::addVelocity(Vector3 velocity)
-{
+void Rigidbody::addVelocity(Vector3 velocity) {
 	this->velocity.add(velocity);
 }
 

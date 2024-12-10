@@ -6,8 +6,7 @@
 #include "Scoreboard.h"
 #include "Button.h"
 
-int main()
-{
+int main() {
     const sf::String TITLE = "Highway Hurry";
 
     print(TITLE);

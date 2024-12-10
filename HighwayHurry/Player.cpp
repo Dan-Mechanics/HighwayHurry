@@ -5,16 +5,14 @@
 
 Player::Player() = default;
 
-Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Car{ window, sprite }
-{
+Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Car{ window, sprite } {
 	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
 
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
 }
 
-void Player::move(const Time& const time)
-{
+void Player::move(const Time& const time) {
 	Vector3 input = calculateMovement();
 	
 	Vector3 movement = input;
@@ -55,8 +53,7 @@ void Player::move(const Time& const time)
 	}*/
 }
 
-void Player::doCounterMovement(float fixedInterval, Vector3 movement)
-{
+void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	Vector3 counterMovement = rigidbody.velocity;
 
 	counterMovement.normalize();
@@ -124,8 +121,7 @@ Vector3 Player::calculateMovement() const {
 	return movement;
 }
 
-void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite)
-{
+void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 	sprite.setColor(sf::Color::White);
 	
 	/*Vector3 roundPos(rigidbody.position);

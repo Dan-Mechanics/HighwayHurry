@@ -61,29 +61,23 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
         // we do this hereb ecause we dont want a dead window for the draw .. ??
         sf::Event event;
         
-        if (checkExitCondition(event, window)) 
-        {
-            for (int i = 0; i < obstacles.size(); i++)
-            {
+        if (checkExitCondition(event, window)) {
+            for (int i = 0; i < obstacles.size(); i++) {
                 delete obstacles[i];
             }
 
             return true;
         }
 
-        for (int i = 0; i < time.processFrame(); i++)
-        {
+        for (int i = 0; i < time.processFrame(); i++) {
             environment.move(time);
             player.move(time);
 
-            for (int j = 0; j < obstacles.size(); j++)
-            {
+            for (int j = 0; j < obstacles.size(); j++) {
                 obstacles[j]->move(time);
 
-                if (player.checkCollision(score, *obstacles[j]))
-                {
-                    for (int i = 0; i < obstacles.size(); i++)
-                    {
+                if (player.checkCollision(score, *obstacles[j])) {
+                    for (int i = 0; i < obstacles.size(); i++) {
                         delete obstacles[i];
                     }
                     
@@ -106,8 +100,7 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
 
         environment.draw(window, backgroundSprite);
 
-        for (int i = 0; i < obstacles.size(); i++)
-        {
+        for (int i = 0; i < obstacles.size(); i++) {
             obstacles[i]->draw(window, obstacleSprite);
         }
 
