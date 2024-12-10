@@ -1,4 +1,10 @@
+implement operators in the vector3 class if you wanna be bougy.
+implement "friction"
+
+probable cause of crash: trying to acces nullpointers basically.
+
 make sure the const const stuff is all lined up correctly and matching with header.
+you could also make it so that you return ints instead of floats to save memory.
 
 i mean, this works too but it might be more clean.
 
