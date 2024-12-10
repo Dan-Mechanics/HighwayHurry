@@ -28,8 +28,6 @@ bool checkExitCondition(sf::Event& event, sf::RenderWindow& window) {
 			(event.type == sf::Event::KeyPressed &&
 				event.key.code == sf::Keyboard::Escape)) {
 
-			window.close();
-
 			return true;
 		}
 	}

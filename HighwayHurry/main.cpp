@@ -92,24 +92,47 @@ int main() {
 
     //////////////////////////////////////////////////////
 
-    bool first = true;
     bool quit = false;
+    bool showMenu = true;
 
     Menu menu{ score, scoreBoard, font, window, menuBackgroundSprite, quitButtonSprite, playButtonSprite };
+    Game game { };
 
-    menu.setup(window, true, score, scoreBoard, font);
+    /*while (!quit) {
 
-    // i think we have enough while loops here to make it work :^)
-    while (!quit) {
+        quit = menu.update(window) != 0;
+    }*/
 
-        quit = menu.update(window) == 1;
+    // what i also could have done is make another scripts menu.cpp game.cpp and gameover.cpp
+    while (window.isOpen())
+    {
+        sf::Event event;
 
-        first = false;
+        if (checkExitCondition(event, window) || quit) {
+            //quit = true;
+            window.close();
+
+            return 0;
+        }
+
+        window.clear(sf::Color::Magenta);
+
+        std::string output = showMenu ? menu.update(window) : game.update(window);
+
+        window.display();
+
+        if (output == "quit") { quit = true; }
+        else if (output == "next scene") 
+        {
+            showMenu = !showMenu;
+
+            if (!showMenu) 
+            {
+                menu.setupForSecond(window, score, scoreBoard, font);
+            }
+        }
+        
     }
-
-
-
-
 
 
 

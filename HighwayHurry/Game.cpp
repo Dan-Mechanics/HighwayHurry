@@ -26,6 +26,11 @@
 
 Game::Game() = default;
 
+std::string Game::update(sf::RenderWindow & window)
+{
+    return 0;
+}
+
 /// <summary>
 /// Be really really really really careful with memory here.
 /// </summary>

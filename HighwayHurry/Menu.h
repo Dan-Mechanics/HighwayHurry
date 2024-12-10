@@ -12,8 +12,8 @@ public:
 	Menu();
 	Menu(Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite);
 
-	void setup(sf::RenderWindow& window, const bool first, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font);
-	int update(sf::RenderWindow& window);
+	void setupForSecond(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font);
+	std::string update(sf::RenderWindow& window);
 	//bool open(bool start, Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite) const;
 //private:
 	Button playAgainButton{};
