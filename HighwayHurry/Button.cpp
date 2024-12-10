@@ -52,7 +52,7 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
 
     int xMax = xMin + sizeX;
     int yMax = yMin + sizeY;
-    
+
     // we gotta see if thing is within thing.
 
     // we know pos is topleft.
