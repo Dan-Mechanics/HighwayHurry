@@ -1,4 +1,8 @@
 technically spekaing we can add more const with the referencees.
+everything works except the buttons.
+
+better const work and also maybe some auto
+and also work on better game structure with the play() shit.
 
 ---
 

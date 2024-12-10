@@ -5,7 +5,7 @@
 
 Drawable::Drawable() = default;
 
-Drawable::Drawable(const sf::RenderWindow& window, const sf::Sprite& sprite) {
+Drawable::Drawable(const sf::RenderWindow& const window, const sf::Sprite& const sprite) {
     screenWidth = window.getSize().x;
     screenHeight = window.getSize().y;
 

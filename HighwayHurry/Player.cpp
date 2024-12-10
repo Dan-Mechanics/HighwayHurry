@@ -5,7 +5,7 @@
 
 Player::Player() = default;
 
-Player::Player(sf::RenderWindow& window, sf::Sprite& sprite) : Car{ window, sprite }
+Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Car{ window, sprite }
 {
 	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
 
@@ -13,14 +13,14 @@ Player::Player(sf::RenderWindow& window, sf::Sprite& sprite) : Car{ window, spri
 	maxX -= ENVIRONMENT_MARGIN;
 }
 
-void Player::move(const Time& time)
+void Player::move(const Time& const time)
 {
 	Vector3 input = calculateMovement();
 	
 	Vector3 movement = input;
 	movement.multiply(acceleration);
 
-	rigidbody.addAcceleraton(movement, time);
+	rigidbody.addAcceleraton(movement);
 
 	// We do it after because that feels more responsive.
 	doCounterMovement(time.fixedInterval, input);

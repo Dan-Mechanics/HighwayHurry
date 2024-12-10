@@ -34,8 +34,8 @@ public:
 	/// accel into vel,
 	/// vel into pos.
 	/// </summary>
-	void process(const Time& time);
-	void limitVelocity(float magnitude);
+	void process(const Time& const time);
+	void limitVelocity(const float magnitude);
 
 private:
 	Vector3 acceleration{}; // have an add force thing that adds acceleration.

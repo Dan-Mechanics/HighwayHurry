@@ -4,7 +4,8 @@
 
 Button::Button() = default;
 
-Button::Button(const sf::RenderWindow & window, const sf::Sprite & sprite, const Vector3 position, const sf::Color normalColor, const sf::Color hoveringColor, const sf::Font & font, const std::string textOnButton)
+Button::Button(const sf::RenderWindow& const window, const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
+    const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton) : Entity{ window, sprite }, position{ position }, normalColor{ normalColor }, hoveringColor{ hoveringColor }
 {
     applyTextBranding(text, font);
 
@@ -81,7 +82,7 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
     window.draw(text);
 }
 
-void Button::move(const Time& time) {
+void Button::move(const Time& const time) {
     // future: add animation for hovering.
     // for now: center text on button.
 }

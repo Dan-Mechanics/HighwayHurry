@@ -37,7 +37,7 @@ void Rigidbody::addForce(Vector3 force) {
 	// friction hook ???
 }
 
-void Rigidbody::process(const Time& time) {
+void Rigidbody::process(const Time& const time) {
 	force.divide(mass);
 	acceleration.add(force);
 	velocity.add(acceleration, time.fixedInterval);

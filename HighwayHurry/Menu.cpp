@@ -14,8 +14,10 @@ Menu::Menu() = default;
 bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Font& font, sf::RenderWindow & window, sf::Sprite & backgroundSprite, sf::Sprite & quitButtonSprite, sf::Sprite & playButtonSprite) const {
     print("Opening menu.");
 
-    Button quitButton(window, quitButtonSprite, Vector3(), sf::Color::White,
-        sf::Color(98, 106, 120), font, "Quit");
+    /*Button quitButton(window, quitButtonSprite, Vector3(), sf::Color::White,
+        sf::Color(98, 106, 120), font, "Quit");*/
+
+    Button quitButton{ window, quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
 
     sf::Text titleText;
     sf::Text scoreText;
@@ -57,8 +59,10 @@ bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Fo
     }
 
     // this placemetn is very importnat.
-    Button playAgainButton(window, playButtonSprite, Vector3(), sf::Color::White,
-        sf::Color(98, 106, 120), font, startOfGame ? "Play" : "Play Again");
+    /*Button playAgainButton(window, playButtonSprite, Vector3(), sf::Color::White,
+        sf::Color(98, 106, 120), font, startOfGame ? "Play" : "Play Again");*/
+
+    Button playAgainButton{ window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, startOfGame ? "Play" : "Play Again" };
 
     playAgainButton.centerAll();
 

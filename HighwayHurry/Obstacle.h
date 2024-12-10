@@ -12,7 +12,7 @@ public:
 	//Obstacle();
 	// we cant have a default construcor because we have a reference to score.
 	// and references cannot be null pointer. 
-	Obstacle(const sf::RenderWindow& window, const sf::Sprite& sprite, Score& score);
+	Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score);
 	void ResetPosition();
 	Vector3 getPosition() const;
 	//virtual ~ObstacleCar();
@@ -27,6 +27,7 @@ private:
 	int fallingSpeedVariance = 150;
 	int highestSpawnPoint = -1080;
 
+	Vector3 accel{};
 	sf::Color color = sf::Color::White;
 	Score& score;
 };

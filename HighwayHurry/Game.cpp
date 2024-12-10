@@ -32,6 +32,9 @@ Game::Game() = default;
 bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, Score & score, Time & time, Scoreboard & scoreboard) const {
     print("Opening game.");
 
+    // this makes the random fixed ? yep.
+    srand(std::time(0));
+
     Player player{ window, playerSprite };
     Environment environment{ window, backgroundSprite };
 

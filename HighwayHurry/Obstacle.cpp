@@ -4,7 +4,7 @@
 #include "Environment.h"
 //#include "Rigidbody.h" // for global var ?? not required i gues
 
-Obstacle::Obstacle(const sf::RenderWindow& window, const sf::Sprite& sprite, Score& score) : Car{ window, sprite }, score{ score }
+Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) : Car{ window, sprite }, score{ score }
 {
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
@@ -33,17 +33,23 @@ void Obstacle::ResetPosition()
 		randomInclusive(highestSpawnPoint, -sizeY), // y
 		0 // z
 	);
+
+	accel.setAll(randomInclusive(-250, 250), 0, 0);
 }
 
 Vector3 Obstacle::getPosition() const {
 	return rigidbody.position;
 }
 
-void Obstacle::move(const Time& time)
+void Obstacle::move(const Time& const time)
 {
 	//rigidbody.addAcceleraton(gravity, time);
 	//gravity.yComponent += 0.1f;
-	rigidbody.limitVelocity(fallingSpeed);
+
+	// i know this is not quite the vibe but ish.
+	rigidbody.addAcceleraton(accel);
+	//accel.xComponent += randomInclusive(-5, 5);
+	//rigidbody.limitVelocity(fallingSpeed);
 
 	rigidbody.process(time);
 
