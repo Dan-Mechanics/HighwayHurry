@@ -3,16 +3,13 @@
 #include <SFML/Graphics.hpp>
 #include "Score.h"
 
-/// <summary>
-/// REFACTOR !!!
-/// </summary>
 class Scoreboard {
 public:
 	Scoreboard();
-	Scoreboard(sf::Font& font);
+	Scoreboard(const sf::Font& font);
 	void draw(sf::RenderWindow& window, Score& score);
-	void setGameString(sf::String& string, Score& score);
-	sf::String getMenuString(Score& score);
+	void setGameString(sf::String& string, const Score& score);
+	sf::String getMenuString(Score& score) const;
 
 private:
 	sf::Text text{};

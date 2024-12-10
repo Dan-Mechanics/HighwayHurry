@@ -29,8 +29,7 @@ Game::Game() = default;
 /// <summary>
 /// Be really really really really careful with memory here.
 /// </summary>
-bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, Score & score, Time & time, Scoreboard & scoreboard)
-{
+bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, Score & score, Time & time, Scoreboard & scoreboard) const {
     print("Opening game.");
 
     Player player{ window, playerSprite };

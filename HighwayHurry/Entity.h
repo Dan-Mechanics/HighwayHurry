@@ -10,9 +10,9 @@ class Entity : public Drawable {
 public:
 	//Position position;
 	Entity();
-	Entity(sf::RenderWindow& window, sf::Sprite& sprite);
+	Entity(const sf::RenderWindow& window, const sf::Sprite& sprite);
 	//virtual ~Entity(); ???
 
-	virtual void move(Time& time) = 0; 
+	virtual void move(const Time& time) = 0; 
 };
 

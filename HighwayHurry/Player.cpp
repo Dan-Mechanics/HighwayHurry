@@ -13,12 +13,12 @@ Player::Player(sf::RenderWindow& window, sf::Sprite& sprite) : Car{ window, spri
 	maxX -= ENVIRONMENT_MARGIN;
 }
 
-void Player::move(Time& time)
+void Player::move(const Time& time)
 {
 	Vector3 input = calculateMovement();
 	
 	Vector3 movement = input;
-	movement.mult(acceleration);
+	movement.multiply(acceleration);
 
 	rigidbody.addAcceleraton(movement, time);
 
@@ -62,7 +62,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement)
 	counterMovement.normalize();
 	counterMovement.remove(movement);
 
-	counterMovement.mult(-1 * acceleration * counterMovementMult * fixedInterval);
+	counterMovement.multiply(-1 * acceleration * counterMovementMult * fixedInterval);
 
 	/*if (counterMovement.magnitude > velocity.magnitude && velocity.magnitude != 0f) {
 		counterMovement = -velocity;*/
@@ -72,14 +72,13 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement)
 	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag)
 	{
 		counterMovement = rigidbody.velocity;
-		counterMovement.mult(-1);
+		counterMovement.multiply(-1);
 	}
 
 	rigidbody.addVelocity(counterMovement);
 }
 
-bool Player::checkCollision(Score& score, Obstacle& obstacle)
-{
+bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
 	float leniency = 0.75f; // so we have negative leniency.
 	
 	//bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX / 2.0f, obstacle.getSizeX() / 2.0f);
@@ -97,8 +96,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle)
 
 
 // should be referecne.
-Vector3 Player::calculateMovement()
-{
+Vector3 Player::calculateMovement() const {
 	Vector3 movement;
 	
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))

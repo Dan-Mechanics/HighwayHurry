@@ -11,8 +11,7 @@ Menu::Menu() = default;
 /// BIG WARNING: if the button is bugged,
 /// then teacher can't play the game.
 /// </summary>
-bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Font& font, sf::RenderWindow & window, sf::Sprite & backgroundSprite, sf::Sprite & quitButtonSprite, sf::Sprite & playButtonSprite)
-{
+bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Font& font, sf::RenderWindow & window, sf::Sprite & backgroundSprite, sf::Sprite & quitButtonSprite, sf::Sprite & playButtonSprite) const {
     print("Opening menu.");
 
     Button quitButton(window, quitButtonSprite, Vector3(), sf::Color::White,

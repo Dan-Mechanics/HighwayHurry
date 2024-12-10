@@ -8,22 +8,22 @@
 
 int main()
 {
-    sf::String title = "Highway Hurry";
+    const sf::String TITLE = "Highway Hurry";
 
-    print(title);
+    print(TITLE);
 
-    int width = 1920;
-    int height = 1080;
-    unsigned int framerateLimit = 320;
-    int timestep = 64;
-    int maxLives = 5;
+    const int WIDTH = 1920;
+    const int HEIGHT = 1080;
+    const unsigned int FPS_CAP = 320;
+    const int TIMESTEP = 64;
+    const int MAX_LIVES = 5;
 
     // https://www.reddit.com/r/sfml/comments/oyms57/how_t
     // https://youtu.be/lFzpkvrscs4?si=9lYiXu4090IKJ1o1
-    sf::RenderWindow window(sf::VideoMode(width, height), title,
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), TITLE,
         sf::Style::Fullscreen);
 
-    window.setFramerateLimit(framerateLimit);
+    window.setFramerateLimit(FPS_CAP);
 
     //////////////////////////////////////////////////////
 
@@ -33,8 +33,8 @@ int main()
         print("Gamer.ttf not found!");
     }
 
-    Time time{ timestep };
-    Score score{ maxLives };
+    Time time{ TIMESTEP };
+    Score score{ MAX_LIVES };
     Scoreboard scoreBoard{ font };
 
     //////////////////////////////////////////////////////
@@ -96,8 +96,8 @@ int main()
     bool start = true;
     bool quit = false;
 
-    Menu menu{ }; 
-    Game game{ };
+    const Menu menu{ }; 
+    const Game game{ };
 
     // i think we have enough while loops here to make it work :^)
     while (!quit) {

@@ -4,7 +4,7 @@
 #include "Environment.h"
 //#include "Rigidbody.h" // for global var ?? not required i gues
 
-Obstacle::Obstacle(sf::RenderWindow& window, sf::Sprite& sprite, Score& score) : Car{ window, sprite }, score{score}
+Obstacle::Obstacle(const sf::RenderWindow& window, const sf::Sprite& sprite, Score& score) : Car{ window, sprite }, score{ score }
 {
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
@@ -35,12 +35,11 @@ void Obstacle::ResetPosition()
 	);
 }
 
-Vector3 Obstacle::getPosition()
-{
+Vector3 Obstacle::getPosition() const {
 	return rigidbody.position;
 }
 
-void Obstacle::move(Time& time)
+void Obstacle::move(const Time& time)
 {
 	//rigidbody.addAcceleraton(gravity, time);
 	//gravity.yComponent += 0.1f;

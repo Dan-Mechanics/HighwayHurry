@@ -12,14 +12,14 @@ public:
 	//Obstacle();
 	// we cant have a default construcor because we have a reference to score.
 	// and references cannot be null pointer. 
-	Obstacle(sf::RenderWindow& window, sf::Sprite& sprite, Score& score);
+	Obstacle(const sf::RenderWindow& window, const sf::Sprite& sprite, Score& score);
 	void ResetPosition();
-	Vector3 getPosition();
+	Vector3 getPosition() const;
 	//virtual ~ObstacleCar();
 
 	// Inherited via Car.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
-	virtual void move(Time& time) override;
+	virtual void move(const Time& time) override;
 
 private:
 	float fallingSpeed = 1200;

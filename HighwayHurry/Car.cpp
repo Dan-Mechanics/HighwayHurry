@@ -2,8 +2,7 @@
 
 Car::Car() = default;
 
-Car::Car(sf::RenderWindow & window, sf::Sprite & sprite) : Entity{ window, sprite } 
-{
+Car::Car(const sf::RenderWindow & window, const sf::Sprite & sprite) : Entity{ window, sprite } {
 	minX = 0;
 	minY = 0;
 	

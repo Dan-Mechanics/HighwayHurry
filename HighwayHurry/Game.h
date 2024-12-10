@@ -10,5 +10,5 @@ class Game {
 public:
 	Game();
 
-	bool play(sf::RenderWindow& window, sf::Sprite& playerSprite, sf::Sprite& backgroundSprite, sf::Sprite& obstacleSprite, Score& score, Time& time, Scoreboard& scoreboard);
+	bool play(sf::RenderWindow& window, sf::Sprite& playerSprite, sf::Sprite& backgroundSprite, sf::Sprite& obstacleSprite, Score& score, Time& time, Scoreboard& scoreboard) const;
 };
