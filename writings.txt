@@ -4,6 +4,12 @@ everything works except the buttons.
 better const work and also maybe some auto
 and also work on better game structure with the play() shit.
 
+///
+
+here's what i want:
+we only give fonts and textures to the yeet allocation as const references.
+the yeet games the sprites. and then there is a method for reset on both game and menu that reset duh.
+
 ---
 
 i just need more informaiton about physics and all and then im good i think.

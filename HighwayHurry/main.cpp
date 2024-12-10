@@ -92,25 +92,42 @@ int main() {
 
     //////////////////////////////////////////////////////
 
-    bool start = true;
+    bool first = true;
     bool quit = false;
 
-    const Menu menu{ }; 
-    const Game game{ };
+    Menu menu{ score, scoreBoard, font, window, menuBackgroundSprite, quitButtonSprite, playButtonSprite };
+
+    menu.setup(window, true, score, scoreBoard, font);
 
     // i think we have enough while loops here to make it work :^)
     while (!quit) {
 
-        quit = menu.open(start, score, scoreBoard, font, window, menuBackgroundSprite,
-            quitButtonSprite, playButtonSprite);
-        
-        start = false;
+        quit = menu.update(window) == 1;
 
-        if (quit) { return 0; }
-
-        quit = game.play(window, playerSprite, gameBackgroundSprite,
-            obstacleSprite, score, time, scoreBoard);
+        first = false;
     }
+
+
+
+
+
+
+
+    //Game game{ };
+
+    //// i think we have enough while loops here to make it work :^)
+    //while (!quit) {
+
+    //    quit = menu.open(first, score, scoreBoard, font, window, menuBackgroundSprite,
+    //        quitButtonSprite, playButtonSprite);
+    //    
+    //    first = false;
+
+    //    if (quit) { return 0; }
+
+    //    quit = game.play(window, playerSprite, gameBackgroundSprite,
+    //        obstacleSprite, score, time, scoreBoard);
+    //}
 
     return 0;
 }
