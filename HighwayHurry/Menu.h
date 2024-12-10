@@ -12,7 +12,7 @@ public:
 	Menu();
 	Menu(Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite);
 
-	void setupForSecond(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font);
+	void refresh(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font);
 	std::string update(sf::RenderWindow& window);
 	//bool open(bool start, Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite) const;
 //private:

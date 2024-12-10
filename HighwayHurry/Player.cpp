@@ -6,10 +6,15 @@
 Player::Player() = default;
 
 Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Car{ window, sprite } {
-	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
-
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
+
+	reset();
+}
+
+void Player::reset() {
+	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
+	rigidbody.resetAll();
 }
 
 void Player::move(const Time& const time) {
@@ -83,7 +88,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
 
 	if (hasCollision) 
 	{ 
-		obstacle.ResetPosition();
+		obstacle.resetPosition();
 
 		return score.Damage(1);
 	}

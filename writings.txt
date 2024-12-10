@@ -1,3 +1,13 @@
+make sure the const const stuff is all lined up correctly and matching with header.
+
+i mean, this works too but it might be more clean.
+
+make it so that all the sprites live in the class.
+
+add a scene class that has update and fixedudpate etc.
+
+//
+
 technically spekaing we can add more const with the referencees.
 everything works except the buttons.
 

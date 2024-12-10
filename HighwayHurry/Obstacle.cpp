@@ -15,10 +15,12 @@ Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const
 	maxY = screenHeight; // this is important because that means it disappears off the screen ish.
 	//color = randomColor();
 	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-250, 250); // ish.
-	ResetPosition();
+	// 
+	
+	//resetPosition();
 }
 
-void Obstacle::ResetPosition() {
+void Obstacle::resetPosition() {
 	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-fallingSpeedVariance, fallingSpeedVariance);
 	color = randomColor();
 
@@ -68,7 +70,7 @@ void Obstacle::move(const Time& const time) {
 	}
 
 	if (rigidbody.position.yComponent > maxY) {
-		ResetPosition();
+		resetPosition();
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.
 	}

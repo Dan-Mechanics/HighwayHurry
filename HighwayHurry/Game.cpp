@@ -26,24 +26,16 @@
 
 Game::Game() = default;
 
-std::string Game::update(sf::RenderWindow & window)
-{
-    return 0;
-}
-
-/// <summary>
-/// Be really really really really careful with memory here.
-/// </summary>
-bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, Score & score, Time & time, Scoreboard & scoreboard) const {
+Game::Game(sf::RenderWindow & window, Score & score, Time & time, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, const sf::Font& const font) :
+    playerSprite{ playerSprite }, backgroundSprite{ backgroundSprite }, obstacleSprite{ obstacleSprite } {
     print("Opening game.");
 
     // this makes the random fixed ? yep.
-    srand(std::time(0));
 
-    Player player{ window, playerSprite };
-    Environment environment{ window, backgroundSprite };
-
-    std::vector<Obstacle*> obstacles;
+    player = { window, playerSprite };
+    environment = { window, backgroundSprite };
+    scoreboard = { font };
+    //std::vector<Obstacle*> obstacles;
 
     // i basically want this to be dynaically allocated in this heap scope, 
     // and i also want to add more cars so progresllively more difficult.
@@ -58,70 +50,119 @@ bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite
         // ?? entities.emplace_back(window, playerSprite);
     }
 
+    refresh(score, time);
+}
+
+void Game::refresh(Score& score, Time& time) {
+    srand(std::time(0));
+
+    player.reset();
     score.reset();
     time.reset();
 
-    while (window.isOpen())
-    {
-        // we do this hereb ecause we dont want a dead window for the draw .. ??
-        sf::Event event;
-        
-        if (checkExitCondition(event, window)) {
-            for (int i = 0; i < obstacles.size(); i++) {
-                delete obstacles[i];
-            }
-
-            return true;
-        }
-
-        for (int i = 0; i < time.processFrame(); i++) {
-            environment.move(time);
-            player.move(time);
-
-            for (int j = 0; j < obstacles.size(); j++) {
-                obstacles[j]->move(time);
-
-                if (player.checkCollision(score, *obstacles[j])) {
-                    for (int i = 0; i < obstacles.size(); i++) {
-                        delete obstacles[i];
-                    }
-                    
-                    // here we wanna go to next scene bascially.
-                    return false;
-
-                    // https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
-                    // vec.erase(vec.begin() + index);
-
-                    // no not this.
-                    //obstacles.erase(obstacles.begin() + j);
-
-                    //obstacles[j]->ResetPosition();
-                }
-            }
-        }
-
-        // so that we see where holes and transparency.
-        window.clear(sf::Color::Magenta);
-
-        environment.draw(window, backgroundSprite);
-
-        for (int i = 0; i < obstacles.size(); i++) {
-            obstacles[i]->draw(window, obstacleSprite);
-        }
-
-        player.draw(window, playerSprite);
-
-        scoreboard.draw(window, score);
-
-        window.display();
-    }
-
     for (int i = 0; i < obstacles.size(); i++)
     {
-        delete obstacles[i];
+        obstacles[i]->resetPosition();
+    }
+}
+
+std::string Game::update(sf::RenderWindow & window, Score& score, Time& time) {
+    for (int i = 0; i < time.processFrame(); i++) {
+        environment.move(time);
+        player.move(time);
+
+        for (int j = 0; j < obstacles.size(); j++) {
+            obstacles[j]->move(time);
+
+            if (player.checkCollision(score, *obstacles[j])) {
+                /*for (int i = 0; i < obstacles.size(); i++) {
+                    delete obstacles[i];
+                }*/
+
+                return "next scene";
+            }
+        }
     }
 
-    print("Closing game.");
+    environment.draw(window, backgroundSprite);
 
-    return false;
+    for (int i = 0; i < obstacles.size(); i++) {
+        obstacles[i]->draw(window, obstacleSprite);
+    }
+
+    player.draw(window, playerSprite);
+
+    scoreboard.draw(window, score);
+
+    return "next frame";
 }
+
+/// <summary>
+/// Be really really really really careful with memory here.
+/// </summary>
+//bool Game::play(sf::RenderWindow & window, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, Score & score, Time & time, Scoreboard & scoreboard) const {
+//
+//    while (window.isOpen())
+//    {
+//        // we do this hereb ecause we dont want a dead window for the draw .. ??
+//        sf::Event event;
+//        
+//        if (checkExitCondition(event, window)) {
+//            for (int i = 0; i < obstacles.size(); i++) {
+//                delete obstacles[i];
+//            }
+//
+//            return true;
+//        }
+//
+//        for (int i = 0; i < time.processFrame(); i++) {
+//            environment.move(time);
+//            player.move(time);
+//
+//            for (int j = 0; j < obstacles.size(); j++) {
+//                obstacles[j]->move(time);
+//
+//                if (player.checkCollision(score, *obstacles[j])) {
+//                    for (int i = 0; i < obstacles.size(); i++) {
+//                        delete obstacles[i];
+//                    }
+//                    
+//                    // here we wanna go to next scene bascially.
+//                    return false;
+//
+//                    // https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
+//                    // vec.erase(vec.begin() + index);
+//
+//                    // no not this.
+//                    //obstacles.erase(obstacles.begin() + j);
+//
+//                    //obstacles[j]->resetPosition();
+//                }
+//            }
+//        }
+//
+//        // so that we see where holes and transparency.
+//        window.clear(sf::Color::Magenta);
+//
+//        environment.draw(window, backgroundSprite);
+//
+//        for (int i = 0; i < obstacles.size(); i++) {
+//            obstacles[i]->draw(window, obstacleSprite);
+//        }
+//
+//        player.draw(window, playerSprite);
+//
+//        scoreboard.draw(window, score);
+//
+//        window.display();
+//    }
+//
+//    for (int i = 0; i < obstacles.size(); i++)
+//    {
+//        delete obstacles[i];
+//    }
+//
+//    print("Closing game.");
+//
+//    return false;
+//}

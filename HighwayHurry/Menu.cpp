@@ -51,9 +51,9 @@ Menu::Menu(Score & score, Scoreboard & scoreboard, sf::Font & font, sf::RenderWi
 /// Make the changes required for the second menu version.
 /// Dont repeat if already second.
 /// </summary>
-void Menu::setupForSecond(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font)
+void Menu::refresh(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font)
 {
-    if (!first) { return; }
+    //if (!first) { return; }
     first = false;
 
     titleText.setString("GAME OVER"); // use some to upper method.

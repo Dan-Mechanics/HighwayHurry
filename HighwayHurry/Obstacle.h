@@ -13,7 +13,7 @@ public:
 	// we cant have a default construcor because we have a reference to score.
 	// and references cannot be null pointer. 
 	Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score);
-	void ResetPosition();
+	void resetPosition();
 	Vector3 getPosition() const;
 	//virtual ~ObstacleCar();
 

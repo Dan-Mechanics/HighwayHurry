@@ -28,6 +28,7 @@ public:
 	void addVelocity(const Vector3 velocity);
 	void addAcceleraton(const Vector3 acceleration);
 	void addForce(const Vector3 force);
+	void resetAll();
 
 	/// <summary>
 	/// Move the force into accel,

@@ -10,6 +10,8 @@ public:
 	Player();
 	Player(const sf::RenderWindow& window, const sf::Sprite& sprite);
 
+	void reset();
+
 	bool checkCollision(Score& score, Obstacle& obstacle) const;
 
 	// Inherited via Car.

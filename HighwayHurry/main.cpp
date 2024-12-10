@@ -96,7 +96,7 @@ int main() {
     bool showMenu = true;
 
     Menu menu{ score, scoreBoard, font, window, menuBackgroundSprite, quitButtonSprite, playButtonSprite };
-    Game game { };
+    Game game{ window, score, time, playerSprite, gameBackgroundSprite, obstacleSprite, font };
 
     /*while (!quit) {
 
@@ -117,7 +117,7 @@ int main() {
 
         window.clear(sf::Color::Magenta);
 
-        std::string output = showMenu ? menu.update(window) : game.update(window);
+        std::string output = showMenu ? menu.update(window) : game.update(window, score, time);
 
         window.display();
 
@@ -126,9 +126,14 @@ int main() {
         {
             showMenu = !showMenu;
 
-            if (!showMenu) 
+            if (showMenu) 
             {
-                menu.setupForSecond(window, score, scoreBoard, font);
+                menu.refresh(window, score, scoreBoard, font);
+            }
+            else
+            {
+                // we cant reset the score and time here because the menu need it .
+                game.refresh(score, time);
             }
         }
         
