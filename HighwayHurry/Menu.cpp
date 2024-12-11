@@ -7,18 +7,17 @@
 
 Menu::Menu() = default;
 
-Menu::Menu(Score & score, Scoreboard & scoreboard, sf::Font & font, sf::RenderWindow & window, sf::Sprite & backgroundSprite, sf::Sprite & quitButtonSprite, sf::Sprite & playButtonSprite)
-{   
-    //this->playAgainButton = playAgainButton;
-    //this->quitButton = quitButton;
-    
+Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, const sf::Texture& const backgroundTexture, const sf::Texture& const buttonTexture) {  
     first = true;
+    
+    backgroundSprite.setTexture(backgroundTexture);
 
-    //print("Opening menu.");
+    playAgainButtonSprite.setTexture(buttonTexture);
+    quitButtonSprite.setTexture(buttonTexture);
 
-    this->backgroundSprite = backgroundSprite;
-    this->playAgainButtonSprite = playButtonSprite;
-    this->quitButtonSprite = quitButtonSprite;
+    applyGlobalScale(backgroundSprite);
+    applyGlobalScale(playAgainButtonSprite);
+    applyGlobalScale(quitButtonSprite);
 
     quitButton = { window, quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
 
@@ -42,7 +41,7 @@ Menu::Menu(Score & score, Scoreboard & scoreboard, sf::Font & font, sf::RenderWi
 
     failSafe.setCharacterSize(40);
 
-    playAgainButton = { window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
+    playAgainButton = { window, playAgainButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
 
     playAgainButton.centerAll();
 }
@@ -50,37 +49,32 @@ Menu::Menu(Score & score, Scoreboard & scoreboard, sf::Font & font, sf::RenderWi
 /// <summary>
 /// Make the changes required for the second menu version.
 /// Dont repeat if already second.
+/// ARE WE ALLOWED TO USE GET METHOD ?
 /// </summary>
-void Menu::refresh(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font)
-{
-    //if (!first) { return; }
-    first = false;
-
-    titleText.setString("GAME OVER"); // use some to upper method.
-
-    // hardcoded yes i know.
-    playAgainButtonSprite.setScale(20, 10);
-
+void Menu::refresh(const sf::RenderWindow& const window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font) {
     scoreText.setString(scoreboard.getMenuString(score));
+    
+    // we dont have to do this over stuff.
+    if (!first) { return; }
+    
+    titleText.setString("GAME OVER"); // use some to upper method.
+    
+    playAgainButtonSprite.setScale(playAgainButtonSprite.getScale().y * 2, playAgainButtonSprite.getScale().y);
+
+    //scoreText.setString(scoreboard.getMenuString(score));
     scoreText.setCharacterSize(100);
 
+    // is window.getsize() allowed ???? we can also just define and width and height somewhere and fix this whole skibiidi.
     centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
     centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
 
     playAgainButton = { window, playAgainButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
-
     playAgainButton.centerAll();
+
+    first = false;
 }
 
-std::string Menu::update(sf::RenderWindow& window) {
-
-    // failsave.
-    //if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) { return 1; }
-
-    //window.clear(sf::Color::Magenta);
-
-    // does cpp have base.blabla(); ??
-
+std::string Menu::update(sf::RenderWindow& const window) {
     window.draw(backgroundSprite);
 
     playAgainButton.draw(window, playAgainButtonSprite);
@@ -107,9 +101,6 @@ std::string Menu::update(sf::RenderWindow& window) {
     }
 
     if (first) { window.draw(failSafe); }
-
-
-    //print("Closing menu.");
 
     return "next frame";
 }

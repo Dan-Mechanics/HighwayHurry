@@ -26,15 +26,28 @@
 
 Game::Game() = default;
 
-Game::Game(sf::RenderWindow & window, Score & score, Time & time, sf::Sprite & playerSprite, sf::Sprite & backgroundSprite, sf::Sprite & obstacleSprite, const sf::Font& const font) :
-    playerSprite{ playerSprite }, backgroundSprite{ backgroundSprite }, obstacleSprite{ obstacleSprite } {
+Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture, const sf::Texture& const obstacleTexture) {
     print("Opening game.");
+
+    playerSprite.setTexture(playerTexture);
+    backgroundSprite.setTexture(backgroundTexture);
+    obstacleSprite.setTexture(obstacleTexture);
+
+    backgroundSprite.setTextureRect(sf::IntRect(0, 0, backgroundTexture.getSize().x, backgroundTexture.getSize().y * 2));
+
+    backgroundTexture.setRepeated(true);
+
+    // smoothe ?
+
+    applyGlobalScale(playerSprite);
+    applyGlobalScale(backgroundSprite);
+    applyGlobalScale(obstacleSprite);
 
     // this makes the random fixed ? yep.
 
     player = { window, playerSprite };
     environment = { window, backgroundSprite };
-    scoreboard = { font };
+    //scoreboard = { font };
     //std::vector<Obstacle*> obstacles;
 
     // i basically want this to be dynaically allocated in this heap scope, 
@@ -52,7 +65,7 @@ Game::Game(sf::RenderWindow & window, Score & score, Time & time, sf::Sprite & p
     refresh(score, time);
 }
 
-void Game::refresh(Score& score, Time& time) {
+void Game::refresh(Score& const score, Time& const time) {
     srand(std::time(0));
 
     player.reset();
@@ -60,11 +73,11 @@ void Game::refresh(Score& score, Time& time) {
     time.reset();
 
     for (int i = 0; i < obstacles.size(); i++) {
-        obstacles[i]->resetPosition();
+        obstacles[i]->reset();
     }
 }
 
-std::string Game::update(sf::RenderWindow & window, Score& score, Time& time) {
+std::string Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);

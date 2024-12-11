@@ -10,12 +10,12 @@
 class Menu {
 public:
 	Menu();
-	Menu(Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite);
+	Menu(const sf::RenderWindow& const window, const sf::Font& const font, const sf::Texture& const backgroundTexture, const sf::Texture& const buttonTexture);
 
-	void refresh(sf::RenderWindow& window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font);
-	std::string update(sf::RenderWindow& window);
+	void refresh(const sf::RenderWindow& const window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font);
+	std::string update(sf::RenderWindow& const window);
 	//bool open(bool start, Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite) const;
-//private:
+private:
 	Button playAgainButton{};
 	Button quitButton{};
 

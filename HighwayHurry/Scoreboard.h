@@ -8,7 +8,7 @@ public:
 	Scoreboard();
 	Scoreboard(const sf::Font& const font);
 	void draw(sf::RenderWindow& window, Score& score);
-	void setGameString(sf::String& string, const Score& const score);
+	void setGameString(sf::String& string, const Score& const score) const;
 	sf::String getMenuString(const Score& const score) const;
 
 private:

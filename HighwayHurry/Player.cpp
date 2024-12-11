@@ -88,7 +88,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
 
 	if (hasCollision) 
 	{ 
-		obstacle.resetPosition();
+		obstacle.reset();
 
 		return score.Damage(1);
 	}

@@ -6,13 +6,19 @@
 #include "Scoreboard.h"
 #include "Button.h"
 
+/// <summary>
+/// Make sprite conform to playersize and dont use getsize on sprite and window ??.
+/// Do we have to upper method  for strings ?
+/// also add vector operands and better math utils library ish.
+/// </summary>
+/// <returns></returns>
 int main() {
     const sf::String TITLE = "Highway Hurry";
 
     print(TITLE);
 
     const int WIDTH = 1920;
-    const int HEIGHT = 1080;
+    const int HEIGHT = 1080; // --> make this global ?
     const unsigned int FPS_CAP = 320;
     const int TIMESTEP = 64;
     const int MAX_LIVES = 5;
@@ -48,25 +54,6 @@ int main() {
         print("texture not found!");
     }
 
-    sf::Sprite playerSprite;
-    sf::Sprite gameBackgroundSprite;
-    sf::Sprite obstacleSprite;
-
-    playerSprite.setTexture(playerTexture);
-    gameBackgroundSprite.setTexture(gameBackgroundTexture);
-    obstacleSprite.setTexture(obstacleTexture);
-
-    gameBackgroundSprite.setTextureRect(sf::IntRect(0, 0,
-        gameBackgroundTexture.getSize().x, gameBackgroundTexture.getSize().y * 2));
-
-    gameBackgroundTexture.setRepeated(true);
-
-    // smooth ?
-
-    applyGlobalScale(playerSprite);
-    applyGlobalScale(gameBackgroundSprite);
-    applyGlobalScale(obstacleSprite);
-
     //////////////////////////////////////////////////////
 
     sf::Texture menuBackgroundTexture;
@@ -77,85 +64,43 @@ int main() {
         print("texture not found!");
     }
 
-    sf::Sprite menuBackgroundSprite;
-    sf::Sprite playButtonSprite;
-    sf::Sprite quitButtonSprite;
-
-    menuBackgroundSprite.setTexture(menuBackgroundTexture);
-
-    playButtonSprite.setTexture(buttonTexture);
-    quitButtonSprite.setTexture(buttonTexture);
-
-    applyGlobalScale(menuBackgroundSprite);
-    applyGlobalScale(playButtonSprite);
-    applyGlobalScale(quitButtonSprite);
-
     //////////////////////////////////////////////////////
 
     bool quit = false;
     bool showMenu = true;
 
-    Menu menu{ score, scoreBoard, font, window, menuBackgroundSprite, quitButtonSprite, playButtonSprite };
-    Game game{ window, score, time, playerSprite, gameBackgroundSprite, obstacleSprite, font };
+    Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
+    Game game{ window, score, time, gameBackgroundTexture, playerTexture, obstacleTexture };
 
-    /*while (!quit) {
-
-        quit = menu.update(window) != 0;
-    }*/
-
-    // what i also could have done is make another scripts menu.cpp game.cpp and gameover.cpp
     while (window.isOpen())
     {
         sf::Event event;
 
         if (checkExitCondition(event, window) || quit) {
-            //quit = true;
             window.close();
-
+            // quit().
             return 0;
         }
 
         window.clear(sf::Color::Magenta);
 
-        std::string output = showMenu ? menu.update(window) : game.update(window, score, time);
+        std::string output = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
 
         window.display();
 
         if (output == "quit") { quit = true; }
-        else if (output == "next scene") 
-        {
+        else if (output == "next scene") {
             showMenu = !showMenu;
 
-            if (showMenu) 
-            {
+            if (showMenu) {
                 menu.refresh(window, score, scoreBoard, font);
             }
-            else
-            {
+            else {
                 // we cant reset the score and time here because the menu need it .
                 game.refresh(score, time);
             }
         }
-        
     }
-
-
-
-    //Game game{ };
-
-    //// i think we have enough while loops here to make it work :^)
-    //while (!quit) {
-
-    //    quit = menu.open(first, score, scoreBoard, font, window, menuBackgroundSprite,
-    //        quitButtonSprite, playButtonSprite);
-    //    
-    //    first = false;
-
-    //    if (quit) { return 0; }
-
-    //    quit = game.play(window, playerSprite, gameBackgroundSprite,
-    //        obstacleSprite, score, time, scoreBoard);
-    //}
 
     return 0;
 }

@@ -18,7 +18,7 @@ void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
     window.draw(text);
 }
 
-void Scoreboard::setGameString(sf::String& string, const Score& const score) {
+void Scoreboard::setGameString(sf::String& string, const Score& const score) const {
     string.clear();
 
     // is there a cpp stringbuilder ??

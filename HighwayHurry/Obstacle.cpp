@@ -17,10 +17,10 @@ Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const
 	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-250, 250); // ish.
 	// 
 	
-	//resetPosition();
+	//reset();
 }
 
-void Obstacle::resetPosition() {
+void Obstacle::reset() {
 	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-fallingSpeedVariance, fallingSpeedVariance);
 	color = randomColor();
 
@@ -70,7 +70,7 @@ void Obstacle::move(const Time& const time) {
 	}
 
 	if (rigidbody.position.yComponent > maxY) {
-		resetPosition();
+		reset();
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.
 	}
