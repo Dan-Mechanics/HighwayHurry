@@ -1,3 +1,5 @@
+implement new sprites.
+
 maybe look at all the warnings? something about anacrhonisme? what is that ?
 
 implement operators in the vector3 class if you wanna be bougy.

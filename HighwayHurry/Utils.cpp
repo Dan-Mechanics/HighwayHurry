@@ -77,6 +77,9 @@ bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const fl
 	return a.calculateDistanceTo(b) <= aR + bR;
 }
 
+/// <summary>
+/// https://stackoverflow.com/questions/735204/convert-a-string-in-c-to-upper-case
+/// </summary>
 sf::String makeUppercase(sf::String str) {
 	for (auto& c : str) c = toupper(c);
 
