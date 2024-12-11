@@ -7,8 +7,42 @@ Vector3::Vector3() = default;
 
 Vector3::Vector3(const float x, const float y, const float z) :
 	xComponent(x), yComponent(y), zComponent(z) {
-		std::cout << "CREATED ";
-		logComponents();
+
+	std::cout << "CREATED ";
+	logComponents();
+}
+
+Vector3 Vector3::operator+(const Vector3& container) const {
+	return Vector3(xComponent + container.xComponent, yComponent + container.yComponent, zComponent + container.zComponent);
+}
+
+Vector3& Vector3::operator+=(const Vector3& container) {
+	add(container);
+
+	return *this;
+}
+
+Vector3 Vector3::operator-(const Vector3& container) const {
+	return Vector3(xComponent - container.xComponent, yComponent - container.yComponent, zComponent - container.zComponent);
+}
+
+Vector3& Vector3::operator-=(const Vector3& container) {
+	remove(container);
+
+	return *this;
+}
+
+/// <summary>
+/// Does this need to be reference to float ? or just float will do ?
+/// </summary>
+Vector3 Vector3::operator*=(const float scalar) const {
+	return Vector3(xComponent * scalar, yComponent * scalar, zComponent * scalar);
+}
+
+Vector3& Vector3::operator*(const float scalar) {
+	multiply(scalar);
+
+	return *this;
 }
 
 /// <summary>

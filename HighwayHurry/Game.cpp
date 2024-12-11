@@ -8,6 +8,8 @@
 #include "Obstacle.h"
 #include <random>
 
+const sf::String TITLE = "Highway Hurry";
+
 //use this->more !
 //use{} with initilzaer list
 //use default

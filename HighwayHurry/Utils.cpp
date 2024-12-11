@@ -76,3 +76,9 @@ void applyTextBranding(sf::Text& text, const sf::Font& font) {
 bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR) {
 	return a.calculateDistanceTo(b) <= aR + bR;
 }
+
+sf::String makeUppercase(sf::String str) {
+	for (auto& c : str) c = toupper(c);
+
+	return str;
+}

@@ -30,3 +30,5 @@ int roundToInt(const float f);
 void applyTextBranding(sf::Text& text, const sf::Font& font);
 
 bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR);
+
+sf::String makeUppercase(sf::String str);

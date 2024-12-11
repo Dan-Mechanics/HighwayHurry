@@ -6,6 +6,8 @@
 #include "Score.h"
 #include "Scoreboard.h"
 
+extern const sf::String TITLE;
+
 class Game {
 public:
 	Game();

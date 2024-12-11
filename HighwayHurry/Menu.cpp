@@ -4,6 +4,7 @@
 #include "Scoreboard.h"
 #include "Button.h"
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 Menu::Menu() = default;
 
@@ -24,7 +25,8 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
     applyTextBranding(titleText, font);
     applyTextBranding(scoreText, font);
 
-    titleText.setString("HIGHWAY HURRY"); // use some to upper method.
+    //titleText.setString("HIGHWAY HURRY"); // use some to upper method.
+    titleText.setString(makeUppercase(TITLE));
     titleText.setCharacterSize(250);
 
     quitButton.centerAll();

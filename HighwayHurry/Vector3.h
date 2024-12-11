@@ -13,13 +13,22 @@ public: // Technically speaking this doesnt have to be here.
 	Vector3();
 	Vector3(const float x, const float y, const float z);
 
+	Vector3 operator+(const Vector3& container) const;
+	Vector3& operator+=(const Vector3& container);
+
+	Vector3 operator-(const Vector3& container) const;
+	Vector3& operator-=(const Vector3& container);
+
+	Vector3 operator*=(const float scalar) const;
+	Vector3& operator*(const float scalar);
+
 	void setAll(const float x, const float y, const float z);
 	void logComponents() const;
 	void add(const Vector3 vec);
 	void add(const Vector3& vec, const float mult);
 	void remove(const Vector3 vec);
-	void multiply(const float amount);
-	void divide(const float amount);
+	void multiply(const float scalar);
+	void divide(const float scalar);
 	float calculateMagnitude();
 	void normalize();
 	void clampMagnitude(const float magnitude);

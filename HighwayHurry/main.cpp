@@ -13,7 +13,7 @@
 /// </summary>
 /// <returns></returns>
 int main() {
-    const sf::String TITLE = "Highway Hurry";
+    //const sf::String TITLE = "Highway Hurry";
 
     print(TITLE);
 
