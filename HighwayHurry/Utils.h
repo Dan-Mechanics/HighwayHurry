@@ -32,3 +32,5 @@ void applyTextBranding(sf::Text& text, const sf::Font& font);
 bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR);
 
 sf::String makeUppercase(sf::String str);
+
+float distance(const Vector3& const a, const Vector3& const b);
