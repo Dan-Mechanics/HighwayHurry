@@ -189,10 +189,12 @@ void Vector3::crossProduct(const Vector3 other) {
 
 
 float Vector3::getAngle() const {
+	// convert to degrees and not PI ??
 	return atan2f(yComponent, xComponent);
 }
 
 void Vector3::setWithAngleAndLength(const float angle, const float length) {
+	// convert to degrees and not PI ??
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
 }
 
