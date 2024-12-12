@@ -1,4 +1,9 @@
 add cat petting feature in menu.
+dont forget to add good comments at the end !!
+and dont forget to write in your devlog notbook documentatie thing
+bullshit and with the github and everything.
+source code github sounded good to rosa tho.
+add a cleaner way to round all the positions to nearest pixel in terms of on the drawable shit or something like that.
 
 MAKE REFERENCE CONST ??
 

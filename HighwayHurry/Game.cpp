@@ -87,6 +87,9 @@ void Game::refresh(Score& const score, Time& const time) {
 }
 
 unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
+    unsigned int result = 0;
+    
+    // we have FixedUpdate() at home :
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
@@ -96,11 +99,11 @@ unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Ti
 
             if (player.checkCollision(score, *obstacles[j])) {
                 // temp fix:
-                window.clear(sf::Color::Black);
+                //window.clear(sf::Color::Black);
 
                 // otherwise we would need to have an int result which is possible but a little annoying thb.
 
-                return 1;
+                result = 1;
             }
         }
     }
@@ -133,5 +136,6 @@ unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Ti
     scoreboard.draw(window, score);
 
     // next frame.
-    return 0;
+    //return 0;
+    return result;
 }

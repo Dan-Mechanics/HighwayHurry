@@ -82,6 +82,8 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
 /// <param name="window"></param>
 /// <returns></returns>
 unsigned int Menu::update(sf::RenderWindow& const window) {
+    unsigned int result = 0;
+    
     window.draw(backgroundSprite);
 
     playButton.draw(window, playButtonSprite);
@@ -95,7 +97,7 @@ unsigned int Menu::update(sf::RenderWindow& const window) {
         {
             print("quitButton.");
             //window.close();
-            return 2;
+            result = 2;
         }
     }
 
@@ -104,10 +106,10 @@ unsigned int Menu::update(sf::RenderWindow& const window) {
     if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P))
     {
         print("playButton.");
-        return 1;
+        result =  1;
     }
 
     if (firstMenuOpen) { window.draw(debugInstructions); }
 
-    return 0;
+    return result;
 }
