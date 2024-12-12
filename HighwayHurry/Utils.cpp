@@ -1,7 +1,8 @@
 #include "Vector3.h"
-#include "Utils.h"
+#include "MathUtils.h"
 #include <iostream>
 #include <random>
+#include <SFML/Graphics.hpp>
 
 void print(const std::string value) {
 	std::cout << " > " << value << std::endl;

@@ -37,7 +37,7 @@ public: // Technically speaking this doesnt have to be here.
 	float calcNormalizedDotProduct(Vector3 b) const;
 	Vector3 cross(const Vector3& const other) const;
 	float getAngle() const;
-	void setWithAngleAndLength(const float angle, const float length);
+	void setWithAngleAndLength(float angle, const float length);
 	float calculateDistanceTo(const Vector3& const other) const;
 };
 

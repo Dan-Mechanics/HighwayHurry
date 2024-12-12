@@ -17,6 +17,10 @@ int main() {
 
     print(TITLE);
 
+    // THIS THIS THIS
+    // could make this global consts so we dont have to read from canvas and sprite
+    // and besides we need to make the sprite adjust to player and not player adjust to sprite but whatever.
+
     const int WIDTH = 1920;
     const int HEIGHT = 1080; // --> make this global ?
     const unsigned int FPS_CAP = 320;
@@ -32,9 +36,12 @@ int main() {
 
     //////////////////////////////////////////////////////
 
+    /// <summary>
+    /// https://www.dafont.com/gamer-2.font
+    /// </summary>
     sf::Font font;
-    if (!font.loadFromFile("Gamer.ttf"))
-    {
+
+    if (!font.loadFromFile("Gamer.ttf")) {
         print("Gamer.ttf not found!");
     }
 
@@ -46,12 +53,22 @@ int main() {
 
     sf::Texture playerTexture;
     sf::Texture gameBackgroundTexture;
-    sf::Texture obstacleTexture;
 
+    sf::Texture fastCarTexture;
+    sf::Texture midCarTexture;
+    sf::Texture slowCarTexture;
+    
     if (!playerTexture.loadFromFile("player.png") ||
-        !gameBackgroundTexture.loadFromFile("new_road.png") ||
-        !obstacleTexture.loadFromFile("obstacle_car.png")) {
-        print("texture not found!");
+        !gameBackgroundTexture.loadFromFile("game.png")) {
+
+        print("Game texture(s) not found!");
+    }
+
+    if (!fastCarTexture.loadFromFile("fast_car.png") ||
+        !midCarTexture.loadFromFile("mid_car.png") ||
+        !slowCarTexture.loadFromFile("slow_Car.png")) {
+
+        print("Car texture(s) not found!");
     }
 
     //////////////////////////////////////////////////////
@@ -59,9 +76,10 @@ int main() {
     sf::Texture menuBackgroundTexture;
     sf::Texture buttonTexture;
 
-    if (!menuBackgroundTexture.loadFromFile("new_menu.png") ||
+    if (!menuBackgroundTexture.loadFromFile("menu.png") ||
         !buttonTexture.loadFromFile("button.png")) {
-        print("texture not found!");
+
+        print("Menu texture(s) not found!");
     }
 
     //////////////////////////////////////////////////////
@@ -70,10 +88,9 @@ int main() {
     bool showMenu = true;
 
     Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
-    Game game{ window, score, time, gameBackgroundTexture, playerTexture, obstacleTexture };
+    Game game{ window, score, time, gameBackgroundTexture, playerTexture, midCarTexture };
 
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         sf::Event event;
 
         if (checkExitCondition(event, window) || quit) {

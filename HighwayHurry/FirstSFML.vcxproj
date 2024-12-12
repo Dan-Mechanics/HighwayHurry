@@ -158,6 +158,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="MathUtils.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Player.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathUtils.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Player.cpp" />

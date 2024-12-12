@@ -1,3 +1,15 @@
+    // THIS THIS THIS
+    // could make this global consts so we dont have to read from canvas and sprite
+    // and besides we need to make the sprite adjust to player and not player adjust to sprite but whatever.
+
+    const int WIDTH = 1920;
+    const int HEIGHT = 1080; // --> make this global ?
+    const unsigned int FPS_CAP = 320;
+    const int TIMESTEP = 64;
+
+fix anachronism some time not today.
+also particles, use force to move all shit and player and falling should be Rigibdoies
+
 implement new sprites.
 
 maybe look at all the warnings? something about anacrhonisme? what is that ?

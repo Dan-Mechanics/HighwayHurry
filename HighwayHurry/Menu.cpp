@@ -76,6 +76,11 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     first = false;
 }
 
+/// <summary>
+/// Use int for this instead !!!
+/// </summary>
+/// <param name="window"></param>
+/// <returns></returns>
 std::string Menu::update(sf::RenderWindow& const window) {
     window.draw(backgroundSprite);
 

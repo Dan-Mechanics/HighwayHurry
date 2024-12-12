@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Vector3.h"
 #include <SFML/Graphics.hpp>
+#include "MathUtils.h"
 
 void print(const std::string value);
 void print(const int value);

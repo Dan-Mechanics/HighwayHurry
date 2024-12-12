@@ -4,7 +4,7 @@
 extern const float PI;
 extern const float RAD2DEG;
 
-bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR);
+bool checkCircleTouch(const Vector3& const a, const Vector3& const b, const float aR, const float bR);
 
 int randomInclusive(const int min, const int max);
 
