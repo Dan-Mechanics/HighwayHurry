@@ -33,11 +33,11 @@ public: // Technically speaking this doesnt have to be here.
 	void normalize();
 	void clampMagnitude(const float magnitude);
 	void round(const float grid);
-	float dotProduct(const Vector3 other);
+	float dotWith(const &Vector3 const other);
 	float dotProductNormalized(Vector3 b);
-	void crossProduct(const Vector3 other);
+	Vector3 crossWith(const Vector3& const other);
 	float getAngle() const;
 	void setWithAngleAndLength(const float angle, const float length);
-	float calculateDistanceTo(Vector3 other) const;
+	float calculateDistanceTo(const Vector3& const other) const;
 };
 

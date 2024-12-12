@@ -156,7 +156,11 @@ void Vector3::round(const float grid) {
 	zComponent = roundf(zComponent / grid) * grid;
 }
 
-float Vector3::dotProduct(const Vector3 other) {
+// todo: refernces const const, physics les, komende weken aan de gang practicum,
+// implementeer formjles.
+// matrixes is optimzaiton.
+// fix pi and deg
+float Vector3::dotWith(const Vector3& const other) {
 	return 
 		xComponent * other.xComponent +
 		yComponent * other.yComponent + 
@@ -178,13 +182,18 @@ float Vector3::dotProductNormalized(Vector3 b) {
 
 /// <summary>
 /// Idk if this works --> ask rosa or something. The order of the algorithm is important.
+/// Gives the vector die haaks staat.
 /// </summary>
-void Vector3::crossProduct(const Vector3 other) {
-	setAll(
+Vector3 Vector3::crossWith(const &Vector3 const other) {
+	// the problem is that the order might be wrong.
+	// i dont know if its smart to use this.
+	// OK VOLGENS MIJ IS DE ORDER CORRECT. POGGERS. maybe i should make these static math functions.
+	// round brakcets baka !!
+	return {
 		yComponent * other.zComponent + zComponent * other.yComponent,
 		zComponent * other.xComponent + xComponent * other.zComponent,
 		xComponent * other.yComponent + yComponent * other.xComponent
-	);
+	};
 }
 
 
@@ -195,6 +204,14 @@ float Vector3::getAngle() const {
 
 void Vector3::setWithAngleAndLength(const float angle, const float length) {
 	// convert to degrees and not PI ??
+	// TODO: convert angle to PI shit.
+	// how tf am i gonna make particles.
+	// just draw  abuncha sprite.
+	// dit is allemaal in radians.
+	// look up cross product tutorial
+	//const float PI = 3.1415926535 8979323846 2643383279 5028841971 6939937510 5820974944 5923078164 0628620899 8628034825 3421170679 8214808651 3282306647 0938446095 5058223172 5359408128 4811174502 8410270193 8521105559 6446229489 5493038196 4428810975 6659334461 2847564823 3786783165 2712019091 4564856692 3460348610 4543266482;
+	
+	
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
 }
 
