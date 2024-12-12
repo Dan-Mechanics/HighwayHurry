@@ -14,17 +14,19 @@ Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const
 	maxY = screenHeight;
 }
 
-void Obstacle::reset() {
-	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-fallingSpeedVariance, fallingSpeedVariance);
+void Obstacle::reset(const Time& const time) {
 	color = randomColor();
 
-	spriteIndex = randomInclusive(0, 2);
+	// if u wanna know why not fast car look here :
+	spriteIndex = randomInclusive(0, 1);
+	rigidbody.mass = spriteIndex * -0.35f + 1.45f;
 
-	rigidbody.velocity.setAll (
-		0, // x
-		fallingSpeed + randomInclusive(-fallingSpeedVariance, fallingSpeedVariance), // y
-		0 // z
-	);
+	rigidbody.stopInPlace();
+
+	Vector3 force{ 0, downwardImpactForce + randomInclusive(-downwardImpactForceVariance, downwardImpactForceVariance), 0 };
+	force.divide(time.fixedInterval);
+
+	rigidbody.addForce(force);
 
 	rigidbody.position.setAll (
 		randomInclusive(minX, maxX), // x
@@ -32,7 +34,7 @@ void Obstacle::reset() {
 		0 // z
 	);
 
-	accel.setAll(randomInclusive(-250, 250), 0, 0);
+	constantForce.setAll(randomInclusive(-constantForceVariance, constantForceVariance), 0, 0);
 }
 
 unsigned int Obstacle::getSprite() const {
@@ -44,7 +46,7 @@ Vector3 Obstacle::getPosition() const {
 }
 
 void Obstacle::move(const Time& const time) {
-	rigidbody.addAcceleraton(accel);
+	rigidbody.addForce(constantForce);
 
 	rigidbody.process(time);
 
@@ -70,7 +72,7 @@ void Obstacle::move(const Time& const time) {
 	}
 
 	if (rigidbody.position.yComponent > maxY) {
-		reset();
+		reset(time);
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.
 	}

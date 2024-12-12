@@ -80,7 +80,7 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
 /// Use int for this instead !!!
 /// </summary>
 /// <param name="window"></param>
-/// <returns></returns>
+/// <returns>return code for quitting or next frame etc.</returns>
 unsigned int Menu::update(sf::RenderWindow& const window) {
     unsigned int result = 0;
     

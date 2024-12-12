@@ -37,6 +37,7 @@ public:
 	/// </summary>
 	void process(const Time& const time);
 	void limitVelocity(const float magnitude);
+	void stopInPlace();
 
 private:
 	Vector3 acceleration{}; // have an add force thing that adds acceleration.

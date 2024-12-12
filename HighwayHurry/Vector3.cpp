@@ -9,8 +9,8 @@ Vector3::Vector3() = default;
 Vector3::Vector3(const float x, const float y, const float z) :
 	xComponent(x), yComponent(y), zComponent(z) {
 
-	std::cout << "CREATED ";
-	logComponents();
+	//std::cout << "CREATED ";
+	//logComponents();
 }
 
 Vector3 Vector3::operator+(const Vector3& container) const {

@@ -81,7 +81,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	rigidbody.addVelocity(counterMovement);
 }
 
-bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
+bool Player::checkCollision(Score& score, Obstacle& obstacle, const Time& const time) const {
 	float leniency = 0.75f; // so we have negative leniency.
 	
 	//bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX / 2.0f, obstacle.getSizeX() / 2.0f);
@@ -90,7 +90,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
 
 	if (hasCollision) 
 	{ 
-		obstacle.reset();
+		obstacle.reset(time);
 
 		return score.Damage(1);
 	}
@@ -101,7 +101,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
 
 // should be referecne.
 Vector3 Player::calculateMovement() const {
-	Vector3 movement;
+	Vector3 movement { };
 	
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
 	{

@@ -82,7 +82,7 @@ void Game::refresh(Score& const score, Time& const time) {
     time.reset();
 
     for (int i = 0; i < obstacles.size(); i++) {
-        obstacles[i]->reset();
+        obstacles[i]->reset(time);
     }
 }
 
@@ -97,7 +97,7 @@ unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Ti
         for (int j = 0; j < obstacles.size(); j++) {
             obstacles[j]->move(time);
 
-            if (player.checkCollision(score, *obstacles[j])) {
+            if (player.checkCollision(score, *obstacles[j], time)) {
                 // temp fix:
                 //window.clear(sf::Color::Black);
 

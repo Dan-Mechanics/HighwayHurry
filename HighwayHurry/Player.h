@@ -12,7 +12,7 @@ public:
 
 	void reset();
 
-	bool checkCollision(Score& score, Obstacle& obstacle) const;
+	bool checkCollision(Score& score, Obstacle& obstacle, const Time& const time) const;
 
 	// Inherited via Car.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;

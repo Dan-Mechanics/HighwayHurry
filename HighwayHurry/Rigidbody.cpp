@@ -54,3 +54,7 @@ void Rigidbody::process(const Time& const time) {
 void Rigidbody::limitVelocity(const float magnitude) {
 	velocity.clampMagnitude(magnitude);
 }
+
+void Rigidbody::stopInPlace() {
+	velocity.setAll(0, 0, 0);
+}
