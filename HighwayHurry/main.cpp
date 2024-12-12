@@ -95,18 +95,37 @@ int main() {
 
         if (checkExitCondition(event, window) || quit) {
             window.close();
-            // quit().
+            
+            quit = true;
+            // close early.
             return 0;
         }
 
         window.clear(sf::Color::Magenta);
 
-        std::string output = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
+        unsigned int output = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
 
         window.display();
 
-        if (output == "quit") { quit = true; }
-        else if (output == "next scene") {
+        //if (output == 2) { quit = true; }
+        //else if (output == 1) {
+        //    showMenu = !showMenu;
+
+        //    if (showMenu) {
+        //        menu.refresh(window, score, scoreBoard, font);
+        //    }
+        //    else {
+        //        // we cant reset the score and time here because the menu need it .
+        //        game.refresh(score, time);
+        //    }
+        //}
+
+        switch (output) {
+        case 2:
+            quit = true;
+            break;
+
+        case 1:
             showMenu = !showMenu;
 
             if (showMenu) {
@@ -116,6 +135,10 @@ int main() {
                 // we cant reset the score and time here because the menu need it .
                 game.refresh(score, time);
             }
+
+        default:
+            // next frame
+            break;
         }
     }
 

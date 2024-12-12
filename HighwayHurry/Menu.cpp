@@ -9,15 +9,15 @@
 Menu::Menu() = default;
 
 Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, const sf::Texture& const backgroundTexture, const sf::Texture& const buttonTexture) {  
-    first = true;
+    firstMenuOpen = true;
     
     backgroundSprite.setTexture(backgroundTexture);
 
-    playAgainButtonSprite.setTexture(buttonTexture);
+    playButtonSprite.setTexture(buttonTexture);
     quitButtonSprite.setTexture(buttonTexture);
 
     applyGlobalScale(backgroundSprite);
-    applyGlobalScale(playAgainButtonSprite);
+    applyGlobalScale(playButtonSprite);
     applyGlobalScale(quitButtonSprite);
 
     quitButton = { window, quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
@@ -35,17 +35,17 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
 
     centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 225);
 
-    applyTextBranding(failSafe, font);
+    applyTextBranding(debugInstructions, font);
 
-    failSafe.setPosition(15, window.getSize().y - 70);
+    debugInstructions.setPosition(15, window.getSize().y - 70);
 
-    failSafe.setString("Tip : press [P] if the button doesn't work.");
+    debugInstructions.setString("Tip : press [P] if the button doesn't work.");
 
-    failSafe.setCharacterSize(40);
+    debugInstructions.setCharacterSize(40);
 
-    playAgainButton = { window, playAgainButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
+    playButton = { window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
 
-    playAgainButton.centerAll();
+    playButton.centerAll();
 }
 
 /// <summary>
@@ -57,11 +57,11 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     scoreText.setString(scoreboard.getMenuString(score));
     
     // we dont have to do this over stuff.
-    if (!first) { return; }
+    if (!firstMenuOpen) { return; }
     
     titleText.setString("GAME OVER"); // use some to upper method.
     
-    playAgainButtonSprite.setScale(playAgainButtonSprite.getScale().y * 2, playAgainButtonSprite.getScale().y);
+    playButtonSprite.setScale(playButtonSprite.getScale().y * 2, playButtonSprite.getScale().y);
 
     //scoreText.setString(scoreboard.getMenuString(score));
     scoreText.setCharacterSize(100);
@@ -70,10 +70,10 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
     centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
 
-    playAgainButton = { window, playAgainButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
-    playAgainButton.centerAll();
+    playButton = { window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    playButton.centerAll();
 
-    first = false;
+    firstMenuOpen = false;
 }
 
 /// <summary>
@@ -81,12 +81,12 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
 /// </summary>
 /// <param name="window"></param>
 /// <returns></returns>
-std::string Menu::update(sf::RenderWindow& const window) {
+unsigned int Menu::update(sf::RenderWindow& const window) {
     window.draw(backgroundSprite);
 
-    playAgainButton.draw(window, playAgainButtonSprite);
+    playButton.draw(window, playButtonSprite);
 
-    if (!first) {
+    if (!firstMenuOpen) {
         window.draw(scoreText);
 
         quitButton.draw(window, quitButtonSprite);
@@ -94,20 +94,20 @@ std::string Menu::update(sf::RenderWindow& const window) {
         if (quitButton.getIsClicked())
         {
             print("quitButton.");
-            window.close();
-            return "quit";
+            //window.close();
+            return 2;
         }
     }
 
     window.draw(titleText);
 
-    if (playAgainButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P))
+    if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P))
     {
-        print("playAgainButton.");
-        return "next scene";
+        print("playButton.");
+        return 1;
     }
 
-    if (first) { window.draw(failSafe); }
+    if (firstMenuOpen) { window.draw(debugInstructions); }
 
-    return "next frame";
+    return 0;
 }

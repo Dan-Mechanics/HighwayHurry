@@ -86,7 +86,7 @@ void Game::refresh(Score& const score, Time& const time) {
     }
 }
 
-std::string Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
+unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
@@ -95,11 +95,12 @@ std::string Game::update(sf::RenderWindow& const window, Score& const score, Tim
             obstacles[j]->move(time);
 
             if (player.checkCollision(score, *obstacles[j])) {
-                /*for (int i = 0; i < obstacles.size(); i++) {
-                    delete obstacles[i];
-                }*/
+                // temp fix:
+                window.clear(sf::Color::Black);
 
-                return "next scene";
+                // otherwise we would need to have an int result which is possible but a little annoying thb.
+
+                return 1;
             }
         }
     }
@@ -131,5 +132,6 @@ std::string Game::update(sf::RenderWindow& const window, Score& const score, Tim
 
     scoreboard.draw(window, score);
 
-    return "next frame";
+    // next frame.
+    return 0;
 }
