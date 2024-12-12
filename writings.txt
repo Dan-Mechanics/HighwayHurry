@@ -1,3 +1,5 @@
+MAKE REFERENCE CONST ??
+
     // THIS THIS THIS
     // could make this global consts so we dont have to read from canvas and sprite
     // and besides we need to make the sprite adjust to player and not player adjust to sprite but whatever.

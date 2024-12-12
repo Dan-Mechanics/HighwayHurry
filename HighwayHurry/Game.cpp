@@ -28,12 +28,16 @@ const sf::String TITLE = "Highway Hurry";
 
 Game::Game() = default;
 
-Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture, const sf::Texture& const obstacleTexture) {
+Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture,
+    const sf::Texture& const fast, const sf::Texture& const mid, const sf::Texture& const slow) {
     print("Opening game.");
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
-    obstacleSprite.setTexture(obstacleTexture);
+
+    midSprite.setTexture(mid);
+    slowSprite .setTexture(slow);
+    fastSprite.setTexture(fast);
 
     backgroundSprite.setTextureRect(sf::IntRect(0, 0, backgroundTexture.getSize().x, backgroundTexture.getSize().y * 2));
 
@@ -43,7 +47,10 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
 
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
-    applyGlobalScale(obstacleSprite);
+
+    applyGlobalScale(midSprite);
+    applyGlobalScale(fastSprite);
+    applyGlobalScale(slowSprite);
 
     // this makes the random fixed ? yep.
 
@@ -57,7 +64,7 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
     // i have no idea how im gonna add friction and or collison !!!
     for (int i = 0; i < 8; i++) {
         // DNAGER DANGER ZONE.
-        Obstacle* car = new Obstacle(window, obstacleSprite, score);
+        Obstacle* car = new Obstacle(window, midSprite, score);
 
         obstacles.push_back(car);
 
@@ -100,7 +107,24 @@ std::string Game::update(sf::RenderWindow& const window, Score& const score, Tim
     environment.draw(window, backgroundSprite);
 
     for (int i = 0; i < obstacles.size(); i++) {
-        obstacles[i]->draw(window, obstacleSprite);
+        //sf::Sprite& obstacleSprite = midSprite;
+        // todo: make this better.
+        switch (obstacles[i]->getSprite()) {
+        case 0:
+            obstacles[i]->draw(window, slowSprite);
+            break;
+        case 1:
+            obstacles[i]->draw(window, midSprite);
+            break;
+        case 2:
+            obstacles[i]->draw(window, fastSprite);
+            break;
+        default:
+            obstacles[i]->draw(window, midSprite);
+            break;
+        }
+
+        //obstacles[i]->draw(window, obstacleSprite);
     }
 
     player.draw(window, playerSprite);

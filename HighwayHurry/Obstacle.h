@@ -14,6 +14,7 @@ public:
 	// and references cannot be null pointer. 
 	Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score);
 	void reset();
+	unsigned int getSprite() const;
 	Vector3 getPosition() const;
 	//virtual ~ObstacleCar();
 
@@ -26,6 +27,7 @@ private:
 	//float spawnMargins = 245;
 	int fallingSpeedVariance = 150;
 	int highestSpawnPoint = -1080;
+	unsigned int spriteIndex{};
 
 	Vector3 accel{};
 	sf::Color color = sf::Color::White;

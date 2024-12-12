@@ -88,7 +88,7 @@ int main() {
     bool showMenu = true;
 
     Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
-    Game game{ window, score, time, gameBackgroundTexture, playerTexture, midCarTexture };
+    Game game{ window, score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
 
     while (window.isOpen()) {
         sf::Event event;

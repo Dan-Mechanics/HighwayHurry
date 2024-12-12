@@ -16,6 +16,9 @@ public:
 	int getSizeX() const;
 	int getSizeY() const;
 
+	/// <summary>
+	/// TODO ?? :: make reference const ??
+	/// </summary>
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) = 0;
 
 protected:

@@ -1,5 +1,6 @@
 #include "Obstacle.h"
 #include <iostream>
+#include "MathUtils.h"
 #include "Utils.h"
 #include "Environment.h"
 //#include "Rigidbody.h" // for global var ?? not required i gues
@@ -10,19 +11,14 @@ Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
 	
-	// this could be in Enity.
-	//maxX = window.getSize().x - sizeX;
-	maxY = screenHeight; // this is important because that means it disappears off the screen ish.
-	//color = randomColor();
-	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-250, 250); // ish.
-	// 
-	
-	//reset();
+	maxY = screenHeight;
 }
 
 void Obstacle::reset() {
 	//rigidbody.velocity.yComponent = fallingSpeed + randomInclusive(-fallingSpeedVariance, fallingSpeedVariance);
 	color = randomColor();
+
+	spriteIndex = randomInclusive(0, 2);
 
 	rigidbody.velocity.setAll (
 		0, // x
@@ -37,6 +33,10 @@ void Obstacle::reset() {
 	);
 
 	accel.setAll(randomInclusive(-250, 250), 0, 0);
+}
+
+unsigned int Obstacle::getSprite() const {
+	return spriteIndex;
 }
 
 Vector3 Obstacle::getPosition() const {

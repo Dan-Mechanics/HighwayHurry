@@ -11,7 +11,8 @@ extern const sf::String TITLE;
 class Game {
 public:
 	Game();
-	Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture, const sf::Texture& const obstacleTexture);
+	Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture, 
+		const sf::Texture& const fast, const sf::Texture& const mid, const sf::Texture& const slow);
 
 	void refresh(Score& score, Time& time);
 	std::string update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard);
@@ -26,6 +27,8 @@ private:
 	std::vector<Obstacle*> obstacles;
 
 	sf::Sprite backgroundSprite;
-	sf::Sprite obstacleSprite;
+	sf::Sprite fastSprite;
+	sf::Sprite midSprite;
+	sf::Sprite slowSprite;
 	sf::Sprite playerSprite;
 };
