@@ -2,6 +2,7 @@
 #include "math.h"
 #include <iostream>
 #include "Utils.h"
+#include "MathUtils.h"
 
 Vector3::Vector3() = default;
 
@@ -156,7 +157,7 @@ void Vector3::round(const float grid) {
 	zComponent = roundf(zComponent / grid) * grid;
 }
 
-float Vector3::calcDotProduct(const Vector3& const other) {
+float Vector3::calcDotProduct(const Vector3& const other) const {
 	return
 		xComponent * other.xComponent +
 		yComponent * other.yComponent +
@@ -167,8 +168,7 @@ float Vector3::calcDotProduct(const Vector3& const other) {
 // implementeer formjles.
 // matrixes is optimzaiton.
 // fix pi and degs
-
-float Vector3::calcNormalizedDotProduct(Vector3 b) {
+float Vector3::calcNormalizedDotProduct(Vector3 b) const {
 	b.normalize();
 
 	//Vector3 a = Vector3(xComponent, yComponent, zComponent);
@@ -181,7 +181,7 @@ float Vector3::calcNormalizedDotProduct(Vector3 b) {
 		a.zComponent * b.zComponent;
 }
 
-Vector3 Vector3::cross(const Vector3& const other) {
+Vector3 Vector3::cross(const Vector3& const other) const {
 	return {
 		yComponent * other.zComponent + zComponent * other.yComponent,
 		zComponent * other.xComponent + xComponent * other.zComponent,
@@ -199,7 +199,7 @@ float Vector3::getAngle() const {
 /// 
 /// </summary>
 /// <param name="angle">Degrees</param>
-void Vector3::setWithAngleAndLength(const float angle, const float length) {
+void Vector3::setWithAngleAndLength(float angle, const float length) {
 	// convert to degrees and not PI ??
 	// TODO: convert angle to PI shit.
 	// how tf am i gonna make particles.
@@ -210,5 +210,11 @@ void Vector3::setWithAngleAndLength(const float angle, const float length) {
 	
 	// we want to convert angle which is degrees to radians.
 	
+	
+	angle = toRadians(angle);
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
+}
+
+float Vector3::calculateDistanceTo(const Vector3& const other) const {
+	return distance(*this, other);
 }

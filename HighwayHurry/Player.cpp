@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Utils.h"
 #include "Environment.h"
+#include "MathUtils.h"
 
 Player::Player() = default;
 
@@ -81,10 +82,11 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 }
 
 bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
-	float leniency = 0.75f; // so we have negative leniency.
+	//float leniency = 0.75f; // so we have negative leniency.
 	
 	//bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX / 2.0f, obstacle.getSizeX() / 2.0f);
-	bool hasCollision = rigidbody.position.calculateDistanceTo(obstacle.getPosition()) <= sizeX * leniency;
+	//bool hasCollision = rigidbody.position.calculateDistanceTo(obstacle.getPosition()) <= sizeX * leniency;
+	bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX, obstacle.getSizeX());
 
 	if (hasCollision) 
 	{ 

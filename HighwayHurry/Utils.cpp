@@ -15,13 +15,6 @@ void print(const float value) {
 	std::cout << " > " << value << std::endl;
 }
 
-/// <summary>
-/// https://stackoverflow.com/questions/12657962/how-do-i-generate-a-random-number-between-two-variables-that-i-have-stored
-/// </summary>
-int randomInclusive(const int min, const int max) {
-	return rand() % (max - min + 1) + min;
-}
-
 bool checkExitCondition(sf::Event& event, sf::RenderWindow& window) {
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed ||
@@ -55,12 +48,6 @@ void centerText(sf::Text& text, const sf::RenderWindow& window) {
 	centerText(text, window.getSize().x / 2, window.getSize().y / 2);
 }
 
-int roundToInt(const float f) {
-	//return (int)round(f);
-	// idk.
-	return round(f);
-}
-
 /// <summary>
 /// https://www.sfml-dev.org/tutorials/2.6/graphics-text.php
 /// https://www.dafont.com/gamer-2.font?text=hEllLo+this+is+ScoreSCORE+%3A+100
@@ -73,10 +60,6 @@ void applyTextBranding(sf::Text& text, const sf::Font& font) {
 	text.setStyle(sf::Text::Bold);
 }
 
-bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR) {
-	return a.calculateDistanceTo(b) <= aR + bR;
-}
-
 /// <summary>
 /// https://stackoverflow.com/questions/735204/convert-a-string-in-c-to-upper-case
 /// </summary>
@@ -84,8 +67,4 @@ sf::String makeUppercase(sf::String str) {
 	for (auto& c : str) c = toupper(c);
 
 	return str;
-}
-
-float distance(const Vector3& const a, const Vector3& const b) {
-	return powf(powf(a.xComponent - b.xComponent, 2) + powf(a.yComponent - b.yComponent, 2) + powf(a.zComponent - b.zComponent, 2), 0.5f);
 }

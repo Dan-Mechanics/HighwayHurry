@@ -7,8 +7,6 @@ void print(const std::string value);
 void print(const int value);
 void print(const float value);
 
-int randomInclusive(const int min, const int max);
-
 bool checkExitCondition(sf::Event& event, sf::RenderWindow& window);
 
 sf::Color randomColor();
@@ -25,12 +23,6 @@ void centerText(sf::Text& text, const int x, const int y);
 /// </summary>
 void centerText(sf::Text& text, const sf::RenderWindow& window);
 
-int roundToInt(const float f);
-
 void applyTextBranding(sf::Text& text, const sf::Font& font);
 
-bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR);
-
 sf::String makeUppercase(sf::String str);
-
-float distance(const Vector3& const a, const Vector3& const b);
