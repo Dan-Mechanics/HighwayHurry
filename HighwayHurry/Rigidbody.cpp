@@ -8,10 +8,8 @@ const float GRAVITY = 10;
 
 Rigidbody::Rigidbody() = default;
 
-Rigidbody::Rigidbody(float mass) 
-{
-	if (mass <= 0) 
-	{
+Rigidbody::Rigidbody(float mass) {
+	if (mass <= 0) {
 		print("if (mass <= 0) ");
 		mass = 1;
 	}
@@ -19,19 +17,16 @@ Rigidbody::Rigidbody(float mass)
 	this->mass = mass;
 }
 
-void Rigidbody::addVelocity(Vector3 velocity)
-{
+void Rigidbody::addVelocity(Vector3 velocity) {
 	this->velocity.add(velocity);
 }
 
-void Rigidbody::addAcceleraton(Vector3 acceleration, Time& time)
-{
+void Rigidbody::addAcceleraton(Vector3 acceleration) {
 	//accel.mult(time.fixedInterval);
 	this->acceleration.add(acceleration);
 }
 
-void Rigidbody::addForce(Vector3 force, Time& time)
-{
+void Rigidbody::addForce(Vector3 force) {
 	//force.mult(1 / mass);
 
 	this->force.add(force);
@@ -39,8 +34,13 @@ void Rigidbody::addForce(Vector3 force, Time& time)
 	// friction hook ???
 }
 
-void Rigidbody::process(Time& time)
-{
+void Rigidbody::resetAll() {
+	velocity.setAll(0, 0, 0);
+	acceleration.setAll(0, 0, 0);
+	force.setAll(0, 0, 0);
+}
+
+void Rigidbody::process(const Time& const time) {
 	force.divide(mass);
 	acceleration.add(force);
 	velocity.add(acceleration, time.fixedInterval);
@@ -51,7 +51,6 @@ void Rigidbody::process(Time& time)
 	position.add(velocity, time.fixedInterval);
 }
 
-void Rigidbody::limitVelocity(float magnitude)
-{
+void Rigidbody::limitVelocity(const float magnitude) {
 	velocity.clampMagnitude(magnitude);
 }

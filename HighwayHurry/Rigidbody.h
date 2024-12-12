@@ -25,17 +25,18 @@ public:
 	Rigidbody(float mass);
 	// add real constructor.
 
-	void addVelocity(Vector3 velocity);
-	void addAcceleraton(Vector3 acceleration, Time& time);
-	void addForce(Vector3 force, Time& time);
+	void addVelocity(const Vector3 velocity);
+	void addAcceleraton(const Vector3 acceleration);
+	void addForce(const Vector3 force);
+	void resetAll();
 
 	/// <summary>
 	/// Move the force into accel,
 	/// accel into vel,
 	/// vel into pos.
 	/// </summary>
-	void process(Time& time);
-	void limitVelocity(float magnitude);
+	void process(const Time& const time);
+	void limitVelocity(const float magnitude);
 
 private:
 	Vector3 acceleration{}; // have an add force thing that adds acceleration.

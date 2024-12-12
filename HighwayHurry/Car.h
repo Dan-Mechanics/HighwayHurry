@@ -5,7 +5,7 @@
 class Car : public Entity {
 public:
 	Car();
-	Car(sf::RenderWindow& window, sf::Sprite& sprite);
+	Car(const sf::RenderWindow& const window, const sf::Sprite& const sprite);
 
 protected:
 	//float topSpeed{};

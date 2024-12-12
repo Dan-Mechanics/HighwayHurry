@@ -5,6 +5,6 @@
 
 Entity::Entity() = default;
 
-Entity::Entity(sf::RenderWindow & window, sf::Sprite & sprite) : Drawable{ window, sprite } { }
+Entity::Entity(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Drawable{ window, sprite } { }
 
 //Entity::~Entity() = default;

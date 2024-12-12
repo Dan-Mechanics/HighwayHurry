@@ -10,11 +10,11 @@ public:
 	float forwardSpeed = 3500;
 
 	Environment();
-	Environment(sf::RenderWindow& window, sf::Sprite& sprite);
+	Environment(const sf::RenderWindow& const window, const sf::Sprite& const sprite);
 
 	// Inherited via Entity.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
-	virtual void move(Time& time) override;
+	virtual void move(const Time& const time) override;
 private:
 	Vector3 position{};
 	// because the environment has to move.

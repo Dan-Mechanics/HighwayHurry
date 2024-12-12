@@ -8,20 +8,22 @@
 class Player : public Car {
 public:
 	Player();
-	Player(sf::RenderWindow& window, sf::Sprite& sprite);
+	Player(const sf::RenderWindow& window, const sf::Sprite& sprite);
 
-	bool checkCollision(Score& score, Obstacle& obstacle);
+	void reset();
+
+	bool checkCollision(Score& score, Obstacle& obstacle) const;
 
 	// Inherited via Car.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
-	virtual void move(Time& time) override;
+	virtual void move(const Time& time) override;
 
 private:
 	float topSpeed = 1000;
 	float acceleration = 7500;
 	float counterMovementMult = 0.195f;
 
-	Vector3 calculateMovement();
+	Vector3 calculateMovement() const;
 	void doCounterMovement(float fixedInterval, Vector3 movement);
 
 };

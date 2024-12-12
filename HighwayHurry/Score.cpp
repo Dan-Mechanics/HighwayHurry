@@ -9,9 +9,7 @@ Score::Score(int maxLives) : maxLives{ maxLives } { }
 /// <summary>
 /// Deal damage.
 /// </summary>
-/// <returns>Did we die?</returns>
-bool Score::Damage(int amount)
-{
+bool Score::Damage(const int amount) {
 	// we are already dead.
 	if (lives <= 0) { return false; }
 	
@@ -30,34 +28,28 @@ bool Score::Damage(int amount)
 /// <summary>
 /// Todo: add checks
 /// </summary>
-void Score::AddScore(int amount)
-{
+void Score::AddScore(const int amount) {
 	score += amount;
 }
 
-void Score::reset()
-{
+void Score::reset() {
 	clock.restart();
 	lives = maxLives;
 	score = 0;
 }
 
-int Score::getLives()
-{
+int Score::getLives() const {
 	return lives;
 }
 
-int Score::getScore()
-{
+int Score::getScore() const {
 	return score;
 }
 
-int Score::getMaxLives()
-{
+int Score::getMaxLives() const {
 	return maxLives;
 }
 
-float Score::getTime()
-{
+float Score::getTime() const {
 	return clock.getElapsedTime().asSeconds();
 }

@@ -4,111 +4,105 @@
 #include "Scoreboard.h"
 #include "Button.h"
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 Menu::Menu() = default;
 
-/// <summary>
-/// BIG WARNING: if the button is bugged,
-/// then teacher can't play the game.
-/// </summary>
-bool Menu::open(bool startOfGame, Score & score, Scoreboard & scoreboard, sf::Font& font, sf::RenderWindow & window, sf::Sprite & backgroundSprite, sf::Sprite & quitButtonSprite, sf::Sprite & playButtonSprite)
-{
-    print("Opening menu.");
+Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, const sf::Texture& const backgroundTexture, const sf::Texture& const buttonTexture) {  
+    first = true;
+    
+    backgroundSprite.setTexture(backgroundTexture);
 
-    Button quitButton(window, quitButtonSprite, Vector3(), sf::Color::White,
-        sf::Color(98, 106, 120), font, "Quit");
+    playAgainButtonSprite.setTexture(buttonTexture);
+    quitButtonSprite.setTexture(buttonTexture);
 
-    sf::Text titleText;
-    sf::Text scoreText;
+    applyGlobalScale(backgroundSprite);
+    applyGlobalScale(playAgainButtonSprite);
+    applyGlobalScale(quitButtonSprite);
+
+    quitButton = { window, quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
 
     applyTextBranding(titleText, font);
     applyTextBranding(scoreText, font);
-    
-    titleText.setString(startOfGame ? "HIGHWAY HURRY" : "GAME OVER"); // use some to upper method.
+
+    //titleText.setString("HIGHWAY HURRY"); // use some to upper method.
+    titleText.setString(makeUppercase(TITLE));
     titleText.setCharacterSize(250);
 
     quitButton.centerAll();
     quitButton.position.yComponent += quitButton.getSizeY() + 15;
     // depends on the bool.
 
-    sf::Text failSave;
+    centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 225);
 
-    if(startOfGame)
-    {
-        centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 225);
+    applyTextBranding(failSafe, font);
 
-        applyTextBranding(failSave, font);
+    failSafe.setPosition(15, window.getSize().y - 70);
 
-        failSave.setPosition(15, window.getSize().y - 70);
+    failSafe.setString("Tip : press [P] if the button doesn't work.");
 
-        failSave.setString("Tip : press [P] if the button doesn't work.");
+    failSafe.setCharacterSize(40);
 
-        failSave.setCharacterSize(40);
-    }
-    else 
-    {
-        // hardcoded yes i know.
-        playButtonSprite.setScale(20, 10);
-
-        scoreText.setString(scoreboard.getMenuString(score));
-        scoreText.setCharacterSize(100);
-
-        centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
-        centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
-    }
-
-    // this placemetn is very importnat.
-    Button playAgainButton(window, playButtonSprite, Vector3(), sf::Color::White,
-        sf::Color(98, 106, 120), font, startOfGame ? "Play" : "Play Again");
+    playAgainButton = { window, playAgainButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
 
     playAgainButton.centerAll();
+}
 
-    while (window.isOpen())
-    {
-        // failsave.
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) { return false; }
-        
-        sf::Event event;
-        if (checkExitCondition(event, window)) 
+/// <summary>
+/// Make the changes required for the second menu version.
+/// Dont repeat if already second.
+/// ARE WE ALLOWED TO USE GET METHOD ?
+/// </summary>
+void Menu::refresh(const sf::RenderWindow& const window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font) {
+    scoreText.setString(scoreboard.getMenuString(score));
+    
+    // we dont have to do this over stuff.
+    if (!first) { return; }
+    
+    titleText.setString("GAME OVER"); // use some to upper method.
+    
+    playAgainButtonSprite.setScale(playAgainButtonSprite.getScale().y * 2, playAgainButtonSprite.getScale().y);
+
+    //scoreText.setString(scoreboard.getMenuString(score));
+    scoreText.setCharacterSize(100);
+
+    // is window.getsize() allowed ???? we can also just define and width and height somewhere and fix this whole skibiidi.
+    centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
+    centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
+
+    playAgainButton = { window, playAgainButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    playAgainButton.centerAll();
+
+    first = false;
+}
+
+std::string Menu::update(sf::RenderWindow& const window) {
+    window.draw(backgroundSprite);
+
+    playAgainButton.draw(window, playAgainButtonSprite);
+
+    if (!first) {
+        window.draw(scoreText);
+
+        quitButton.draw(window, quitButtonSprite);
+
+        if (quitButton.getIsClicked())
         {
-            return true;
+            print("quitButton.");
+            window.close();
+            return "quit";
         }
-
-        window.clear(sf::Color::Magenta);
-
-        // does cpp have base.blabla(); ??
-
-        window.draw(backgroundSprite);
-
-        playAgainButton.draw(window, playButtonSprite);
-
-        if (!startOfGame) {
-            window.draw(scoreText);
-            
-            quitButton.draw(window, quitButtonSprite);
-
-            if (quitButton.getIsClicked())
-            {
-                print("quitButton.");
-                window.close();
-                return true;
-            }
-        }
-
-        window.draw(titleText);
-
-        if (playAgainButton.getIsClicked())
-        {
-            print("playAgainButton.");
-            return false;
-        }
-
-        if (startOfGame) { window.draw(failSave); }
-
-        window.display();
     }
 
-    print("Closing menu.");
+    window.draw(titleText);
 
-    return false;
+    if (playAgainButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P))
+    {
+        print("playAgainButton.");
+        return "next scene";
+    }
+
+    if (first) { window.draw(failSafe); }
+
+    return "next frame";
 }

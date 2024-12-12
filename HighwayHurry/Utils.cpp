@@ -3,45 +3,30 @@
 #include <iostream>
 #include <random>
 
-void print(std::string value)
-{
+void print(const std::string value) {
 	std::cout << " > " << value << std::endl;
 }
 
-void print(int value)
-{
+void print(const int value) {
 	std::cout << " > " << value << std::endl;
 }
 
-void print(float value)
-{
+void print(const float value) {
 	std::cout << " > " << value << std::endl;
 }
 
 /// <summary>
 /// https://stackoverflow.com/questions/12657962/how-do-i-generate-a-random-number-between-two-variables-that-i-have-stored
 /// </summary>
-int randomInclusive(int min, int max)
-{
+int randomInclusive(const int min, const int max) {
 	return rand() % (max - min + 1) + min;
 }
 
-//bool checkExitCondition(sf::Event& event)
-//{
-//	return event.type == sf::Event::Closed ||
-//		(event.type == sf::Event::KeyPressed &&
-//			event.key.code == sf::Keyboard::Escape);
-//}
-
-bool checkExitCondition(sf::Event& event, sf::RenderWindow& window)
-{
-	while (window.pollEvent(event))
-	{
+bool checkExitCondition(sf::Event& event, sf::RenderWindow& window) {
+	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed ||
 			(event.type == sf::Event::KeyPressed &&
-				event.key.code == sf::Keyboard::Escape))
-		{
-			window.close();
+				event.key.code == sf::Keyboard::Escape)) {
 
 			return true;
 		}
@@ -50,18 +35,15 @@ bool checkExitCondition(sf::Event& event, sf::RenderWindow& window)
 	return false;
 }
 
-sf::Color randomColor()
-{
+sf::Color randomColor() {
 	return sf::Color{ (sf::Uint8)randomInclusive(0, 255), (sf::Uint8)randomInclusive(0, 255), (sf::Uint8)randomInclusive(0, 255) };
 }
 
-void applyGlobalScale(sf::Sprite& sprite) 
-{
+void applyGlobalScale(sf::Sprite& sprite) {
 	sprite.setScale(10, 10);
 }
 
-void centerText(sf::Text& text, int x, int y)
-{
+void centerText(sf::Text& text, const int x, const int y) {
 	sf::FloatRect textRect = text.getLocalBounds();
 	text.setOrigin(roundToInt(textRect.left + textRect.width / 2), roundToInt(textRect.top + textRect.height / 2));
 	//text.setOrigin(round(textRect.left + textRect.width / 2), round(textRect.top + maxHeight / 2));
@@ -69,13 +51,11 @@ void centerText(sf::Text& text, int x, int y)
 	text.setPosition(x, y);
 }
 
-void centerText(sf::Text& text, sf::Window& window)
-{
+void centerText(sf::Text& text, const sf::RenderWindow& window) {
 	centerText(text, window.getSize().x / 2, window.getSize().y / 2);
 }
 
-int roundToInt(float f)
-{
+int roundToInt(const float f) {
 	//return (int)round(f);
 	// idk.
 	return round(f);
@@ -85,8 +65,7 @@ int roundToInt(float f)
 /// https://www.sfml-dev.org/tutorials/2.6/graphics-text.php
 /// https://www.dafont.com/gamer-2.font?text=hEllLo+this+is+ScoreSCORE+%3A+100
 /// </summary>
-void applyTextBranding(sf::Text& text, sf::Font& font)
-{
+void applyTextBranding(sf::Text& text, const sf::Font& font) {
 	text.setFont(font);
 	text.setCharacterSize(80); 
 	//text.setFillColor(sf::Color::Black);
@@ -94,7 +73,15 @@ void applyTextBranding(sf::Text& text, sf::Font& font)
 	text.setStyle(sf::Text::Bold);
 }
 
-bool checkCircleTouch(Vector3 a, Vector3 b, float aR, float bR)
-{
+bool checkCircleTouch(const Vector3 a, const Vector3 b, const float aR, const float bR) {
 	return a.calculateDistanceTo(b) <= aR + bR;
+}
+
+/// <summary>
+/// https://stackoverflow.com/questions/735204/convert-a-string-in-c-to-upper-case
+/// </summary>
+sf::String makeUppercase(sf::String str) {
+	for (auto& c : str) c = toupper(c);
+
+	return str;
 }

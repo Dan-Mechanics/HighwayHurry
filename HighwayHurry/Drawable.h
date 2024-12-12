@@ -10,11 +10,11 @@
 class Drawable {
 public:
 	Drawable(); // we cannot have this because sprite and window must be assigned.
-	Drawable(sf::RenderWindow& window, sf::Sprite& sprite);
+	Drawable(const sf::RenderWindow& window, const sf::Sprite& sprite);
 	//virtual ~Drawable();
 
-	int getSizeX();
-	int getSizeY();
+	int getSizeX() const;
+	int getSizeY() const;
 
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) = 0;
 

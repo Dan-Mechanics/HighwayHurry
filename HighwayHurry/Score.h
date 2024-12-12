@@ -7,17 +7,17 @@
 class Score {
 public:
 	Score();
-	Score(int maxLives);
+	Score(const int maxLives);
 	//virtual ~Score(); // does this need to be here because of Edwin convention ?
 
-	bool Damage(int amount);
-	void AddScore(int amount);
+	bool Damage(const int amount);
+	void AddScore(const int amount);
 
 	void reset();
-	int getLives();
-	int getScore();
-	int getMaxLives();
-	float getTime();
+	int getLives() const;
+	int getScore() const;
+	int getMaxLives() const;
+	float getTime() const;
 
 private:
 	int lives{};

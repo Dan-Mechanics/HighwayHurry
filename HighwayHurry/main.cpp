@@ -6,24 +6,29 @@
 #include "Scoreboard.h"
 #include "Button.h"
 
-int main()
-{
-    sf::String title = "Highway Hurry";
+/// <summary>
+/// Make sprite conform to playersize and dont use getsize on sprite and window ??.
+/// Do we have to upper method  for strings ?
+/// also add vector operands and better math utils library ish.
+/// </summary>
+/// <returns></returns>
+int main() {
+    //const sf::String TITLE = "Highway Hurry";
 
-    print(title);
+    print(TITLE);
 
-    int width = 1920;
-    int height = 1080;
-    unsigned int framerateLimit = 320;
-    int timestep = 64;
-    int maxLives = 5;
+    const int WIDTH = 1920;
+    const int HEIGHT = 1080; // --> make this global ?
+    const unsigned int FPS_CAP = 320;
+    const int TIMESTEP = 64;
+    const int MAX_LIVES = 5;
 
     // https://www.reddit.com/r/sfml/comments/oyms57/how_t
     // https://youtu.be/lFzpkvrscs4?si=9lYiXu4090IKJ1o1
-    sf::RenderWindow window(sf::VideoMode(width, height), title,
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), TITLE,
         sf::Style::Fullscreen);
 
-    window.setFramerateLimit(framerateLimit);
+    window.setFramerateLimit(FPS_CAP);
 
     //////////////////////////////////////////////////////
 
@@ -33,8 +38,8 @@ int main()
         print("Gamer.ttf not found!");
     }
 
-    Time time{ timestep };
-    Score score{ maxLives };
+    Time time{ TIMESTEP };
+    Score score{ MAX_LIVES };
     Scoreboard scoreBoard{ font };
 
     //////////////////////////////////////////////////////
@@ -49,25 +54,6 @@ int main()
         print("texture not found!");
     }
 
-    sf::Sprite playerSprite;
-    sf::Sprite gameBackgroundSprite;
-    sf::Sprite obstacleSprite;
-
-    playerSprite.setTexture(playerTexture);
-    gameBackgroundSprite.setTexture(gameBackgroundTexture);
-    obstacleSprite.setTexture(obstacleTexture);
-
-    gameBackgroundSprite.setTextureRect(sf::IntRect(0, 0,
-        gameBackgroundTexture.getSize().x, gameBackgroundTexture.getSize().y * 2));
-
-    gameBackgroundTexture.setRepeated(true);
-
-    // smooth ?
-
-    applyGlobalScale(playerSprite);
-    applyGlobalScale(gameBackgroundSprite);
-    applyGlobalScale(obstacleSprite);
-
     //////////////////////////////////////////////////////
 
     sf::Texture menuBackgroundTexture;
@@ -78,39 +64,42 @@ int main()
         print("texture not found!");
     }
 
-    sf::Sprite menuBackgroundSprite;
-    sf::Sprite playButtonSprite;
-    sf::Sprite quitButtonSprite;
-
-    menuBackgroundSprite.setTexture(menuBackgroundTexture);
-
-    playButtonSprite.setTexture(buttonTexture);
-    quitButtonSprite.setTexture(buttonTexture);
-
-    applyGlobalScale(menuBackgroundSprite);
-    applyGlobalScale(playButtonSprite);
-    applyGlobalScale(quitButtonSprite);
-
     //////////////////////////////////////////////////////
 
-    bool start = true;
     bool quit = false;
+    bool showMenu = true;
 
-    Menu menu{ }; 
-    Game game{ };
+    Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
+    Game game{ window, score, time, gameBackgroundTexture, playerTexture, obstacleTexture };
 
-    // i think we have enough while loops here to make it work :^)
-    while (!quit) {
+    while (window.isOpen())
+    {
+        sf::Event event;
 
-        quit = menu.open(start, score, scoreBoard, font, window, menuBackgroundSprite,
-            quitButtonSprite, playButtonSprite);
-        
-        start = false;
+        if (checkExitCondition(event, window) || quit) {
+            window.close();
+            // quit().
+            return 0;
+        }
 
-        if (quit) { return 0; }
+        window.clear(sf::Color::Magenta);
 
-        quit = game.play(window, playerSprite, gameBackgroundSprite,
-            obstacleSprite, score, time, scoreBoard);
+        std::string output = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
+
+        window.display();
+
+        if (output == "quit") { quit = true; }
+        else if (output == "next scene") {
+            showMenu = !showMenu;
+
+            if (showMenu) {
+                menu.refresh(window, score, scoreBoard, font);
+            }
+            else {
+                // we cant reset the score and time here because the menu need it .
+                game.refresh(score, time);
+            }
+        }
     }
 
     return 0;

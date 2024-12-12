@@ -5,22 +5,25 @@
 
 Player::Player() = default;
 
-Player::Player(sf::RenderWindow& window, sf::Sprite& sprite) : Car{ window, sprite }
-{
-	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
-
+Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Car{ window, sprite } {
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
+
+	reset();
 }
 
-void Player::move(Time& time)
-{
+void Player::reset() {
+	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
+	rigidbody.resetAll();
+}
+
+void Player::move(const Time& const time) {
 	Vector3 input = calculateMovement();
 	
 	Vector3 movement = input;
-	movement.mult(acceleration);
+	movement.multiply(acceleration);
 
-	rigidbody.addAcceleraton(movement, time);
+	rigidbody.addAcceleraton(movement);
 
 	// We do it after because that feels more responsive.
 	doCounterMovement(time.fixedInterval, input);
@@ -55,14 +58,13 @@ void Player::move(Time& time)
 	}*/
 }
 
-void Player::doCounterMovement(float fixedInterval, Vector3 movement)
-{
+void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	Vector3 counterMovement = rigidbody.velocity;
 
 	counterMovement.normalize();
 	counterMovement.remove(movement);
 
-	counterMovement.mult(-1 * acceleration * counterMovementMult * fixedInterval);
+	counterMovement.multiply(-1 * acceleration * counterMovementMult * fixedInterval);
 
 	/*if (counterMovement.magnitude > velocity.magnitude && velocity.magnitude != 0f) {
 		counterMovement = -velocity;*/
@@ -72,14 +74,13 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement)
 	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag)
 	{
 		counterMovement = rigidbody.velocity;
-		counterMovement.mult(-1);
+		counterMovement.multiply(-1);
 	}
 
 	rigidbody.addVelocity(counterMovement);
 }
 
-bool Player::checkCollision(Score& score, Obstacle& obstacle)
-{
+bool Player::checkCollision(Score& score, Obstacle& obstacle) const {
 	float leniency = 0.75f; // so we have negative leniency.
 	
 	//bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX / 2.0f, obstacle.getSizeX() / 2.0f);
@@ -87,7 +88,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle)
 
 	if (hasCollision) 
 	{ 
-		obstacle.ResetPosition();
+		obstacle.reset();
 
 		return score.Damage(1);
 	}
@@ -97,8 +98,7 @@ bool Player::checkCollision(Score& score, Obstacle& obstacle)
 
 
 // should be referecne.
-Vector3 Player::calculateMovement()
-{
+Vector3 Player::calculateMovement() const {
 	Vector3 movement;
 	
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
@@ -126,8 +126,7 @@ Vector3 Player::calculateMovement()
 	return movement;
 }
 
-void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite)
-{
+void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 	sprite.setColor(sf::Color::White);
 	
 	/*Vector3 roundPos(rigidbody.position);

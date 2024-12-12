@@ -4,36 +4,32 @@
 
 Button::Button() = default;
 
-Button::Button(sf::RenderWindow & window, sf::Sprite & sprite, Vector3 position, sf::Color normalColor, sf::Color hoveringColor, sf::Font & font, std::string textOnButton) :
-    Entity{ window, sprite, }, position{ position }, normalColor{ normalColor }, hoveringColor{ hoveringColor } {
+Button::Button(const sf::RenderWindow& const window, const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
+    const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton) : Entity{ window, sprite }, position{ position },
+    normalColor{ normalColor }, hoveringColor{ hoveringColor } {
 
     applyTextBranding(text, font);
-
     text.setString(textOnButton);
 }
 
-bool Button::getIsHovering()
-{
+bool Button::getIsHovering() const {
+
     return isHovering;
 }
 
-bool Button::getIsClicked()
-{
+bool Button::getIsClicked() const {
     return isClicked;
 }
 
-void Button::centerY()
-{
+void Button::centerY() {
     position.yComponent = (screenHeight - sizeY) / 2.0f;
 }
 
-void Button::centerX()
-{
+void Button::centerX() {
     position.xComponent = (screenWidth - sizeX) / 2.0f;
 }
 
-void Button::centerAll() 
-{
+void Button::centerAll() {
     centerX();
     centerY();
 }
@@ -78,8 +74,7 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
     window.draw(text);
 }
 
-void Button::move(Time& time)
-{
+void Button::move(const Time& const time) {
     // future: add animation for hovering.
     // for now: center text on button.
 }

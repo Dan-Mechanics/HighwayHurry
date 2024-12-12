@@ -6,9 +6,26 @@
 #include "Score.h"
 #include "Scoreboard.h"
 
+extern const sf::String TITLE;
+
 class Game {
 public:
 	Game();
+	Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture, const sf::Texture& const obstacleTexture);
 
-	bool play(sf::RenderWindow& window, sf::Sprite& playerSprite, sf::Sprite& backgroundSprite, sf::Sprite& obstacleSprite, Score& score, Time& time, Scoreboard& scoreboard);
+	void refresh(Score& score, Time& time);
+	std::string update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard);
+
+	// add memory managmentsi n the future: 
+	// deload method or destructor thing if you wanna have crazy amount of enemies increasing.
+
+private:
+	//Scoreboard scoreboard;
+	Player player;
+	Environment environment;
+	std::vector<Obstacle*> obstacles;
+
+	sf::Sprite backgroundSprite;
+	sf::Sprite obstacleSprite;
+	sf::Sprite playerSprite;
 };

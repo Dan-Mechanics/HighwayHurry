@@ -2,8 +2,7 @@
 #include <iostream>
 #include "Utils.h"
 
-Time::Time()
-{
+Time::Time() {
     int timestep = 50; // Like in Unity.
 
     fixedInterval = 1.0f / timestep;
@@ -11,10 +10,8 @@ Time::Time()
     reset();
 }
 
-Time::Time(int timestep)
-{
-    if (timestep <= 0) 
-    { 
+Time::Time(int timestep) {
+    if (timestep <= 0) {
         timestep = 50; // Like in Unity.
         print("ERROR: if (timestep <= 0) ");
     }
@@ -33,16 +30,14 @@ Time::Time(int timestep)
 /// Call this in a while loop.
 /// </summary>
 /// <returns>The amount of fixed ticks to perform.</returns>
-int Time::processFrame()
-{
+int Time::processFrame() {
     int counter = 0;
     
     deltaTime = deltaClock.restart().asSeconds();
 
     timer += deltaTime;
 
-    while (timer >= fixedInterval)
-    {
+    while (timer >= fixedInterval) {
         timer -= fixedInterval;
 
         // Do fixed tick here.
@@ -53,8 +48,7 @@ int Time::processFrame()
     return counter;
 }
 
-void Time::reset()
-{
+void Time::reset() {
     deltaClock.restart();
     timer = 0;
 }
