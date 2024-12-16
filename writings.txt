@@ -1,3 +1,8 @@
+how tf to make physics in this yeet ?
+i feel like i need to make it so that all of the cars are propelled forward with force and held back with wind resistance
+value and then we need to use logic to move the environment and relativem emes to move the players.
+that's basically the problem: the whole space is relative.
+
 make player also move with forces and mass ?
 
 aslo todo: remove zombie code.

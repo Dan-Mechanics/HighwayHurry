@@ -97,47 +97,39 @@ int main() {
             window.close();
             
             quit = true;
-            // close early.
+
+            // close early because we don't have to render on the frame we close.
             return 0;
         }
 
+        // background color so we can clearly see transparent glitches etc.
         window.clear(sf::Color::Magenta);
 
-        unsigned int output = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
+        // scene.draw();
+        unsigned int returnCode = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
 
         window.display();
 
-        //if (output == 2) { quit = true; }
-        //else if (output == 1) {
-        //    showMenu = !showMenu;
-
-        //    if (showMenu) {
-        //        menu.refresh(window, score, scoreBoard, font);
-        //    }
-        //    else {
-        //        // we cant reset the score and time here because the menu need it .
-        //        game.refresh(score, time);
-        //    }
-        //}
-
-        switch (output) {
+        switch (returnCode) {
         case 2:
+            // retrun code 2 = quit game.
             quit = true;
             break;
 
         case 1:
+            // return code 1 = next scene = toggle the current scene.
             showMenu = !showMenu;
 
+            // depending on the new scene, we refresh it.
             if (showMenu) {
                 menu.refresh(window, score, scoreBoard, font);
             }
             else {
-                // we cant reset the score and time here because the menu need it .
                 game.refresh(score, time);
             }
 
         default:
-            // next frame
+            // return code 0 = next frame.
             break;
         }
     }

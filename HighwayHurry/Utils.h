@@ -12,7 +12,7 @@ bool checkExitCondition(sf::Event& event, sf::RenderWindow& window);
 
 sf::Color randomColor();
 
-void applyGlobalScale(sf::Sprite& sprite);
+void applyGlobalScale(sf::Sprite& const sprite);
 
 /// <summary>
 /// https://stackoverflow.com/questions/14505571/centering-text-on-the-screen-with-sfml

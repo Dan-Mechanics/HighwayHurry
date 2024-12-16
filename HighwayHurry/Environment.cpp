@@ -22,7 +22,7 @@ Environment::Environment(const sf::RenderWindow& const window, const sf::Sprite&
     position.yComponent = -screenHeight;
 }
 
-void Environment::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
+void Environment::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
     Vector3 roundPos(position);
     //roundPos.round(10);
     

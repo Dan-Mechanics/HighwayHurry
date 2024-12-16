@@ -51,8 +51,8 @@ void Obstacle::move(const Time& const time) {
 	rigidbody.process(time);
 
 	// constrain.
-	if (rigidbody.position.xComponent < 0) {
-		rigidbody.position.xComponent = 0;
+	if (rigidbody.position.xComponent < minX) {
+		rigidbody.position.xComponent = minX;
 		rigidbody.velocity.xComponent = 0;
 
 		//acceleration.xComponent = abs(acceleration.xComponent);
@@ -78,7 +78,7 @@ void Obstacle::move(const Time& const time) {
 	}
 }
 
-void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
+void Obstacle::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
 	sprite.setColor(color);
 
 	/*Vector3 roundPos(rigidbody.position);

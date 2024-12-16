@@ -24,7 +24,7 @@ public:
 	/// <summary>
 	/// Also does hovering logic.
 	/// </summary>
-	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
+	virtual void draw(sf::RenderWindow& const window, sf::Sprite& const sprite) override;
 	virtual void move(const Time& const time) override;
 	// we cant make this const because reference. 
 

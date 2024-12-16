@@ -34,7 +34,7 @@ void Button::centerAll() {
     centerY();
 }
 
-void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
+void Button::draw(sf::RenderWindow& const window, sf::Sprite& const sprite)
 {
     int mouseX = sf::Mouse::getPosition().x;
     int mouseY = sf::Mouse::getPosition().y;

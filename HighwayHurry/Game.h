@@ -22,13 +22,12 @@ public:
 
 private:
 	//Scoreboard scoreboard;
-	Player player;
-	Environment environment;
-	std::vector<Obstacle*> obstacles;
+	Player player{};
+	Environment environment{};
+	std::vector<Obstacle*> obstacles{};
 
-	sf::Sprite backgroundSprite;
-	sf::Sprite fastSprite;
-	sf::Sprite midSprite;
-	sf::Sprite slowSprite;
-	sf::Sprite playerSprite;
+	sf::Sprite backgroundSprite{};
+	sf::Sprite playerSprite{};
+	sf::Sprite obstacleSprites[3]{};
+	//std::vector<sf::Sprite> obstacleSprites{};
 };

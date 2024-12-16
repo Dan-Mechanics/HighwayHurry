@@ -15,7 +15,7 @@ public:
 	bool checkCollision(Score& score, Obstacle& obstacle, const Time& const time) const;
 
 	// Inherited via Car.
-	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
+	virtual void draw(sf::RenderWindow& const window, sf::Sprite& const sprite) override;
 	virtual void move(const Time& time) override;
 
 private:

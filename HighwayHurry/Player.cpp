@@ -128,7 +128,7 @@ Vector3 Player::calculateMovement() const {
 	return movement;
 }
 
-void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
+void Player::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
 	sprite.setColor(sf::Color::White);
 	
 	/*Vector3 roundPos(rigidbody.position);

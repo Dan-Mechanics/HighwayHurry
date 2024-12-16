@@ -10,7 +10,7 @@
 class Drawable {
 public:
 	Drawable(); // we cannot have this because sprite and window must be assigned.
-	Drawable(const sf::RenderWindow& window, const sf::Sprite& sprite);
+	Drawable(const sf::RenderWindow& const window, const sf::Sprite& const sprite);
 	//virtual ~Drawable();
 
 	int getSizeX() const;
@@ -19,7 +19,7 @@ public:
 	/// <summary>
 	/// TODO ?? :: make reference const ??
 	/// </summary>
-	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) = 0;
+	virtual void draw(sf::RenderWindow& const window, sf::Sprite& const sprite) = 0;
 
 protected:
 	int sizeX{}, sizeY{};
