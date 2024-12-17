@@ -31,7 +31,6 @@ Game::Game() = default;
 
 Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture,
     const sf::Texture& const fast, const sf::Texture& const mid, const sf::Texture& const slow) {
-    print("Opening game.");
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
@@ -83,6 +82,8 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
 }
 
 void Game::refresh(Score& const score, Time& const time) {
+    print("Opening game.");
+    
     srand(std::time(0));
 
     player.reset();

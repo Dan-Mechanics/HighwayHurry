@@ -22,7 +22,7 @@ public:
 	/// have a default destructor. You don't need both ??
 	/// </summary>
 	Rigidbody();
-	Rigidbody(float mass);
+	Rigidbody(float mass, const int maxX, const int maxY, const int minX, const int minY);
 	// add real constructor.
 
 	void addVelocity(const Vector3 velocity);
@@ -39,8 +39,16 @@ public:
 	void limitVelocity(const float magnitude);
 	void stopInPlace();
 
+	int getMaxX() const;
+	int getMaxY() const;
+
+	int getMinX() const;
+	int getMinY() const;
 private:
 	Vector3 acceleration{}; // have an add force thing that adds acceleration.
 	Vector3 force{}; // have an add force thing that adds acceleration.
+
+	int minX{}, minY{};
+	int maxX{}, maxY{};
 };
 

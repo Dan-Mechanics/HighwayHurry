@@ -8,13 +8,18 @@ const float GRAVITY = 10;
 
 Rigidbody::Rigidbody() = default;
 
-Rigidbody::Rigidbody(float mass) {
+Rigidbody::Rigidbody(float mass, const int maxX, const int maxY, const int minX, const int minY) {
 	if (mass <= 0) {
 		print("if (mass <= 0) ");
 		mass = 1;
 	}
 
 	this->mass = mass;
+
+	this->minX = minX;
+	this->minY = minY;
+	this->maxX = maxX;
+	this->maxY = maxY;
 }
 
 void Rigidbody::addVelocity(Vector3 velocity) {
@@ -57,4 +62,20 @@ void Rigidbody::limitVelocity(const float magnitude) {
 
 void Rigidbody::stopInPlace() {
 	velocity.setAll(0, 0, 0);
+}
+
+int Rigidbody::getMaxX() const {
+	return maxX;
+}
+
+int Rigidbody::getMaxY() const {
+	return maxY;
+}
+
+int Rigidbody::getMinX() const {
+	return minX;
+}
+
+int Rigidbody::getMinY() const {
+	return minY;
 }

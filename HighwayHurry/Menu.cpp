@@ -40,7 +40,7 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
     debugInstructions.setPosition(15, window.getSize().y - 70);
 
     debugInstructions.setString("Tip : press [P] if the button doesn't work.");
-
+    
     debugInstructions.setCharacterSize(40);
 
     playButton = { window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
@@ -54,6 +54,8 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
 /// ARE WE ALLOWED TO USE GET METHOD ?
 /// </summary>
 void Menu::refresh(const sf::RenderWindow& const window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font) {
+    print("Opening menu.");
+    
     scoreText.setString(scoreboard.getMenuString(score));
     
     // we dont have to do this over stuff.
@@ -76,11 +78,6 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     firstMenuOpen = false;
 }
 
-/// <summary>
-/// Use int for this instead !!!
-/// </summary>
-/// <param name="window"></param>
-/// <returns>return code for quitting or next frame etc.</returns>
 unsigned int Menu::update(sf::RenderWindow& const window) {
     unsigned int result = 0;
     

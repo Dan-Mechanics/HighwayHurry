@@ -6,15 +6,18 @@
 #include "Scoreboard.h"
 #include "Button.h"
 
+// next stuff :
+// menu width and height so no canvas send
+// make it so that you dont have to send sprite because collision is yeet.
+// then dont send canvas and sprtiei n construcutro. only set no get methdos for better yeet.
+// more const vars.
+// make relative velocities make more sense ish.
+// ask rosa if it makes sense.
+
 /// <summary>
 /// Make sprite conform to playersize and dont use getsize on sprite and window ??.
-/// Do we have to upper method  for strings ?
-/// also add vector operands and better math utils library ish.
 /// </summary>
-/// <returns></returns>
 int main() {
-    //const sf::String TITLE = "Highway Hurry";
-
     print(TITLE);
 
     // THIS THIS THIS

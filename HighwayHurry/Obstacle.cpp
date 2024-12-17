@@ -6,12 +6,17 @@
 //#include "Rigidbody.h" // for global var ?? not required i gues
 
 Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) : 
-	Car{ window, sprite }, score{ score } {
+	Entity{ window, sprite }, score{ score } {
+	
+	int maxX = screenWidth - sizeX;
+	int maxY = screenHeight;
+	int minX = 0;
+	int minY = 0;
 
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
-	
-	maxY = screenHeight;
+
+	rigidbody = { 1, maxX, maxY, minX, minY };
 }
 
 void Obstacle::reset(const Time& const time) {
@@ -29,7 +34,7 @@ void Obstacle::reset(const Time& const time) {
 	rigidbody.addForce(force);
 
 	rigidbody.position.setAll (
-		randomInclusive(minX, maxX), // x
+		randomInclusive(rigidbody.getMinX(), rigidbody.getMaxX()), // x
 		randomInclusive(highestSpawnPoint, -sizeY), // y
 		0 // z
 	);
@@ -51,8 +56,8 @@ void Obstacle::move(const Time& const time) {
 	rigidbody.process(time);
 
 	// constrain.
-	if (rigidbody.position.xComponent < minX) {
-		rigidbody.position.xComponent = minX;
+	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
+		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
 
 		//acceleration.xComponent = abs(acceleration.xComponent);
@@ -64,14 +69,14 @@ void Obstacle::move(const Time& const time) {
 		rigidbody.velocity.yComponent = 0;
 	}*/
 
-	if (rigidbody.position.xComponent > maxX) {
-		rigidbody.position.xComponent = maxX;
+	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
+		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
 
 		//acceleration.xComponent = -abs(acceleration.xComponent);
 	}
 
-	if (rigidbody.position.yComponent > maxY) {
+	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {
 		reset(time);
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.

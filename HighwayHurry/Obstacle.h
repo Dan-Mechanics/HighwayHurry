@@ -1,13 +1,12 @@
 #pragma once
 #include "Entity.h"
 #include "Rigidbody.h"
-#include "Car.h"
 #include "Score.h"
 
 /// <summary>
 /// Might rename to just Obstacle. ObstacleCar? Falling obstacle.
 /// </summary>
-class Obstacle : public Car {
+class Obstacle : public Entity {
 public:
 	//Obstacle();
 	// we cant have a default construcor because we have a reference to score.
@@ -29,9 +28,14 @@ private:
 	int constantForceVariance = 250;
 	int highestSpawnPoint = -1080;
 	unsigned int spriteIndex{};
+	Rigidbody rigidbody{};
 
 	Vector3 constantForce{};
 	sf::Color color = sf::Color::White;
+
+	/// <summary>
+	/// This is not really ideal.
+	/// </summary>
 	Score& score;
 };
 

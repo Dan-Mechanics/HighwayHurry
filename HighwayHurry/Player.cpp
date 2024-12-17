@@ -6,15 +6,22 @@
 
 Player::Player() = default;
 
-Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Car{ window, sprite } {
+Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Entity{ window, sprite } {
+	int maxX = screenWidth - sizeX;
+	int maxY = screenHeight - sizeY;
+	int minX = 0;
+	int minY = 0;
+
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
+
+	rigidbody = { 1, maxX, maxY, minX, minY };
 
 	reset();
 }
 
 void Player::reset() {
-	rigidbody.position.setAll(maxX * 0.5f, maxY - 10, 0);
+	rigidbody.position.setAll(rigidbody.getMaxX() * 0.5f, rigidbody.getMaxY() - 10, 0);
 	rigidbody.resetAll();
 }
 
@@ -34,9 +41,9 @@ void Player::move(const Time& const time) {
 	rigidbody.process(time);
 
 	// constrain.
-	if (rigidbody.position.xComponent < minX)
+	if (rigidbody.position.xComponent < rigidbody.getMinX())
 	{ 
-		rigidbody.position.xComponent = minX;
+		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
 	}
 
@@ -46,9 +53,9 @@ void Player::move(const Time& const time) {
 		rigidbody.velocity.yComponent = 0;
 	}*/
 
-	if (rigidbody.position.xComponent > maxX)
+	if (rigidbody.position.xComponent > rigidbody.getMaxX())
 	{ 
-		rigidbody.position.xComponent = maxX;
+		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
 	}
 
