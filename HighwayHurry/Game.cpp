@@ -11,6 +11,9 @@
 
 const sf::String TITLE = "Highway Hurry";
 
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
+
 //use this->more !
 //use{} with initilzaer list
 //use default
@@ -54,8 +57,8 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
 
-    for (int i = 0; i < 3; i++)
-    {
+    // we love cPP!!
+    for (int i = 0; i < sizeof(obstacleSprites) / sizeof(sf::Sprite); i++) {
         applyGlobalScale(obstacleSprites[i]);
     }
 
@@ -69,13 +72,21 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
     // i basically want this to be dynaically allocated in this heap scope, 
     // and i also want to add more cars so progresllively more difficult.
     // i have no idea how im gonna add friction and or collison !!!
-    for (int i = 0; i < 8; i++) {
-        // DNAGER DANGER ZONE.
-        Obstacle* car = new Obstacle(window, obstacleSprites[0], score);
+    //for (int i = 0; i < 8; i++) {
+    //    // DNAGER DANGER ZONE.
+    //    Obstacle* car = new Obstacle(window, obstacleSprites[0], score);
 
-        obstacles.push_back(car);
+    //    obstacles.push_back(car);
 
-        // ?? entities.emplace_back(window, playerSprite);
+
+    //    // ?? entities.emplace_back(window, playerSprite);
+    //}
+
+    obstacleCount = sizeof(obstacles) / sizeof(Obstacle);
+
+    for (int i = 0; i < obstacleCount; i++) {
+        obstacles[i] = { window, obstacleSprites[0], score };
+        //obstacles.emplace_back( window, obstacleSprites[0], score );
     }
 
     refresh(score, time);
@@ -92,8 +103,8 @@ void Game::refresh(Score& const score, Time& const time) {
     score.reset();
     time.reset();
 
-    for (int i = 0; i < obstacles.size(); i++) {
-        obstacles[i]->reset(time);
+    for (int i = 0; i < obstacleCount; i++) {
+        obstacles[i].reset(time);
     }
 }
 
@@ -105,10 +116,10 @@ unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Ti
         environment.move(time);
         player.move(time);
 
-        for (int j = 0; j < obstacles.size(); j++) {
-            obstacles[j]->move(time);
+        for (int j = 0; j < obstacleCount; j++) {
+            obstacles[j].move(time, score);
 
-            if (player.checkCollision(score, *obstacles[j], time)) {
+            if (player.checkCollision(score, obstacles[j], time)) {
                 // temp fix:
                 //window.clear(sf::Color::Black);
 
@@ -121,8 +132,8 @@ unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Ti
 
     environment.draw(window, backgroundSprite);
 
-    for (int i = 0; i < obstacles.size(); i++) {
-        obstacles[i]->draw(window, obstacleSprites[obstacles[i]->getSprite()]);
+    for (int i = 0; i < obstacleCount; i++) {
+        obstacles[i].draw(window, obstacleSprites[obstacles[i].getSprite()]);
     }
 
     player.draw(window, playerSprite);

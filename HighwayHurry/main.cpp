@@ -20,6 +20,7 @@
 // what you could do is make a thing where the relative veloity makes snes.e
 // make the enemies do forces a little bit better. make it with drag and everything. the physics for the player makes sense.
 
+// make the enemies bounce back and forth.
 
 /// <summary>
 /// Make sprite conform to playersize and dont use getsize on sprite and window ??.

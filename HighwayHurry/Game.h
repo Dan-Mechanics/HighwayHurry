@@ -8,6 +8,9 @@
 
 extern const sf::String TITLE;
 
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+
 class Game {
 public:
 	Game();
@@ -17,6 +20,8 @@ public:
 	void refresh(Score& score, Time& time);
 	unsigned int update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard);
 
+	sf::Sprite obstacleSprites[3]{};
+	Obstacle obstacles[8]{};
 	// add memory managmentsi n the future: 
 	// deload method or destructor thing if you wanna have crazy amount of enemies increasing.
 
@@ -25,9 +30,10 @@ private:
 	Environment environment{};
 
 	// i dont think this will work.
-	std::vector<Obstacle> obstacles{};
+	//std::vector<Obstacle> obstacles{};
 
+	//std::vector<Obstacle> obstacles{};
 	sf::Sprite backgroundSprite{};
 	sf::Sprite playerSprite{};
-	sf::Sprite obstacleSprites[3]{};
+	int obstacleCount{};
 };

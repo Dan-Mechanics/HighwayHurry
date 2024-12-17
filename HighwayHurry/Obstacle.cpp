@@ -5,8 +5,10 @@
 #include "Environment.h"
 //#include "Rigidbody.h" // for global var ?? not required i gues
 
-Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) : 
-	Entity{ window, sprite }, score{ score } {
+Obstacle::Obstacle() = default;
+
+Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) :
+	Entity{ window, sprite } {
 	
 	int maxX = screenWidth - sizeX;
 	int maxY = screenHeight;
@@ -50,7 +52,61 @@ Vector3 Obstacle::getPosition() const {
 	return rigidbody.position;
 }
 
-void Obstacle::move(const Time& const time) {
+//void Obstacle::move(const Time& const time) {
+//	rigidbody.addForce(constantForce);
+//
+//	rigidbody.process(time);
+//
+//	// constrain.
+//	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
+//		rigidbody.position.xComponent = rigidbody.getMinX();
+//		rigidbody.velocity.xComponent = 0;
+//
+//		//acceleration.xComponent = abs(acceleration.xComponent);
+//	}
+//
+//	/*if (rigidbody.position.yComponent < 0)
+//	{
+//		rigidbody.position.yComponent = 0;
+//		rigidbody.velocity.yComponent = 0;
+//	}*/
+//
+//	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
+//		rigidbody.position.xComponent = rigidbody.getMaxX();
+//		rigidbody.velocity.xComponent = 0;
+//
+//		//acceleration.xComponent = -abs(acceleration.xComponent);
+//	}
+//
+//	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {
+//		reset(time);
+//		score.AddScore(1);
+//		// if we get here that means we did not hit this car.
+//	}
+//}
+
+void Obstacle::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
+	sprite.setColor(color);
+
+	/*Vector3 roundPos(rigidbody.position);
+	roundPos.round(10);*/
+
+	sprite.setPosition(rigidbody.position.xComponent, rigidbody.position.yComponent);
+	//sprite.setPosition(roundPos.xComponent, roundPos.yComponent);
+
+
+	window.draw(sprite);
+}
+
+void Obstacle::move(const Time& time) {
+
+}
+
+/// <summary>
+/// We have to do this because otherwise we cant have a default thing.
+/// </summary>
+void Obstacle::move(const Time& time, Score& const score)
+{
 	rigidbody.addForce(constantForce);
 
 	rigidbody.process(time);
@@ -81,17 +137,4 @@ void Obstacle::move(const Time& const time) {
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.
 	}
-}
-
-void Obstacle::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
-	sprite.setColor(color);
-
-	/*Vector3 roundPos(rigidbody.position);
-	roundPos.round(10);*/
-
-	sprite.setPosition(rigidbody.position.xComponent, rigidbody.position.yComponent);
-	//sprite.setPosition(roundPos.xComponent, roundPos.yComponent);
-
-
-	window.draw(sprite);
 }

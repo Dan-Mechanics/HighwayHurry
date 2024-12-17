@@ -94,8 +94,7 @@ void Vector3::multiply(const float amount) {
 }
 
 void Vector3::divide(const float amount) {
-	if (amount == 0) 
-	{ 
+	if (amount == 0) {
 		print("Cannot divide by zero!!");
 
 		return; 
@@ -152,6 +151,12 @@ void Vector3::clampMagnitude(const float magnitude) {
 /// https://discussions.unity.com/t/using-mathf-round-for-a-vector3/88858
 /// </summary>
 void Vector3::round(const float grid) {
+	if (grid == 0) {
+		print("Cannot divide by zero!!");
+
+		return;
+	}
+	
 	xComponent = roundf(xComponent / grid) * grid;
 	yComponent = roundf(yComponent / grid) * grid;
 	zComponent = roundf(zComponent / grid) * grid;
