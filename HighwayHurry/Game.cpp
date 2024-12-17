@@ -84,7 +84,9 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
 void Game::refresh(Score& const score, Time& const time) {
     print("Opening game.");
     
-    srand(std::time(0));
+    // bomboclat.
+    // srand(std::time(0));
+    srand(std::time(NULL));
 
     player.reset();
     score.reset();

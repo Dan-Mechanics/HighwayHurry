@@ -13,6 +13,13 @@
 // more const vars.
 // make relative velocities make more sense ish.
 // ask rosa if it makes sense.
+// 
+// implement global vars for window so drawalbe no refernec.e
+// everytinh looks pretty aight to him, 
+// mass makes sense for movement, make the "friction" and "forces" make more sense
+// what you could do is make a thing where the relative veloity makes snes.e
+// make the enemies do forces a little bit better. make it with drag and everything. the physics for the player makes sense.
+
 
 /// <summary>
 /// Make sprite conform to playersize and dont use getsize on sprite and window ??.
@@ -89,7 +96,7 @@ int main() {
 
     bool quit = false;
     bool showMenu = true;
-
+    // enum, 
     Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
     Game game{ window, score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
 

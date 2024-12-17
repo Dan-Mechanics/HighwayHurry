@@ -21,13 +21,13 @@ public:
 	// deload method or destructor thing if you wanna have crazy amount of enemies increasing.
 
 private:
-	//Scoreboard scoreboard;
 	Player player{};
 	Environment environment{};
-	std::vector<Obstacle*> obstacles{};
+
+	// i dont think this will work.
+	std::vector<Obstacle> obstacles{};
 
 	sf::Sprite backgroundSprite{};
 	sf::Sprite playerSprite{};
 	sf::Sprite obstacleSprites[3]{};
-	//std::vector<sf::Sprite> obstacleSprites{};
 };
