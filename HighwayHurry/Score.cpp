@@ -2,7 +2,7 @@
 
 Score::Score() = default;
 
-Score::Score(int maxLives) : maxLives{ maxLives } { }
+//Score::Score(int maxLives) : maxLives{ maxLives } { }
 
 //Score::~Score() = default;
 

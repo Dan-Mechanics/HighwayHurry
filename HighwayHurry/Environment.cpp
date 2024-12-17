@@ -1,5 +1,6 @@
 #include "Environment.h"
 #include "Utils.h"
+#include "Game.h"
 
 const int ENVIRONMENT_MARGIN = 150;
 
@@ -16,10 +17,10 @@ const int ENVIRONMENT_MARGIN = 150;
 
 Environment::Environment() = default;
 
-Environment::Environment(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Entity{window, sprite } {
-    if (screenHeight != sizeY || screenWidth != sizeX) { print("Why tho ?"); }
+Environment::Environment(const sf::Sprite& const sprite) : Entity{ sprite } {
+    if (SCREEN_HEIGHT != sizeY || SCREEN_WIDTH != sizeX) { print("Why tho ?"); }
 
-    position.yComponent = -screenHeight;
+    position.yComponent = -SCREEN_HEIGHT;
 }
 
 void Environment::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {

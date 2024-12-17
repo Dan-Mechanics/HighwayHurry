@@ -5,10 +5,7 @@
 
 Drawable::Drawable() = default;
 
-Drawable::Drawable(const sf::RenderWindow& const window, const sf::Sprite& const sprite) {
-    screenWidth = window.getSize().x;
-    screenHeight = window.getSize().y;
-
+Drawable::Drawable(const sf::Sprite& const sprite) {
     sizeX = sprite.getTexture()->getSize().x *
         (int)sprite.getScale().x;
     sizeY = sprite.getTexture()->getSize().y * (int)sprite.getScale().y;

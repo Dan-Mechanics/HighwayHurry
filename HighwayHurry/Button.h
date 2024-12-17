@@ -9,7 +9,7 @@ public:
 	/// https://www.sfml-dev.org/tutorials/2.6/graphics-text.php
 	/// </summary>
 	Button();
-	Button(const sf::RenderWindow& const window, const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
+	Button(const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
 		const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton);
 	//virtual ~Button();
    

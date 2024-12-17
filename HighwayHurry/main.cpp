@@ -32,15 +32,12 @@ int main() {
     // could make this global consts so we dont have to read from canvas and sprite
     // and besides we need to make the sprite adjust to player and not player adjust to sprite but whatever.
 
-    const int WIDTH = 1920;
-    const int HEIGHT = 1080; // --> make this global ?
     const unsigned int FPS_CAP = 320;
     const int TIMESTEP = 64;
-    const int MAX_LIVES = 5;
 
     // https://www.reddit.com/r/sfml/comments/oyms57/how_t
     // https://youtu.be/lFzpkvrscs4?si=9lYiXu4090IKJ1o1
-    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), TITLE,
+    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), TITLE,
         sf::Style::Fullscreen);
 
     window.setFramerateLimit(FPS_CAP);
@@ -57,7 +54,7 @@ int main() {
     }
 
     Time time{ TIMESTEP };
-    Score score{ MAX_LIVES };
+    Score score{ };
     Scoreboard scoreBoard{ font };
 
     //////////////////////////////////////////////////////
@@ -96,8 +93,10 @@ int main() {
     //////////////////////////////////////////////////////
 
     bool quit = false;
+    
+    // enum.
     bool showMenu = true;
-    // enum, 
+    
     Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
     Game game{ window, score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
 
@@ -119,6 +118,7 @@ int main() {
         // scene.draw();
         unsigned int returnCode = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
 
+        // !nesting.
         window.display();
 
         switch (returnCode) {

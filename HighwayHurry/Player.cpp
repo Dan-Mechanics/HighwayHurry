@@ -3,18 +3,21 @@
 #include "Utils.h"
 #include "Environment.h"
 #include "MathUtils.h"
+#include "Game.h"
 
 Player::Player() = default;
 
-Player::Player(const sf::RenderWindow& const window, const sf::Sprite& const sprite) : Entity{ window, sprite } {
-	int maxX = screenWidth - sizeX;
-	int maxY = screenHeight - sizeY;
-	int minX = 0;
-	int minY = 0;
+Player::Player(const sf::Sprite& const sprite) : Entity{ sprite } {
+	auto maxX = SCREEN_WIDTH - sizeX;
+	auto maxY = SCREEN_HEIGHT - sizeY;
+	auto minX = 0;
+	auto minY = 0;
 
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
 
+	// maybe we just need to give the rigidbody the sizeX and SizeY and the margins and thenwe good.
+	// in ieder geval kan ik dit optimizen.
 	rigidbody = { 1, maxX, maxY, minX, minY };
 
 	reset();

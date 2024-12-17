@@ -9,7 +9,7 @@
 class Obstacle : public Entity {
 public:
 	Obstacle();
-	Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score);
+	Obstacle(const sf::Sprite& const sprite, Score& score);
 	void reset(const Time& const time);
 
 	unsigned int getSprite() const;

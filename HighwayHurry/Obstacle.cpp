@@ -3,15 +3,16 @@
 #include "MathUtils.h"
 #include "Utils.h"
 #include "Environment.h"
+#include "Game.h"
 //#include "Rigidbody.h" // for global var ?? not required i gues
 
 Obstacle::Obstacle() = default;
 
-Obstacle::Obstacle(const sf::RenderWindow& const window, const sf::Sprite& const sprite, Score& score) :
-	Entity{ window, sprite } {
+Obstacle::Obstacle(const sf::Sprite& const sprite, Score& score) :
+	Entity{ sprite } {
 	
-	int maxX = screenWidth - sizeX;
-	int maxY = screenHeight;
+	int maxX = SCREEN_WIDTH - sizeX;
+	int maxY = SCREEN_HEIGHT;
 	int minX = 0;
 	int minY = 0;
 

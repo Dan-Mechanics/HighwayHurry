@@ -10,7 +10,7 @@
 class Drawable {
 public:
 	Drawable(); // we cannot have this because sprite and window must be assigned.
-	Drawable(const sf::RenderWindow& const window, const sf::Sprite& const sprite);
+	Drawable(const sf::Sprite& const sprite);
 	//virtual ~Drawable();
 
 	int getSizeX() const;
@@ -23,6 +23,5 @@ public:
 
 protected:
 	int sizeX{}, sizeY{};
-	int screenWidth{}, screenHeight{};
 };
 

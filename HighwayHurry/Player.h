@@ -7,7 +7,7 @@
 class Player : public Entity {
 public:
 	Player();
-	Player(const sf::RenderWindow& window, const sf::Sprite& sprite);
+	Player(const sf::Sprite& sprite);
 
 	void reset();
 

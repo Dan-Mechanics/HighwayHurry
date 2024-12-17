@@ -58,34 +58,21 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
     applyGlobalScale(backgroundSprite);
 
     // we love cPP!!
+    // https://www.youtube.com/watch?v=a4P4ial8OgQ
+
     for (int i = 0; i < sizeof(obstacleSprites) / sizeof(sf::Sprite); i++) {
         applyGlobalScale(obstacleSprites[i]);
     }
 
     // this makes the random fixed ? yep.
 
-    player = { window, playerSprite };
-    environment = { window, backgroundSprite };
-    //scoreboard = { font };
-    //std::vector<Obstacle*> obstacles;
-
-    // i basically want this to be dynaically allocated in this heap scope, 
-    // and i also want to add more cars so progresllively more difficult.
-    // i have no idea how im gonna add friction and or collison !!!
-    //for (int i = 0; i < 8; i++) {
-    //    // DNAGER DANGER ZONE.
-    //    Obstacle* car = new Obstacle(window, obstacleSprites[0], score);
-
-    //    obstacles.push_back(car);
-
-
-    //    // ?? entities.emplace_back(window, playerSprite);
-    //}
+    player = { playerSprite };
+    environment = { backgroundSprite };
 
     obstacleCount = sizeof(obstacles) / sizeof(Obstacle);
 
     for (int i = 0; i < obstacleCount; i++) {
-        obstacles[i] = { window, obstacleSprites[0], score };
+        obstacles[i] = { obstacleSprites[0], score };
         //obstacles.emplace_back( window, obstacleSprites[0], score );
     }
 
