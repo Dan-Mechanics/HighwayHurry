@@ -22,6 +22,8 @@
 
 // make the enemies bounce back and forth.
 
+// make het zodat je de sprties niet de collision maken maar andersom.
+
 /// <summary>
 /// Make sprite conform to playersize and dont use getsize on sprite and window ??.
 /// </summary>
