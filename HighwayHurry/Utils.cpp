@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 void print(const std::string value) {
 	std::cout << " > " << value << std::endl;
@@ -37,16 +38,16 @@ void applyGlobalScale(sf::Sprite& sprite) {
 	sprite.setScale(10, 10);
 }
 
-void centerText(sf::Text& text, const int x, const int y) {
+void centerText(sf::Text& text, const float x, const float y) {
 	sf::FloatRect textRect = text.getLocalBounds();
-	text.setOrigin(roundToInt(textRect.left + textRect.width / 2), roundToInt(textRect.top + textRect.height / 2));
+	text.setOrigin(round(textRect.left + textRect.width / 2), round(textRect.top + textRect.height / 2));
 	//text.setOrigin(round(textRect.left + textRect.width / 2), round(textRect.top + maxHeight / 2));
 
 	text.setPosition(x, y);
 }
 
 void centerText(sf::Text& text, const sf::RenderWindow& window) {
-	centerText(text, window.getSize().x / 2, window.getSize().y / 2);
+	centerText(text, SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
 }
 
 /// <summary>
