@@ -6,11 +6,11 @@
 class Scoreboard {
 public:
 	Scoreboard();
-	Scoreboard(const sf::Font& const font);
+	Scoreboard(const sf::Font& font);
 
 	void draw(sf::RenderWindow& window, Score& score);
-	void setGameString(sf::String& string, const Score& const score) const;
-	sf::String getMenuString(const Score& const score) const;
+	void setGameString(sf::String& string, const Score& score) const;
+	sf::String getMenuString(const Score& score) const;
 
 private:
 	sf::Text text{};

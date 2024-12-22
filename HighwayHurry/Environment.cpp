@@ -17,13 +17,13 @@ const int ENVIRONMENT_MARGIN = 150;
 
 Environment::Environment() = default;
 
-Environment::Environment(const sf::Sprite& const sprite) : Entity{ sprite } {
+Environment::Environment(const sf::Sprite& sprite) : Entity{ sprite } {
     if (SCREEN_HEIGHT != sizeY || SCREEN_WIDTH != sizeX) { print("Why tho ?"); }
 
     position.yComponent = -SCREEN_HEIGHT;
 }
 
-void Environment::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
+void Environment::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
     Vector3 roundPos(position);
     //roundPos.round(10);
     
@@ -32,7 +32,7 @@ void Environment::draw(sf::RenderWindow& const window, sf::Sprite& const sprite)
     window.draw(sprite);
 }
 
-void Environment::move(const Time& const time) {
+void Environment::move(const Time& time) {
     position.yComponent += forwardSpeed * time.fixedInterval;
 
     if (position.yComponent >= 0) { position.yComponent = -1080; }

@@ -3,7 +3,7 @@
 
 Scoreboard::Scoreboard() = default;
 
-Scoreboard::Scoreboard(const sf::Font& const font) {
+Scoreboard::Scoreboard(const sf::Font& font) {
     applyTextBranding(text, font);
 
     text.setPosition(15, -40);
@@ -18,7 +18,7 @@ void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
     window.draw(text);
 }
 
-void Scoreboard::setGameString(sf::String& string, const Score& const score) const {
+void Scoreboard::setGameString(sf::String& string, const Score& score) const {
     string.clear();
 
     // is there a cpp stringbuilder ??
@@ -33,7 +33,7 @@ void Scoreboard::setGameString(sf::String& string, const Score& const score) con
     string += std::to_string(score.getTime());
 }
 
-sf::String Scoreboard::getMenuString(const Score& const score) const {
+sf::String Scoreboard::getMenuString(const Score& score) const {
     // sf::String menuString = "";
     
     sf::String menuString;

@@ -8,7 +8,7 @@
 
 Obstacle::Obstacle() = default;
 
-Obstacle::Obstacle(const sf::Sprite& const sprite, Score& score) :
+Obstacle::Obstacle(const sf::Sprite& sprite, Score& score) :
 	Entity{ sprite } {
 	
 	int maxX = SCREEN_WIDTH - sizeX;
@@ -22,7 +22,7 @@ Obstacle::Obstacle(const sf::Sprite& const sprite, Score& score) :
 	rigidbody = { 1, maxX, maxY, minX, minY };
 }
 
-void Obstacle::reset(const Time& const time) {
+void Obstacle::reset(const Time& time) {
 	color = randomColor();
 
 	// if u wanna know why not fast car look here :
@@ -53,7 +53,7 @@ Vector3 Obstacle::getPosition() const {
 	return rigidbody.position;
 }
 
-//void Obstacle::move(const Time& const time) {
+//void Obstacle::move(const Time& time) {
 //	rigidbody.addForce(constantForce);
 //
 //	rigidbody.process(time);
@@ -86,7 +86,7 @@ Vector3 Obstacle::getPosition() const {
 //	}
 //}
 
-void Obstacle::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
+void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 	sprite.setColor(color);
 
 	/*Vector3 roundPos(rigidbody.position);
@@ -106,7 +106,7 @@ void Obstacle::move(const Time& time) {
 /// <summary>
 /// We have to do this because otherwise we cant have a default thing.
 /// </summary>
-void Obstacle::move(const Time& time, Score& const score)
+void Obstacle::move(const Time& time, Score& score)
 {
 	rigidbody.addForce(constantForce);
 

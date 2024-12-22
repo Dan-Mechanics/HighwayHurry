@@ -7,7 +7,7 @@
 
 Player::Player() = default;
 
-Player::Player(const sf::Sprite& const sprite) : Entity{ sprite } {
+Player::Player(const sf::Sprite& sprite) : Entity{ sprite } {
 	auto maxX = SCREEN_WIDTH - sizeX;
 	auto maxY = SCREEN_HEIGHT - sizeY;
 	auto minX = 0;
@@ -28,7 +28,7 @@ void Player::reset() {
 	rigidbody.resetAll();
 }
 
-void Player::move(const Time& const time) {
+void Player::move(const Time& time) {
 	Vector3 input = calculateMovement();
 	
 	Vector3 movement = input;
@@ -91,7 +91,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	rigidbody.addVelocity(counterMovement);
 }
 
-bool Player::checkCollision(Score& score, Obstacle& obstacle, const Time& const time) const {
+bool Player::checkCollision(Score& score, Obstacle& obstacle, const Time& time) const {
 	float leniency = 0.75f; // so we have negative leniency.
 	
 	//bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX / 2.0f, obstacle.getSizeX() / 2.0f);
@@ -138,7 +138,7 @@ Vector3 Player::calculateMovement() const {
 	return movement;
 }
 
-void Player::draw(sf::RenderWindow& const window, sf::Sprite& const sprite) {
+void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 	sprite.setColor(sf::Color::White);
 	
 	/*Vector3 roundPos(rigidbody.position);

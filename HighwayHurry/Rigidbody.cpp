@@ -45,7 +45,7 @@ void Rigidbody::resetAll() {
 	force.setAll(0, 0, 0);
 }
 
-void Rigidbody::process(const Time& const time) {
+void Rigidbody::process(const Time& time) {
 	force.divide(mass);
 	acceleration.add(force);
 	velocity.add(acceleration, time.fixedInterval);

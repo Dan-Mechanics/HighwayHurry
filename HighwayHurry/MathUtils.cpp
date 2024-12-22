@@ -24,11 +24,11 @@ float toRadians(const float deg) {
 	return deg / RAD2DEG;
 }
 
-float distance(const Vector3& const a, const Vector3& const b) {
+float distance(const Vector3& a, const Vector3& b) {
 	return powf(powf(a.xComponent - b.xComponent, 2) + powf(a.yComponent - b.yComponent, 2) + powf(a.zComponent - b.zComponent, 2), 0.5f);
 }
 
-bool checkCircleTouch(const Vector3& const a, const Vector3& const b, const float aR, const float bR) {
+bool checkCircleTouch(const Vector3& a, const Vector3& b, const float aR, const float bR) {
 	return distance(a, b) <= aR + bR;
 }
 

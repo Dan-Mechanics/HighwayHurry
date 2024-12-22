@@ -5,9 +5,9 @@
 
 Entity::Entity() = default;
 
-Entity::Entity(const sf::Sprite& const sprite) : Drawable { sprite } { }
+Entity::Entity(const sf::Sprite& sprite) : Drawable { sprite } { }
 
-void Entity::move(const Time & time, Score& const score) {
+void Entity::move(const Time & time, Score& score) {
 
 }
 

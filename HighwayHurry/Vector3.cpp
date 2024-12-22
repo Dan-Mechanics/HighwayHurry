@@ -162,7 +162,7 @@ void Vector3::round(const float grid) {
 	zComponent = roundf(zComponent / grid) * grid;
 }
 
-float Vector3::calcDotProduct(const Vector3& const other) const {
+float Vector3::calcDotProduct(const Vector3& other) const {
 	return
 		xComponent * other.xComponent +
 		yComponent * other.yComponent +
@@ -186,7 +186,7 @@ float Vector3::calcNormalizedDotProduct(Vector3 b) const {
 		a.zComponent * b.zComponent;
 }
 
-Vector3 Vector3::cross(const Vector3& const other) const {
+Vector3 Vector3::cross(const Vector3& other) const {
 	return {
 		yComponent * other.zComponent + zComponent * other.yComponent,
 		zComponent * other.xComponent + xComponent * other.zComponent,
@@ -205,6 +205,6 @@ void Vector3::setWithAngleAndLength(float angle, const float length) {
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
 }
 
-float Vector3::calculateDistanceTo(const Vector3& const other) const {
+float Vector3::calculateDistanceTo(const Vector3& other) const {
 	return distance(*this, other);
 }

@@ -35,7 +35,7 @@ public:
 	/// accel into vel,
 	/// vel into pos.
 	/// </summary>
-	void process(const Time& const time);
+	void process(const Time& time);
 	void limitVelocity(const float magnitude);
 	void stopInPlace();
 

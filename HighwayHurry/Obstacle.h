@@ -9,12 +9,12 @@
 class Obstacle : public Entity {
 public:
 	Obstacle();
-	Obstacle(const sf::Sprite& const sprite, Score& score);
-	void reset(const Time& const time);
+	Obstacle(const sf::Sprite& sprite, Score& score);
+	void reset(const Time& time);
 
 	unsigned int getSprite() const;
 	Vector3 getPosition() const;
-	virtual void draw(sf::RenderWindow& const window, sf::Sprite& const sprite) override;
+	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
 	virtual void move(const Time& time) override;
 	virtual void move(const Time& time, Score& score) override;
 

@@ -8,7 +8,7 @@
 
 Menu::Menu() = default;
 
-Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, const sf::Texture& const backgroundTexture, const sf::Texture& const buttonTexture) {  
+Menu::Menu(const sf::RenderWindow& window, const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture) {  
     firstMenuOpen = true;
     
     backgroundSprite.setTexture(backgroundTexture);
@@ -53,7 +53,7 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
 /// Dont repeat if already second.
 /// ARE WE ALLOWED TO USE GET METHOD ?
 /// </summary>
-void Menu::refresh(const sf::RenderWindow& const window, const Score& const score, const Scoreboard& const scoreboard, const sf::Font& const font) {
+void Menu::refresh(const sf::RenderWindow& window, const Score& score, const Scoreboard& scoreboard, const sf::Font& font) {
     print("Opening menu.");
     
     scoreText.setString(scoreboard.getMenuString(score));
@@ -72,8 +72,8 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
     centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
 
-    // n(const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
-	//	const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton);
+    // n(const sf::Sprite& sprite, const Vector3 position, const sf::Color normalColor,
+	//	const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
 
     playButton = { playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
     playButton.centerAll();
@@ -81,7 +81,7 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     firstMenuOpen = false;
 }
 
-int Menu::update(sf::RenderWindow& const window) {
+int Menu::update(sf::RenderWindow& window) {
     unsigned int result = 0;
     
     window.draw(backgroundSprite);

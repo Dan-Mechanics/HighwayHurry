@@ -32,8 +32,8 @@ const int SCREEN_HEIGHT = 1080;
 
 Game::Game() = default;
 
-Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture,
-    const sf::Texture& const fast, const sf::Texture& const mid, const sf::Texture& const slow) {
+Game::Game(const sf::RenderWindow& window, Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
+    const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow) {
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
@@ -79,7 +79,7 @@ Game::Game(const sf::RenderWindow& const window, Score& const score, Time& const
     refresh(score, time);
 }
 
-void Game::refresh(Score& const score, Time& const time) {
+void Game::refresh(Score& score, Time& time) {
     print("Opening game.");
     
     // bomboclat.
@@ -95,7 +95,7 @@ void Game::refresh(Score& const score, Time& const time) {
     }
 }
 
-int Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
+int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
     unsigned int result = 0;
     
     // we have FixedUpdate() at home :

@@ -9,8 +9,8 @@ public:
 	/// https://www.sfml-dev.org/tutorials/2.6/graphics-text.php
 	/// </summary>
 	Button();
-	Button(const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
-		const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton);
+	Button(const sf::Sprite& sprite, const Vector3 position, const sf::Color normalColor,
+		const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
 	//virtual ~Button();
    
 	bool getIsHovering() const;
@@ -24,8 +24,8 @@ public:
 	/// <summary>
 	/// Also does hovering logic.
 	/// </summary>
-	virtual void draw(sf::RenderWindow& const window, sf::Sprite& const sprite) override;
-	virtual void move(const Time& const time) override;
+	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
+	virtual void move(const Time& time) override;
 	// we cant make this const because reference. 
 
 private:

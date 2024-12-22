@@ -33,7 +33,7 @@ sf::Color randomColor() {
 	return sf::Color{ (sf::Uint8)randomInclusive(0, 255), (sf::Uint8)randomInclusive(0, 255), (sf::Uint8)randomInclusive(0, 255) };
 }
 
-void applyGlobalScale(sf::Sprite& const sprite) {
+void applyGlobalScale(sf::Sprite& sprite) {
 	sprite.setScale(10, 10);
 }
 

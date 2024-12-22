@@ -14,11 +14,11 @@ extern const int SCREEN_HEIGHT;
 class Game {
 public:
 	Game();
-	Game(const sf::RenderWindow& const window, Score& const score, Time& const time, sf::Texture& const backgroundTexture, const sf::Texture& const playerTexture, 
-		const sf::Texture& const fast, const sf::Texture& const mid, const sf::Texture& const slow);
+	Game(const sf::RenderWindow& window, Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture, 
+		const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow);
 
 	void refresh(Score& score, Time& time);
-	int update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard);
+	int update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
 
 	sf::Sprite obstacleSprites[3]{};
 	Obstacle obstacles[8]{};
