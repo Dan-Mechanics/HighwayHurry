@@ -68,7 +68,7 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
 
     sprite.setPosition(position.xComponent, position.yComponent);
 
-    centerText(text, roundToInt(position.xComponent) + sizeX / 2, roundToInt(position.yComponent) + sizeY / 2);
+    centerText(text, position.xComponent + sizeX / 2.0f, position.yComponent + sizeY / 2.0f);
     //centerText(text, window);
 
     window.draw(sprite);

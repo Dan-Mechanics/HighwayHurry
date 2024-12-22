@@ -2,10 +2,6 @@ HighwayHurry/.vs/
 HighwayHurry/include/
 HighwayHurry/lib/
 HighwayHurry/x64/
-HighwayHurry/FirstSFML.sln
-HighwayHurry/FirstSFML.vcxproj.filters
-HighwayHurry/FirstSFML.vcxproj.user
-
 /HighwayHurry/x64
 HighwayHurry/x64/Debug/vc142.pdb
 HighwayHurry/x64/Debug/vc142.idb
@@ -13,5 +9,4 @@ HighwayHurry/x64/Debug/main.obj
 HighwayHurry/HighwayHurry/x64/Debug/HighwayHurry.log
 HighwayHurry/HighwayHurry.vcxproj
 HighwayHurry/HighwayHurry.sln
-HighwayHurry/HighwayHurry/x64/Debug/FirstSFML.log
-HighwayHurry/FirstSFML.vcxproj
+HighwayHurry/HighwayHurry.vcxproj.user
