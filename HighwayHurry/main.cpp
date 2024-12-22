@@ -5,6 +5,8 @@
 #include "Menu.h"
 #include "Scoreboard.h"
 #include "Button.h"
+//#include <iostream>
+//using namespace std;
 
 // next stuff :
 // menu width and height so no canvas send
@@ -23,6 +25,12 @@
 // make the enemies bounce back and forth.
 
 // make het zodat je de sprties niet de collision maken maar andersom.
+
+/// <summary>
+/// https://www.youtube.com/watch?v=Fqn4pSRH6Ec
+/// Enums suck.
+/// </summary>
+enum Scene { MENU_SCENE, GAME_SCENE };
 
 /// <summary>
 /// Make sprite conform to playersize and dont use getsize on sprite and window ??.
@@ -97,8 +105,10 @@ int main() {
     bool quit = false;
     
     // enum.
-    bool showMenu = true;
-    
+    //bool showMenu = true;
+    Scene currentScene = MENU_SCENE;
+    //currentScene = Scene::MENU_SCENE;
+
     Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
     Game game{ window, score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
 
@@ -118,12 +128,13 @@ int main() {
         window.clear(sf::Color::Magenta);
 
         // scene.draw();
-        unsigned int returnCode = showMenu ? menu.update(window) : game.update(window, score, time, scoreBoard);
+        int frameReturnCode = currentScene == MENU_SCENE ?
+            menu.update(window) : game.update(window, score, time, scoreBoard);
 
         // !nesting.
         window.display();
 
-        switch (returnCode) {
+        switch (frameReturnCode) {
         case 2:
             // retrun code 2 = quit game.
             quit = true;
@@ -131,10 +142,19 @@ int main() {
 
         case 1:
             // return code 1 = next scene = toggle the current scene.
-            showMenu = !showMenu;
+            //showMenu = !showMenu;
+            /*if (currentScene == MENU_SCENE) { currentScene = GAME_SCENE; }
+            else
+            {
+                currentScene = MENU_SCENE;
+            }*/
+
+            // lol if this works.
+            // only in c++
+            currentScene = (Scene)!currentScene;
 
             // depending on the new scene, we refresh it.
-            if (showMenu) {
+            if (currentScene == MENU_SCENE) {
                 menu.refresh(window, score, scoreBoard, font);
             }
             else {

@@ -15,11 +15,11 @@ public:
 
 	int getSizeX() const;
 	int getSizeY() const;
-
+	
 	/// <summary>
 	/// TODO ?? :: make reference const ??
 	/// </summary>
-	virtual void draw(sf::RenderWindow& const window, sf::Sprite& const sprite) = 0;
+	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) = 0;
 
 protected:
 	int sizeX{}, sizeY{};

@@ -1,6 +1,7 @@
 #include "Button.h"
 #include <SFML/Graphics.hpp>
 #include "Utils.h"
+#include "Game.h"
 
 Button::Button() = default;
 
@@ -22,11 +23,11 @@ bool Button::getIsClicked() const {
 }
 
 void Button::centerY() {
-    position.yComponent = (screenHeight - sizeY) / 2.0f;
+    position.yComponent = (SCREEN_HEIGHT - sizeY) / 2.0f;
 }
 
 void Button::centerX() {
-    position.xComponent = (screenWidth - sizeX) / 2.0f;
+    position.xComponent = (SCREEN_WIDTH - sizeX) / 2.0f;
 }
 
 void Button::centerAll() {

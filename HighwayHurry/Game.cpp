@@ -95,7 +95,7 @@ void Game::refresh(Score& const score, Time& const time) {
     }
 }
 
-unsigned int Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
+int Game::update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard) {
     unsigned int result = 0;
     
     // we have FixedUpdate() at home :

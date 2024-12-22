@@ -20,7 +20,7 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
     applyGlobalScale(playButtonSprite);
     applyGlobalScale(quitButtonSprite);
 
-    quitButton = { window, quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
+    quitButton = { quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
 
     applyTextBranding(titleText, font);
     applyTextBranding(scoreText, font);
@@ -43,7 +43,7 @@ Menu::Menu(const sf::RenderWindow& const window, const sf::Font& const font, con
     
     debugInstructions.setCharacterSize(40);
 
-    playButton = { window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
+    playButton = { playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
 
     playButton.centerAll();
 }
@@ -72,13 +72,16 @@ void Menu::refresh(const sf::RenderWindow& const window, const Score& const scor
     centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
     centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
 
-    playButton = { window, playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    // n(const sf::Sprite& const sprite, const Vector3 position, const sf::Color normalColor,
+	//	const sf::Color hoveringColor, const sf::Font& const font, const std::string textOnButton);
+
+    playButton = { playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
     playButton.centerAll();
 
     firstMenuOpen = false;
 }
 
-unsigned int Menu::update(sf::RenderWindow& const window) {
+int Menu::update(sf::RenderWindow& const window) {
     unsigned int result = 0;
     
     window.draw(backgroundSprite);

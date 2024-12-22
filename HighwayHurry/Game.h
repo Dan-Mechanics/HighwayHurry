@@ -18,7 +18,7 @@ public:
 		const sf::Texture& const fast, const sf::Texture& const mid, const sf::Texture& const slow);
 
 	void refresh(Score& score, Time& time);
-	unsigned int update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard);
+	int update(sf::RenderWindow& const window, Score& const score, Time& const time, Scoreboard& const scoreboard);
 
 	sf::Sprite obstacleSprites[3]{};
 	Obstacle obstacles[8]{};
