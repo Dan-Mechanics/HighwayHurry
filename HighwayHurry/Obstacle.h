@@ -16,7 +16,8 @@ public:
 	Vector3 getPosition() const;
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
 	virtual void move(const Time& time) override;
-	virtual void move(const Time& time, Score& score) override;
+	void constrain(const Time& time, Score& score);
+	//virtual void move(const Time& time, Score& score) override;
 
 private:
 	float downwardImpactForce = 1200;

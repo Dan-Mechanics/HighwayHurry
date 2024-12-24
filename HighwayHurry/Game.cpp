@@ -104,7 +104,8 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
         player.move(time);
 
         for (int j = 0; j < obstacleCount; j++) {
-            obstacles[j].move(time, score);
+            obstacles[j].move(time);
+            obstacles[j].constrain(time, score);
 
             if (player.checkCollision(score, obstacles[j], time)) {
                 // temp fix:

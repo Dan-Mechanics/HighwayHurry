@@ -106,13 +106,14 @@ void Obstacle::move(const Time& time) {
 /// <summary>
 /// We have to do this because otherwise we cant have a default thing.
 /// </summary>
-void Obstacle::move(const Time& time, Score& score)
+void Obstacle::move(const Time& time)
 {
 	rigidbody.addForce(constantForce);
 
 	rigidbody.process(time);
+}
 
-	// constrain.
+void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
