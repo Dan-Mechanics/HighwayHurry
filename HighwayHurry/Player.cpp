@@ -32,9 +32,9 @@ void Player::move(const Time& time) {
 	Vector3 input = calculateMovement();
 	
 	Vector3 movement = input;
-	movement.multiply(acceleration);
+	movement.multiply(movementForceScalar);
 
-	rigidbody.addAcceleraton(movement);
+	rigidbody.addForce(movement);
 
 	// We do it after because that feels more responsive.
 	doCounterMovement(time.fixedInterval, input);
@@ -50,32 +50,37 @@ void Player::move(const Time& time) {
 		rigidbody.velocity.xComponent = 0;
 	}
 
-	/*if (rigidbody.position.yComponent < 0)
-	{ 
-		rigidbody.position.yComponent = 0;
-		rigidbody.velocity.yComponent = 0;
-	}*/
-
 	if (rigidbody.position.xComponent > rigidbody.getMaxX())
 	{ 
 		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
 	}
 
-	/*if (rigidbody.position.yComponent > maxY)
-	{ 
-		rigidbody.position.yComponent = maxY;
+	// Technically, these aren't necessary but they're here just in case.
+
+	if (rigidbody.position.yComponent < rigidbody.getMinY())
+	{
+		rigidbody.position.yComponent = rigidbody.getMinY();
 		rigidbody.velocity.yComponent = 0;
-	}*/
+	}
+
+	if (rigidbody.position.yComponent > rigidbody.getMaxY())
+	{ 
+		rigidbody.position.yComponent = rigidbody.getMaxY();
+		rigidbody.velocity.yComponent = 0;
+	}
 }
 
+/// <summary>
+/// Aka doFriction()
+/// </summary>
 void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	Vector3 counterMovement = rigidbody.velocity;
 
 	counterMovement.normalize();
 	counterMovement.remove(movement);
 
-	counterMovement.multiply(-1 * acceleration * counterMovementMult * fixedInterval);
+	counterMovement.multiply(-1 * movementForceScalar * counterMovementMult * fixedInterval);
 
 	/*if (counterMovement.magnitude > velocity.magnitude && velocity.magnitude != 0f) {
 		counterMovement = -velocity;*/
@@ -88,18 +93,20 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 		counterMovement.multiply(-1);
 	}
 
-	rigidbody.addVelocity(counterMovement);
+	// but if this is too cool for you.
+	//rigidbody.addVelocity(counterMovement);
+
+	// convert to force.
+	counterMovement.multiply(rigidbody.mass / fixedInterval);
+	rigidbody.addForce(counterMovement);
 }
 
 bool Player::checkCollision(Score& score, Obstacle& obstacle, const Time& time) const {
 	float leniency = 0.75f; // so we have negative leniency.
 	
-	//bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), sizeX / 2.0f, obstacle.getSizeX() / 2.0f);
-	//bool hasCollision = rigidbody.position.calculateDistanceTo(obstacle.getPosition()) <= sizeX * leniency;
 	bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), leniency * sizeX / 2, leniency * obstacle.getSizeX() / 2);
 
-	if (hasCollision) 
-	{ 
+	if (hasCollision) {
 		obstacle.reset(time);
 
 		return score.Damage(1);

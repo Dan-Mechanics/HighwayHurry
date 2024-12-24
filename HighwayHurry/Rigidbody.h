@@ -13,8 +13,8 @@ public:
 	Vector3 velocity{};
 
 	float mass = 1;
-	float staticFrictionCoefficient{};
-	float dynamicFrictionCoefficient{}; // or just one
+	//float staticFrictionCoefficient{};
+	//float dynamicFrictionCoefficient{}; // or just one
 	// float drag{};
 
 	/// <summary>

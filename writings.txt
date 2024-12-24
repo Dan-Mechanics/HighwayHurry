@@ -1,3 +1,8 @@
+and also remove comments duh.
+
+make it so that the friciton logic is the same for everyone.
+and optimize plaeyer friciton and add the speed of the unlocal enemies to air drag logic or something idk.
+
 check anachronsim used memes, what does edwin think about this.
 
 remove const from reference yeets. thats anachronsim

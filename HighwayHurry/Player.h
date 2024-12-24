@@ -19,7 +19,7 @@ public:
 
 private:
 	float topSpeed = 1000;
-	float acceleration = 7500;
+	float movementForceScalar = 7500;
 	float counterMovementMult = 0.195f;
 	Rigidbody rigidbody{};
 
