@@ -5,11 +5,16 @@
 
 Drawable::Drawable() = default;
 
-Drawable::Drawable(const sf::Sprite& sprite) {
-    sizeX = sprite.getTexture()->getSize().x *
-        (int)sprite.getScale().x;
-    sizeY = sprite.getTexture()->getSize().y * (int)sprite.getScale().y;
+Drawable::Drawable(const int sizeX, const int sizeY) {
+    this->sizeX = sizeX;
+    this->sizeY = sizeY;
 }
+
+//Drawable::Drawable(const sf::Sprite& sprite) {
+//    sizeX = sprite.getTexture()->getSize().x *
+//        (int)sprite.getScale().x;
+//    sizeY = sprite.getTexture()->getSize().y * (int)sprite.getScale().y;
+//}
 
 int Drawable::getSizeX() const {
     return sizeX;

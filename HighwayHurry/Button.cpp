@@ -5,8 +5,8 @@
 
 Button::Button() = default;
 
-Button::Button(const sf::Sprite& sprite, const Vector3 position, const sf::Color normalColor,
-    const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton) : Entity{ sprite }, position{ position },
+Button::Button(const int sizeX, const int sizeY, const Vector3 position, const sf::Color normalColor,
+    const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton) : Entity{ sizeX, sizeY }, position{ position },
     normalColor{ normalColor }, hoveringColor{ hoveringColor } {
 
     applyTextBranding(text, font);

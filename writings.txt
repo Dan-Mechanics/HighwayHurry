@@ -1,3 +1,11 @@
+make it so obstacles dont overlap ??
+make it so the obstacles actually work with constant forces
+and drag instead of not and then relative to the enviromnet speed which is constant
+global accescible. also environment is rb ?? idk about that one but ok.
+keep removing getters from sfml.
+
+idea: make global vars class.
+
 ideally i dont wanna use any GET functions from sfml only set functions. like setposition etc.
 use iostream as stringbuilder to not waste stack memory.
 

@@ -4,20 +4,19 @@
 #include "Score.h"
 
 /// <summary>
-/// Might rename to just Obstacle. ObstacleCar? Falling obstacle.
+/// Represents a car for the player to avoid.
 /// </summary>
 class Obstacle : public Entity {
 public:
 	Obstacle();
-	Obstacle(const sf::Sprite& sprite, Score& score);
+	Obstacle(const int sizeX, const int sizeY, Score& score);
 	void reset(const Time& time);
 
-	unsigned int getSprite() const;
+	unsigned int getSpriteIndex() const;
 	Vector3 getPosition() const;
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
 	virtual void move(const Time& time) override;
 	void constrain(const Time& time, Score& score);
-	//virtual void move(const Time& time, Score& score) override;
 
 private:
 	float downwardImpactForce = 1200;
@@ -25,8 +24,8 @@ private:
 	int constantForceVariance = 250;
 	int highestSpawnPoint = -1080;
 	unsigned int spriteIndex{};
+
 	Rigidbody rigidbody{};
-	Vector3 constantForce{};
+	Vector3 driveForce{};
 	sf::Color color = sf::Color::White;
 };
-

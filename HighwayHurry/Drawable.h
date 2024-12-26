@@ -8,7 +8,7 @@
 class Drawable {
 public:
 	Drawable();
-	Drawable(const sf::Sprite& sprite);
+	Drawable(const int sizeX, const int sizeY);
 
 	/// <summary>
 	/// We can't make const because we have to write to sprite and window.

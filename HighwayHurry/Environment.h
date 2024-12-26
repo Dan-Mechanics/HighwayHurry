@@ -10,7 +10,7 @@ public:
 	float forwardSpeed = 3500;
 
 	Environment();
-	Environment(const sf::Sprite& sprite);
+	Environment(const int sizeX, const int sizeY);
 
 	// Inherited via Entity.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;

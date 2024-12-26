@@ -7,13 +7,13 @@
 
 Obstacle::Obstacle() = default;
 
-Obstacle::Obstacle(const sf::Sprite& sprite, Score& score) :
-	Entity{ sprite } {
+Obstacle::Obstacle(const int sizeX, const int sizeY, Score& score) :
+	Entity{ sizeX, sizeY } {
 	
 	int maxX = SCREEN_WIDTH - sizeX;
-	int maxY = SCREEN_HEIGHT;
+	const int maxY = SCREEN_HEIGHT;
 	int minX = 0;
-	int minY = 0;
+	const int minY = 0;
 
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
@@ -44,7 +44,7 @@ void Obstacle::reset(const Time& time) {
 	constantForce.setAll(randomInclusive(-constantForceVariance, constantForceVariance), 0, 0);
 }
 
-unsigned int Obstacle::getSprite() const {
+unsigned int Obstacle::getSpriteIndex() const {
 	return spriteIndex;
 }
 
@@ -77,7 +77,6 @@ void Obstacle::constrain(const Time& time, Score& score) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
 	}
-
 
 	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
 		rigidbody.position.xComponent = rigidbody.getMaxX();

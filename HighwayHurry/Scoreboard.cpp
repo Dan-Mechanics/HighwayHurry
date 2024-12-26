@@ -27,7 +27,6 @@ sf::String Scoreboard::getGameString(const Score& score) const {
     sf::String result;
     result.clear();
 
-    // is there a cpp stringbuilder ??
     result += std::to_string(score.getScore());
     result += " | ";
     result += "( ";
@@ -37,6 +36,8 @@ sf::String Scoreboard::getGameString(const Score& score) const {
     result += " )";
     result += " | ";
     result += std::to_string(score.getTime());
+
+    return result;  
 }
 
 /// <summary>

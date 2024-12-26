@@ -30,11 +30,8 @@ private:
 	Player player{};
 	Environment environment{};
 
-	// i dont think this will work.
-	//std::vector<Obstacle> obstacles{};
-
-	//std::vector<Obstacle> obstacles{};
 	sf::Sprite backgroundSprite{};
 	sf::Sprite playerSprite{};
+
 	int obstacleCount{};
 };

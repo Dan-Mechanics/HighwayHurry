@@ -20,7 +20,7 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
     applyGlobalScale(playButtonSprite);
     applyGlobalScale(quitButtonSprite);
 
-    quitButton = { quitButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
+    quitButton = { 160, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
 
     applyTextBranding(titleText, font);
     applyTextBranding(scoreText, font);
@@ -43,7 +43,7 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
     
     debugInstructions.setCharacterSize(40);
 
-    playButton = { playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
+    playButton = { 160, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
 
     playButton.centerAll();
 }
@@ -63,7 +63,8 @@ void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::F
     
     titleText.setString("GAME OVER"); // use some to upper method.
     
-    playButtonSprite.setScale(playButtonSprite.getScale().y * 2, playButtonSprite.getScale().y);
+    //playButtonSprite.setScale(playButtonSprite.getScale().y * 2, playButtonSprite.getScale().y);
+    playButtonSprite.setScale(20, 10);
 
     //scoreText.setString(scoreboard.getMenuString(score));
     scoreText.setCharacterSize(100);
@@ -72,10 +73,8 @@ void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::F
     centerText(scoreText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 250);
     centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 425);
 
-    // n(const sf::Sprite& sprite, const Vector3 position, const sf::Color normalColor,
-	//	const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
-
-    playButton = { playButtonSprite, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    // in the future i could make this button different that's why construvtor here.
+    playButton = { 160, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
     playButton.centerAll();
 
     firstMenuOpen = false;
@@ -93,8 +92,7 @@ int Menu::update(sf::RenderWindow& window) {
 
         quitButton.draw(window, quitButtonSprite);
 
-        if (quitButton.getIsClicked())
-        {
+        if (quitButton.getIsClicked()) {
             print("quitButton.");
             //window.close();
             result = 2;
@@ -103,8 +101,7 @@ int Menu::update(sf::RenderWindow& window) {
 
     window.draw(titleText);
 
-    if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P))
-    {
+    if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) {
         print("playButton.");
         result =  1;
     }

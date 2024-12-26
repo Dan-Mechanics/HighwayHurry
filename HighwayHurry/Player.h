@@ -7,7 +7,7 @@
 class Player : public Entity {
 public:
 	Player();
-	Player(const sf::Sprite& sprite);
+	Player(const int sizeX, const int sizeY);
 
 	void reset();
 

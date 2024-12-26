@@ -7,7 +7,7 @@
 
 Player::Player() = default;
 
-Player::Player(const sf::Sprite& sprite) : Entity{ sprite } {
+Player::Player(const int sizeX, const int sizeY) : Entity{ sizeX, sizeY } {
 	auto maxX = SCREEN_WIDTH - sizeX;
 	auto maxY = SCREEN_HEIGHT - sizeY;
 	auto minX = 0;

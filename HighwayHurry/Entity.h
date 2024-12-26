@@ -10,7 +10,7 @@
 class Entity : public Drawable {
 public:
 	Entity();
-	Entity(const sf::Sprite& sprite);
+	Entity(const int sizeX, const int sizeY);
 
 	virtual void move(const Time& time) = 0; 
 };

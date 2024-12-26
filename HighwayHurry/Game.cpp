@@ -45,13 +45,13 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     // this makes the random fixed ? yep.
 
-    player = { playerSprite };
-    environment = { backgroundSprite };
+    player = { 160, 160 };
+    environment = { 1920, 1080 * 2 };
 
     obstacleCount = sizeof(obstacles) / sizeof(Obstacle);
 
     for (int i = 0; i < obstacleCount; i++) {
-        obstacles[i] = { obstacleSprites[0], score };
+        obstacles[i] = { 160, 160, score };
     }
 
     refresh(score, time);

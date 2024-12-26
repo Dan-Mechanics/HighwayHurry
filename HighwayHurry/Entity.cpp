@@ -3,4 +3,4 @@
 
 Entity::Entity() = default;
 
-Entity::Entity(const sf::Sprite& sprite) : Drawable { sprite } { }
+Entity::Entity(const int sizeX, const int sizeY) : Drawable { sizeX, sizeY } { }

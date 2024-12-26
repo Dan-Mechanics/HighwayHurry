@@ -6,7 +6,7 @@ const int ENVIRONMENT_MARGIN = 150;
 
 Environment::Environment() = default;
 
-Environment::Environment(const sf::Sprite& sprite) : Entity{ sprite } {
+Environment::Environment(const int sizeX, const int sizeY) : Entity{ sizeX, sizeY } {
     if (SCREEN_HEIGHT != sizeY || SCREEN_WIDTH != sizeX) { print("Why tho ?"); }
 
     position.yComponent = -SCREEN_HEIGHT;
