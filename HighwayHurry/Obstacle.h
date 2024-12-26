@@ -12,21 +12,21 @@ public:
 	Obstacle(const int sizeX, const int sizeY, Score& score);
 	void reset(const Time& time);
 
-	unsigned int getSpriteIndex() const;
+	int getSpriteIndex() const;
 	Vector3 getPosition() const;
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
 	virtual void move(const Time& time) override;
 	void constrain(const Time& time, Score& score);
 
 private:
-	//float downwardImpactForce = 1200;
-	float drag = 0.0001f;
-	//int downwardImpactForceVariance = 250;
-	//int constantForceVariance = 250;
+	float airDrag = 0.00002f;
+	float driveForceVariance = 250;
+	float steerForceVariance = 40000;
 	int highestSpawnPoint = -1080;
-	unsigned int spriteIndex{};
+	int spriteIndex{};
 	Rigidbody rigidbody{};
 
-	Vector3 driveForce {0, 100000, 0};
+	Vector3 steerForce{};
+	Vector3 driveForce{0, -200000, 0};
 	sf::Color color = sf::Color::White;
 };

@@ -22,7 +22,7 @@ void Environment::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 }
 
 void Environment::move(const Time& time) {
-    position.yComponent += forwardSpeed * time.fixedInterval;
+    position.yComponent += PLAYER_FORWARD_SPEED * time.fixedInterval;
 
     if (position.yComponent >= 0) { position.yComponent = -1080; }
 }

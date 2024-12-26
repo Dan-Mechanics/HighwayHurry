@@ -7,7 +7,7 @@ extern const int ENVIRONMENT_MARGIN;
 class Environment : public Entity {
 public:
 	// i think i should be able to edit this thats why in public.
-	float forwardSpeed = 3500;
+	//float forwardSpeed = 3500;
 
 	Environment();
 	Environment(const int sizeX, const int sizeY);

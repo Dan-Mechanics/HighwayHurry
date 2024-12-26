@@ -24,6 +24,7 @@ void Scoreboard::draw(sf::RenderWindow& window, const Score& score) {
 sf::String Scoreboard::getGameString(const Score& score) const {
 
     // we do this because this fucntion is const.
+    // maybe pre-alocate this ?
     sf::String result;
     result.clear();
 

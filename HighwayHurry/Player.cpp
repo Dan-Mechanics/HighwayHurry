@@ -80,9 +80,6 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 
 	counterMovement.multiply(-1 * movementForceScalar * counterMovementMult * fixedInterval);
 
-	/*if (counterMovement.magnitude > velocity.magnitude && velocity.magnitude != 0f) {
-		counterMovement = -velocity;*/
-
 	float velMag = rigidbody.velocity.calculateMagnitude();
 
 	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag) {
@@ -107,20 +104,10 @@ bool Player::checkCollision(const Obstacle& obstacle) const {
 Vector3 Player::calculateMovement() const {
 	Vector3 movement { };
 	
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
-	{
-		movement.yComponent--;
-	}*/
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
 	{
 		movement.xComponent--;
 	}
-
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down))
-	{
-		movement.yComponent++;
-	}*/
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
 	{
@@ -134,9 +121,6 @@ Vector3 Player::calculateMovement() const {
 
 void Player::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 	sprite.setColor(sf::Color::White);
-	
-	/*Vector3 roundPos(rigidbody.position);
-	roundPos.round(10);*/
 	
 	sprite.setPosition(rigidbody.position.xComponent, rigidbody.position.yComponent);
 	

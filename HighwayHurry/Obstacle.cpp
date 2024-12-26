@@ -19,6 +19,8 @@ Obstacle::Obstacle(const int sizeX, const int sizeY, Score& score) :
 	maxX -= ENVIRONMENT_MARGIN;
 
 	rigidbody = { 1, maxX, maxY, minX, minY };
+
+	rigidbody.addVelocity(Vector3{ 0, -PLAYER_FORWARD_SPEED * 2.5f, 0 });
 }
 
 void Obstacle::reset(const Time& time) {
@@ -26,16 +28,9 @@ void Obstacle::reset(const Time& time) {
 
 	// if u wanna know why not fast car look here :
 	spriteIndex = randomInclusive(0, 1);
-	rigidbody.mass = spriteIndex * -0.35f + 1.45f;
+	rigidbody.mass = spriteIndex * -0.25f + 1.45f;
 
-	//rigidbody.stopInPlace();
-
-	//Vector3 force{ 0, downwardImpactForce + randomInclusive(-downwardImpactForceVariance, downwardImpactForceVariance), 0 };
-	
-	// what is this for ?
-	//force.divide(time.fixedInterval);
-
-	//rigidbody.addForce(force);
+	rigidbody.velocity.xComponent = 0;
 
 	rigidbody.position.setAll (
 		randomInclusive(rigidbody.getMinX(), rigidbody.getMaxX()), // x
@@ -43,10 +38,11 @@ void Obstacle::reset(const Time& time) {
 		0 // z
 	);
 
-	//driveForce.setAll(randomInclusive(-constantForceVariance, constantForceVariance), 0, 0);
+	steerForce.setAll(randomInclusive(-steerForceVariance, steerForceVariance), 0, 0);
+	driveForce.yComponent += randomInclusive(-driveForceVariance, driveForceVariance);
 }
 
-unsigned int Obstacle::getSpriteIndex() const {
+int Obstacle::getSpriteIndex() const {
 	return spriteIndex;
 }
 
@@ -66,10 +62,16 @@ void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 /// We have to do this because otherwise we cant have a default thing.
 /// </summary>
 void Obstacle::move(const Time& time) {
+	rigidbody.velocity.yComponent -= PLAYER_FORWARD_SPEED;
+	
 	rigidbody.addForce(driveForce);
+	rigidbody.addForce(steerForce);
 
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
-	rigidbody.addForce(rigidbody.velocity * rigidbody.velocity.calculateMagnitude() * 0.5f * drag);
+	// acceleration because i want drag to be the same for all.
+	rigidbody.addAcceleraton(rigidbody.velocity * rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
+
+	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
 
 	rigidbody.process(time);
 }
@@ -81,11 +83,13 @@ void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
+		steerForce.multiply(-1);
 	}
 
 	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
 		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
+		steerForce.multiply(-1);
 	}
 
 	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {

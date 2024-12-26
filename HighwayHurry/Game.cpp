@@ -23,8 +23,8 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
 
-    obstacleSprites[0].setTexture(mid);
-    obstacleSprites[1].setTexture(slow);
+    obstacleSprites[0].setTexture(slow);
+    obstacleSprites[1].setTexture(mid);
     obstacleSprites[2].setTexture(fast);
 
     backgroundSprite.setTextureRect(sf::IntRect(0, 0, backgroundTexture.getSize().x, backgroundTexture.getSize().y * 2));
