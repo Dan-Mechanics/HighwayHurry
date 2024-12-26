@@ -105,12 +105,10 @@ int main() {
     bool quit = false;
     
     // enum.
-    //bool showMenu = true;
     Scene currentScene = MENU_SCENE;
-    //currentScene = Scene::MENU_SCENE;
 
     Menu menu{ font, menuBackgroundTexture, buttonTexture };
-    Game game{ window, score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
+    Game game{ score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
 
     while (window.isOpen()) {
         sf::Event event;
@@ -141,14 +139,6 @@ int main() {
             break;
 
         case 1:
-            // return code 1 = next scene = toggle the current scene.
-            //showMenu = !showMenu;
-            /*if (currentScene == MENU_SCENE) { currentScene = GAME_SCENE; }
-            else
-            {
-                currentScene = MENU_SCENE;
-            }*/
-
             // lol if this works.
             // only in c++
             currentScene = (Scene)!currentScene;
@@ -161,8 +151,8 @@ int main() {
                 game.refresh(score, time);
             }
 
+            break;
         default:
-            // return code 0 = next frame.
             break;
         }
     }

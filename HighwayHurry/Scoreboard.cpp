@@ -10,40 +10,45 @@ Scoreboard::Scoreboard(const sf::Font& font) {
 }
 
 void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
-    setGameString(string, score);
+    menuString = getGameString(score);
     
-    text.setString(string);
+    text.setString(menuString);
 
     window.draw(text);
 }
 
-// make with iostream thing. --> important.
-void Scoreboard::setGameString(sf::String& string, const Score& score) const {
-    string.clear();
+/// <summary>
+/// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder :
+/// "The C++ way would be to use std::stringstream or just plain string concatenations. C++ strings are mutable so the performance considerations of concatenation are less of a concern."
+/// </summary>
+sf::String Scoreboard::getGameString(const Score& score) const {
+    sf::String result;
+    result.clear();
 
     // is there a cpp stringbuilder ??
-    string += std::to_string(score.getScore());
-    string += " | ";
-    string += "( ";
-    string += std::to_string(score.getLives());
-    string += " / ";
-    string += std::to_string(score.getMaxLives());
-    string += " )";
-    string += " | ";
-    string += std::to_string(score.getTime());
+    result += std::to_string(score.getScore());
+    result += " | ";
+    result += "( ";
+    result += std::to_string(score.getLives());
+    result += " / ";
+    result += std::to_string(score.getMaxLives());
+    result += " )";
+    result += " | ";
+    result += std::to_string(score.getTime());
 }
 
+/// <summary>
+/// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder
+/// </summary>
 sf::String Scoreboard::getMenuString(const Score& score) const {
-    // sf::String menuString = "";
-    
-    sf::String menuString;
-    menuString.clear();
+    sf::String result;
+    result.clear();
 
-    menuString += "SCORE : ";
-    menuString += std::to_string(score.getScore());
-    menuString += " | ";
-    menuString += "TIME : ";
-    menuString += std::to_string(score.getTime());
+    result += "SCORE : ";
+    result += std::to_string(score.getScore());
+    result += " | ";
+    result += "TIME : ";
+    result += std::to_string(score.getTime());
 
-    return menuString;
+    return result;
 }

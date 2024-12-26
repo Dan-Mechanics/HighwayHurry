@@ -1,3 +1,4 @@
+ideally i dont wanna use any GET functions from sfml only set functions. like setposition etc.
 use iostream as stringbuilder to not waste stack memory.
 
 //use this->more !

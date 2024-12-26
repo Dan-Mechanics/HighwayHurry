@@ -48,7 +48,7 @@ void centerText(sf::Text& text, const float x, const float y) {
 	text.setPosition(x, y);
 }
 
-void centerText(sf::Text& text, const sf::RenderWindow& window) {
+void centerText(sf::Text& text) {
 	centerText(text, SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
 }
 
