@@ -99,7 +99,7 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
     environment.draw(window, backgroundSprite);
 
     for (int i = 0; i < obstacleCount; i++) {
-        obstacles[i].draw(window, obstacleSprites[obstacles[i].getSprite()]);
+        obstacles[i].draw(window, obstacleSprites[obstacles[i].getSpriteIndex()]);
     }
 
     player.draw(window, playerSprite);

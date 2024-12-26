@@ -74,7 +74,7 @@ void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::F
     centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 425);
 
     // in the future i could make this button different that's why construvtor here.
-    playButton = { 160, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    playButton = { 160  * 2, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
     playButton.centerAll();
 
     firstMenuOpen = false;

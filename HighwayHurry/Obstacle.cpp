@@ -28,12 +28,14 @@ void Obstacle::reset(const Time& time) {
 	spriteIndex = randomInclusive(0, 1);
 	rigidbody.mass = spriteIndex * -0.35f + 1.45f;
 
-	rigidbody.stopInPlace();
+	//rigidbody.stopInPlace();
 
-	Vector3 force{ 0, downwardImpactForce + randomInclusive(-downwardImpactForceVariance, downwardImpactForceVariance), 0 };
-	force.divide(time.fixedInterval);
+	//Vector3 force{ 0, downwardImpactForce + randomInclusive(-downwardImpactForceVariance, downwardImpactForceVariance), 0 };
+	
+	// what is this for ?
+	//force.divide(time.fixedInterval);
 
-	rigidbody.addForce(force);
+	//rigidbody.addForce(force);
 
 	rigidbody.position.setAll (
 		randomInclusive(rigidbody.getMinX(), rigidbody.getMaxX()), // x
@@ -41,7 +43,7 @@ void Obstacle::reset(const Time& time) {
 		0 // z
 	);
 
-	constantForce.setAll(randomInclusive(-constantForceVariance, constantForceVariance), 0, 0);
+	//driveForce.setAll(randomInclusive(-constantForceVariance, constantForceVariance), 0, 0);
 }
 
 unsigned int Obstacle::getSpriteIndex() const {
@@ -64,7 +66,10 @@ void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 /// We have to do this because otherwise we cant have a default thing.
 /// </summary>
 void Obstacle::move(const Time& time) {
-	rigidbody.addForce(constantForce);
+	rigidbody.addForce(driveForce);
+
+	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
+	rigidbody.addForce(rigidbody.velocity * rigidbody.velocity.calculateMagnitude() * 0.5f * drag);
 
 	rigidbody.process(time);
 }

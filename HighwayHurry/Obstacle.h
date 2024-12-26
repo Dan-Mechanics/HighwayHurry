@@ -19,13 +19,14 @@ public:
 	void constrain(const Time& time, Score& score);
 
 private:
-	float downwardImpactForce = 1200;
-	int downwardImpactForceVariance = 250;
-	int constantForceVariance = 250;
+	//float downwardImpactForce = 1200;
+	float drag = 0.0001f;
+	//int downwardImpactForceVariance = 250;
+	//int constantForceVariance = 250;
 	int highestSpawnPoint = -1080;
 	unsigned int spriteIndex{};
-
 	Rigidbody rigidbody{};
-	Vector3 driveForce{};
+
+	Vector3 driveForce {0, 100000, 0};
 	sf::Color color = sf::Color::White;
 };

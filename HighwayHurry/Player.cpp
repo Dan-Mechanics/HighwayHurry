@@ -5,6 +5,8 @@
 #include "MathUtils.h"
 #include "Game.h"
 
+const float PLAYER_FORWARD_SPEED = 3500;
+
 Player::Player() = default;
 
 Player::Player(const int sizeX, const int sizeY) : Entity{ sizeX, sizeY } {
@@ -44,28 +46,24 @@ void Player::move(const Time& time) {
 	rigidbody.process(time);
 
 	// constrain.
-	if (rigidbody.position.xComponent < rigidbody.getMinX())
-	{ 
+	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
 	}
 
-	if (rigidbody.position.xComponent > rigidbody.getMaxX())
-	{ 
+	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
 		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
 	}
 
 	// Technically, these aren't necessary but they're here just in case.
 
-	if (rigidbody.position.yComponent < rigidbody.getMinY())
-	{
+	if (rigidbody.position.yComponent < rigidbody.getMinY()) {
 		rigidbody.position.yComponent = rigidbody.getMinY();
 		rigidbody.velocity.yComponent = 0;
 	}
 
-	if (rigidbody.position.yComponent > rigidbody.getMaxY())
-	{ 
+	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {
 		rigidbody.position.yComponent = rigidbody.getMaxY();
 		rigidbody.velocity.yComponent = 0;
 	}
@@ -87,8 +85,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 
 	float velMag = rigidbody.velocity.calculateMagnitude();
 
-	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag)
-	{
+	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag) {
 		counterMovement = rigidbody.velocity;
 		counterMovement.multiply(-1);
 	}
