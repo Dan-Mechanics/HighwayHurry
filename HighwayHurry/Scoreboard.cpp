@@ -13,7 +13,6 @@ void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
     setGameString(string, score);
     
     text.setString(string);
-    //text.setPosition(15, -40); // ??
 
     window.draw(text);
 }

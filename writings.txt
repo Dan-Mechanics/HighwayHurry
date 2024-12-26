@@ -1,3 +1,22 @@
+use iostream as stringbuilder to not waste stack memory.
+
+//use this->more !
+//use{} with initilzaer list
+//use default
+//always virtual destructor
+//    {
+//}
+//public
+//protected
+//private
+
+// pointer is like int? in c# and references are handy because then you have
+// a contract saying you must give me a value, pointers is acceptable behaviour no value.
+
+//Game::Game(sf::RenderWindow& window, sf::Font& font, Time& time, Score& score) :
+//    window{ window }, font{ font }, time{ time }, score{ score } { }
+
+
 and also remove comments duh.
 
 make it so that the friciton logic is the same for everyone.

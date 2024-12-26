@@ -2,16 +2,13 @@
 
 Score::Score() = default;
 
-//Score::Score(int maxLives) : maxLives{ maxLives } { }
-
-//Score::~Score() = default;
-
 /// <summary>
-/// Deal damage.
+/// Deal damage to player, which will eventually end game.
 /// </summary>
+/// <returns>If has died from damage.</returns>
 bool Score::Damage(const int amount) {
 	// we are already dead.
-	if (lives <= 0) { return false; }
+	if (lives <= 0) { return true; }
 	
 	lives -= amount;
 
@@ -25,10 +22,9 @@ bool Score::Damage(const int amount) {
 	return true;
 }
 
-/// <summary>
-/// Todo: add checks
-/// </summary>
 void Score::AddScore(const int amount) {
+	if (amount <= 0) { return; }
+	
 	score += amount;
 }
 

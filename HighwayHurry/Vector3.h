@@ -1,7 +1,7 @@
 #pragma once
 
 struct Vector3 {
-public: // Technically speaking this doesnt have to be here.
+public: // Technically speaking this doesnt have to be here since classes are default public.
 	float xComponent{};
 	float yComponent{};
 

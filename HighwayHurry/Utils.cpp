@@ -38,11 +38,13 @@ void applyGlobalScale(sf::Sprite& sprite) {
 	sprite.setScale(10, 10);
 }
 
+/// <summary>
+/// Is this allowed?
+/// </summary>
 void centerText(sf::Text& text, const float x, const float y) {
 	sf::FloatRect textRect = text.getLocalBounds();
-	text.setOrigin(round(textRect.left + textRect.width / 2), round(textRect.top + textRect.height / 2));
-	//text.setOrigin(round(textRect.left + textRect.width / 2), round(textRect.top + maxHeight / 2));
 
+	text.setOrigin(round(textRect.left + textRect.width / 2), round(textRect.top + textRect.height / 2));
 	text.setPosition(x, y);
 }
 
@@ -57,7 +59,6 @@ void centerText(sf::Text& text, const sf::RenderWindow& window) {
 void applyTextBranding(sf::Text& text, const sf::Font& font) {
 	text.setFont(font);
 	text.setCharacterSize(80); 
-	//text.setFillColor(sf::Color::Black);
 	text.setFillColor(sf::Color::White);
 	text.setStyle(sf::Text::Bold);
 }

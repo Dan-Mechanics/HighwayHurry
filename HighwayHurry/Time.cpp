@@ -19,8 +19,6 @@ Time::Time(int timestep) {
     // Is this cast good ?
     fixedInterval = 1.0f / timestep;
 
-    //print("Constructed Time.");
-
     reset();
 }
 

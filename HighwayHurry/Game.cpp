@@ -14,22 +14,6 @@ const sf::String TITLE = "Highway Hurry";
 const int SCREEN_WIDTH = 1920;
 const int SCREEN_HEIGHT = 1080;
 
-//use this->more !
-//use{} with initilzaer list
-//use default
-//always virtual destructor
-//    {
-//}
-//public
-//protected
-//private
-
-// pointer is like int? in c# and references are handy because then you have
-// a contract saying you must give me a value, pointers is acceptable behaviour no value.
-
-//Game::Game(sf::RenderWindow& window, sf::Font& font, Time& time, Score& score) :
-//    window{ window }, font{ font }, time{ time }, score{ score } { }
-
 Game::Game() = default;
 
 Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
@@ -38,12 +22,6 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
-
-    //midSprite.setTexture(mid);
-    //slowSprite .setTexture(slow);
-    //fastSprite.setTexture(fast);
-
-    //sf::Sprite _obstacleSprites[3];
 
     obstacleSprites[0].setTexture(mid);
     obstacleSprites[1].setTexture(slow);
@@ -74,7 +52,6 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     for (int i = 0; i < obstacleCount; i++) {
         obstacles[i] = { obstacleSprites[0], score };
-        //obstacles.emplace_back( window, obstacleSprites[0], score );
     }
 
     refresh(score, time);
@@ -83,8 +60,6 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 void Game::refresh(Score& score, Time& time) {
     print("Opening game.");
     
-    // bomboclat.
-    // srand(std::time(0));
     srand(std::time(NULL));
 
     player.reset();
@@ -102,6 +77,7 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
     unsigned int result = 0;
     
     // we have FixedUpdate() at home :
+    // !nesting
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
@@ -110,8 +86,12 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
             obstacles[j].move(time);
             obstacles[j].constrain(time, score);
 
-            if (player.checkCollision(score, obstacles[j], time)) {
-                result = 1;
+            bool hasCollision = player.checkCollision(obstacles[j]);
+
+            if (hasCollision) {
+                obstacles[j].reset(time);
+
+                result = score.Damage(1);
             }
         }
     }

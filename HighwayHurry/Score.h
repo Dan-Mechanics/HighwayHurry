@@ -7,8 +7,6 @@
 class Score {
 public:
 	Score();
-	//Score(const int maxLives);
-	//virtual ~Score(); // does this need to be here because of Edwin convention ?
 
 	bool Damage(const int amount);
 	void AddScore(const int amount);

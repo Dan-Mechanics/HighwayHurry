@@ -17,13 +17,8 @@ public:
 	//float dynamicFrictionCoefficient{}; // or just one
 	// float drag{};
 
-	/// <summary>
-	/// What's the point in having default constructor if you don't
-	/// have a default destructor. You don't need both ??
-	/// </summary>
 	Rigidbody();
 	Rigidbody(float mass, const int maxX, const int maxY, const int minX, const int minY);
-	// add real constructor.
 
 	void addVelocity(const Vector3 velocity);
 	void addAcceleraton(const Vector3 acceleration);

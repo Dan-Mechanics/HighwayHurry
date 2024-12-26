@@ -101,16 +101,8 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	rigidbody.addForce(counterMovement);
 }
 
-bool Player::checkCollision(Score& score, Obstacle& obstacle, const Time& time) const {
-	bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), collisionLeniancy * sizeX / 2, collisionLeniancy * obstacle.getSizeX() / 2);
-
-	if (hasCollision) {
-		obstacle.reset(time);
-
-		return score.Damage(1);
-	}
-
-	return false;
+bool Player::checkCollision(const Obstacle& obstacle) const {
+	return checkCircleTouch(rigidbody.position, obstacle.getPosition(), collisionLeniancy * sizeX / 2, collisionLeniancy * obstacle.getSizeX() / 2);
 }
 
 
