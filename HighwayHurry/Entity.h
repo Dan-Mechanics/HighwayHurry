@@ -13,6 +13,5 @@ public:
 	Entity(const sf::Sprite& sprite);
 
 	virtual void move(const Time& time) = 0; 
-	//virtual void move(const Time& time, Score& score);
 };
 

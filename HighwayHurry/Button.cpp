@@ -40,9 +40,6 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
     int mouseX = sf::Mouse::getPosition().x;
     int mouseY = sf::Mouse::getPosition().y;
 
-    //int xMin = (int)position.xComponent; // yes, we will downcast.
-    //int yMin = (int)position.yComponent;
-
     // !performance ?
     int xMin = roundToInt(position.xComponent); // yes, we will downcast.
     int yMin = roundToInt(position.yComponent);
@@ -69,7 +66,6 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
     sprite.setPosition(position.xComponent, position.yComponent);
 
     centerText(text, position.xComponent + sizeX / 2.0f, position.yComponent + sizeY / 2.0f);
-    //centerText(text, window);
 
     window.draw(sprite);
     window.draw(text);

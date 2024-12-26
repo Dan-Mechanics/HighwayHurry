@@ -21,6 +21,7 @@ private:
 	float topSpeed = 1000;
 	float movementForceScalar = 7500;
 	float counterMovementMult = 0.195f;
+	float collisionLeniancy = 0.75f;
 	Rigidbody rigidbody{};
 
 	Vector3 calculateMovement() const;

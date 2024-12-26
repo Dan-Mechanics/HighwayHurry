@@ -102,9 +102,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 }
 
 bool Player::checkCollision(Score& score, Obstacle& obstacle, const Time& time) const {
-	float leniency = 0.75f; // so we have negative leniency.
-	
-	bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), leniency * sizeX / 2, leniency * obstacle.getSizeX() / 2);
+	bool hasCollision = checkCircleTouch(rigidbody.position, obstacle.getPosition(), collisionLeniancy * sizeX / 2, collisionLeniancy * obstacle.getSizeX() / 2);
 
 	if (hasCollision) {
 		obstacle.reset(time);

@@ -97,6 +97,8 @@ void Game::refresh(Score& score, Time& time) {
 }
 
 int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
+
+    // make this enum?
     unsigned int result = 0;
     
     // we have FixedUpdate() at home :
@@ -109,11 +111,6 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
             obstacles[j].constrain(time, score);
 
             if (player.checkCollision(score, obstacles[j], time)) {
-                // temp fix:
-                //window.clear(sf::Color::Black);
-
-                // otherwise we would need to have an int result which is possible but a little annoying thb.
-
                 result = 1;
             }
         }
@@ -130,6 +127,5 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
     scoreboard.draw(window, score);
 
     // next frame.
-    //return 0;
     return result;
 }

@@ -4,17 +4,6 @@
 
 const int ENVIRONMENT_MARGIN = 150;
 
-//Environment::Environment(Position position), position{ position } { }
-
-//void Environment::draw()
-//{
-//    window.clear(sf::Color::Blue);
-//
-//    sprite.setPosition(position.xComponent, position.yComponent);
-//
-//    window.draw(sprite);
-//}
-
 Environment::Environment() = default;
 
 Environment::Environment(const sf::Sprite& sprite) : Entity{ sprite } {
@@ -23,11 +12,11 @@ Environment::Environment(const sf::Sprite& sprite) : Entity{ sprite } {
     position.yComponent = -SCREEN_HEIGHT;
 }
 
+/// <summary>
+/// The question is wether or not we want to round everything to the nearest pixel.
+/// </summary>
 void Environment::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
-    Vector3 roundPos(position);
-    //roundPos.round(10);
-    
-    sprite.setPosition(roundPos.xComponent, roundPos.yComponent);
+    sprite.setPosition(position.xComponent, position.yComponent);
 
     window.draw(sprite);
 }
