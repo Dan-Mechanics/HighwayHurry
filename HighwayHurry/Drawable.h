@@ -3,23 +3,21 @@
 #include <SFML/Graphics.hpp>
 
 /// <summary>
-/// Abstract ( interface-like ) implementation in order to have polymorphism std::vector
-/// holding all drawables. --> Something you can see.
-/// https://www.geeksforgeeks.org/delete-and-free-in-cpp/
+/// Something you can see.
 /// </summary>
 class Drawable {
 public:
-	Drawable(); // we cannot have this because sprite and window must be assigned.
+	Drawable();
 	Drawable(const sf::Sprite& sprite);
-	//virtual ~Drawable();
+
+	/// <summary>
+	/// We can't make const because we have to write to sprite and window.
+	/// The whole thing also cant be const because the inherited will need to make changes.
+	/// </summary>
+	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) = 0;
 
 	int getSizeX() const;
 	int getSizeY() const;
-	
-	/// <summary>
-	/// TODO ?? :: make reference const ??
-	/// </summary>
-	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) = 0;
 
 protected:
 	int sizeX{}, sizeY{};

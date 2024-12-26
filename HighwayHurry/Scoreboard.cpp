@@ -9,7 +9,7 @@ Scoreboard::Scoreboard(const sf::Font& font) {
     text.setPosition(15, -40);
 }
 
-void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
+void Scoreboard::draw(sf::RenderWindow& window, const Score& score) {
     menuString = getGameString(score);
     
     text.setString(menuString);
@@ -22,6 +22,8 @@ void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
 /// "The C++ way would be to use std::stringstream or just plain string concatenations. C++ strings are mutable so the performance considerations of concatenation are less of a concern."
 /// </summary>
 sf::String Scoreboard::getGameString(const Score& score) const {
+
+    // we do this because this fucntion is const.
     sf::String result;
     result.clear();
 

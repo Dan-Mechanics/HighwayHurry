@@ -69,6 +69,9 @@ void Obstacle::move(const Time& time) {
 	rigidbody.process(time);
 }
 
+/// <summary>
+/// Where the "miss" collision takes place.
+/// </summary>
 void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
