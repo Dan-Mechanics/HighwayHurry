@@ -18,6 +18,7 @@ void Scoreboard::draw(sf::RenderWindow& window, Score& score) {
     window.draw(text);
 }
 
+// make with iostream thing. --> important.
 void Scoreboard::setGameString(sf::String& string, const Score& score) const {
     string.clear();
 

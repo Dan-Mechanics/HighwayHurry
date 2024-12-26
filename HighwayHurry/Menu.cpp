@@ -8,7 +8,7 @@
 
 Menu::Menu() = default;
 
-Menu::Menu(const sf::RenderWindow& window, const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture) {  
+Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture) {  
     firstMenuOpen = true;
     
     backgroundSprite.setTexture(backgroundTexture);
@@ -33,11 +33,11 @@ Menu::Menu(const sf::RenderWindow& window, const sf::Font& font, const sf::Textu
     quitButton.position.yComponent += quitButton.getSizeY() + 15;
     // depends on the bool.
 
-    centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 225);
+    centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 225);
 
     applyTextBranding(debugInstructions, font);
 
-    debugInstructions.setPosition(15, window.getSize().y - 70);
+    debugInstructions.setPosition(15, SCREEN_HEIGHT - 70);
 
     debugInstructions.setString("Tip : press [P] if the button doesn't work.");
     
@@ -53,7 +53,7 @@ Menu::Menu(const sf::RenderWindow& window, const sf::Font& font, const sf::Textu
 /// Dont repeat if already second.
 /// ARE WE ALLOWED TO USE GET METHOD ?
 /// </summary>
-void Menu::refresh(const sf::RenderWindow& window, const Score& score, const Scoreboard& scoreboard, const sf::Font& font) {
+void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::Font& font) {
     print("Opening menu.");
     
     scoreText.setString(scoreboard.getMenuString(score));
@@ -69,8 +69,8 @@ void Menu::refresh(const sf::RenderWindow& window, const Score& score, const Sco
     scoreText.setCharacterSize(100);
 
     // is window.getsize() allowed ???? we can also just define and width and height somewhere and fix this whole skibiidi.
-    centerText(scoreText, window.getSize().x / 2, window.getSize().y / 2 - 250);
-    centerText(titleText, window.getSize().x / 2, window.getSize().y / 2 - 425);
+    centerText(scoreText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 250);
+    centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 425);
 
     // n(const sf::Sprite& sprite, const Vector3 position, const sf::Color normalColor,
 	//	const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);

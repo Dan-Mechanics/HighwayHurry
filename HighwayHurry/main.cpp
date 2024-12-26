@@ -109,7 +109,7 @@ int main() {
     Scene currentScene = MENU_SCENE;
     //currentScene = Scene::MENU_SCENE;
 
-    Menu menu{ window, font, menuBackgroundTexture, buttonTexture };
+    Menu menu{ font, menuBackgroundTexture, buttonTexture };
     Game game{ window, score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
 
     while (window.isOpen()) {
@@ -155,7 +155,7 @@ int main() {
 
             // depending on the new scene, we refresh it.
             if (currentScene == MENU_SCENE) {
-                menu.refresh(window, score, scoreBoard, font);
+                menu.refresh(score, scoreBoard, font);
             }
             else {
                 game.refresh(score, time);

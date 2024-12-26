@@ -14,8 +14,9 @@ extern const int SCREEN_HEIGHT;
 class Game {
 public:
 	Game();
-	Game(const sf::RenderWindow& window, Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture, 
-		const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow);
+	Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
+ const sf::Texture& fast, 
+		const sf::Texture& mid, const sf::Texture& slow);
 
 	void refresh(Score& score, Time& time);
 	int update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);

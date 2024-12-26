@@ -32,8 +32,9 @@ const int SCREEN_HEIGHT = 1080;
 
 Game::Game() = default;
 
-Game::Game(const sf::RenderWindow& window, Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
-    const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow) {
+Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
+ const sf::Texture& fast,
+    const sf::Texture& mid, const sf::Texture& slow) {
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
