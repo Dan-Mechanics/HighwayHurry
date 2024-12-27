@@ -14,4 +14,3 @@ public:
 
 	virtual void move(const Time& time) = 0; 
 };
-

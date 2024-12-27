@@ -19,9 +19,9 @@ public:
 	virtual void move(const Time& time) override;
 
 private:
-	float topSpeed = 1050;
+	float topSpeed = 1000;
 	float movementForceScalar = 7500;
-	float counterMovementMult = 0.195f;
+	float counterMovementMult = 0.2f;
 	float collisionLeniancy = 0.8f;
 	Rigidbody rigidbody{};
 

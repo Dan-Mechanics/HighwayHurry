@@ -11,14 +11,16 @@
 
 const sf::String TITLE = "Highway Hurry";
 
-const int SCREEN_WIDTH = 1920;
-const int SCREEN_HEIGHT = 1080;
+const auto SCREEN_WIDTH = 1920;
+const auto SCREEN_HEIGHT = 1080;
 
 Game::Game() = default;
 
 Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
  const sf::Texture& fast,
     const sf::Texture& mid, const sf::Texture& slow) {
+
+    print("Opening game.");
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
@@ -31,14 +33,13 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     backgroundTexture.setRepeated(true);
 
-    // smoothe ?
+    // smoothe the texture yeet ?
 
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
 
     // we love cPP!!
     // https://www.youtube.com/watch?v=a4P4ial8OgQ
-
     for (int i = 0; i < sizeof(obstacleSprites) / sizeof(sf::Sprite); i++) {
         applyGlobalScale(obstacleSprites[i]);
     }
@@ -46,11 +47,11 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
     // this makes the random fixed ? yep.
 
     player = { 160, 160 };
-    environment = { 1920, 1080 * 2 };
+    environment = { 1920, 2160 };
 
     obstacleCount = sizeof(obstacles) / sizeof(Obstacle);
 
-    for (int i = 0; i < obstacleCount; i++) {
+    for (auto i = 0; i < obstacleCount; i++) {
         obstacles[i] = { 160, 160, score };
     }
 
@@ -58,7 +59,7 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 }
 
 void Game::refresh(Score& score, Time& time) {
-    print("Opening game.");
+    print("Refresh @ game.");
     
     srand(std::time(NULL));
 
@@ -74,7 +75,7 @@ void Game::refresh(Score& score, Time& time) {
 int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
 
     // make this enum?
-    int result = 0;
+    auto result = 0;
     
     // we have FixedUpdate() at home :
     // !nesting
@@ -86,7 +87,7 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
             obstacles[j].move(time);
             obstacles[j].constrain(time, score);
 
-            bool hasCollision = player.checkCollision(obstacles[j]);
+            auto hasCollision = player.checkCollision(obstacles[j]);
 
             if (hasCollision) {
                 obstacles[j].reset(time);

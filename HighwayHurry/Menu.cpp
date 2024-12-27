@@ -11,6 +11,8 @@ const sf::Color BUTTON_HOVERING_COLOR = { 98, 106, 120 };
 Menu::Menu() = default;
 
 Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture) {  
+    print("Opening menu.");
+    
     firstMenuOpen = true;
     
     backgroundSprite.setTexture(backgroundTexture);
@@ -56,7 +58,7 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
 /// ARE WE ALLOWED TO USE GET METHOD ?
 /// </summary>
 void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::Font& font) {
-    print("Opening menu.");
+    print("Refresh @ menu.");
     
     scoreText.setString(scoreboard.getMenuString(score));
     
@@ -91,7 +93,7 @@ int Menu::update(sf::RenderWindow& window) {
         quitButton.draw(window, quitButtonSprite);
 
         if (quitButton.getIsClicked()) {
-            print("quitButton.");
+            //print("quitButton.");
             result = 2;
         }
     }
@@ -99,7 +101,7 @@ int Menu::update(sf::RenderWindow& window) {
     window.draw(titleText);
 
     if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) {
-        print("playButton.");
+        //print("playButton.");
         result =  1;
     }
 

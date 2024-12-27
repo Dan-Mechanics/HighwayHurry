@@ -6,18 +6,18 @@
 Button::Button() = default;
 
 Button::Button(const int sizeX, const int sizeY, const Vector3 position, const sf::Color normalColor,
-    const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton) : Entity{ sizeX, sizeY }, position{ position },
-    normalColor{ normalColor }, hoveringColor{ hoveringColor }, textOnButton{ textOnButton } {
+    const sf::Color hoveringColor, const sf::Font& font, const std::string writing) : Drawable{ sizeX, sizeY }, position{ position },
+    normalColor{ normalColor }, hoveringColor{ hoveringColor }, writing{ writing } {
 
     applyTextBranding(text, font);
-    text.setString(textOnButton);
+    text.setString(writing);
 }
 
-Button::Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font & font, const std::string textOnButton) : Entity{ sizeX, sizeY }, position{ Vector3{ } },
-normalColor{ sf::Color::White }, hoveringColor{ hoveringColor }, textOnButton{ textOnButton } {
+Button::Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font & font, const std::string writing) : Drawable{ sizeX, sizeY }, position{ Vector3{ } },
+normalColor{ sf::Color::White }, hoveringColor{ hoveringColor }, writing{ writing } {
 
     applyTextBranding(text, font);
-    text.setString(textOnButton);
+    text.setString(writing);
 }
 
 bool Button::getIsHovering() const {
@@ -43,15 +43,14 @@ void Button::centerAll() {
 }
 
 void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
-    int mouseX = sf::Mouse::getPosition().x;
-    int mouseY = sf::Mouse::getPosition().y;
+    auto mouseX = sf::Mouse::getPosition().x;
+    auto mouseY = sf::Mouse::getPosition().y;
 
     // !performance ?
-    int xMin = roundToInt(position.xComponent); // yes, we will downcast.
-    int yMin = roundToInt(position.yComponent);
-
-    int xMax = xMin + sizeX;
-    int yMax = yMin + sizeY;
+    auto xMin = roundToInt(position.xComponent); // yes, we will downcast.
+    auto yMin = roundToInt(position.yComponent);
+    auto xMax = xMin + sizeX;
+    auto yMax = yMin + sizeY;
 
     // we gotta see if thing is within thing.
 
@@ -66,7 +65,7 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 
     isClicked = isHovering && sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    if (isClicked) { print(textOnButton); }
+    if (isClicked) { print(" |BUTTON| " + writing); }
 
     sprite.setColor(isHovering ? hoveringColor : normalColor);
     text.setFillColor(isHovering ? sf::Color::White : sf::Color::Black);
@@ -79,7 +78,7 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
     window.draw(text);
 }
 
-void Button::move(const Time& time) {
-    // future: add animation for hovering.
-    // for now: center text on button.
-}
+//void Button::move(const Time& time) {
+//    // future: add animation for hovering.
+//    // for now: center text on button.
+//}

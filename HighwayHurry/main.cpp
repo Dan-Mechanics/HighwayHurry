@@ -30,25 +30,28 @@
 /// https://www.youtube.com/watch?v=Fqn4pSRH6Ec
 /// Enums suck.
 /// </summary>
-enum Scene { MENU_SCENE, GAME_SCENE };
 
 /// <summary>
 /// Make sprite conform to playersize and dont use getsize on sprite and window ??.
 /// </summary>
 int main() {
+    
+    
     print(TITLE);
 
     // THIS THIS THIS
     // could make this global consts so we dont have to read from canvas and sprite
     // and besides we need to make the sprite adjust to player and not player adjust to sprite but whatever.
 
-    const unsigned int FPS_CAP = 320;
-    const int TIMESTEP = 64;
+    const auto FPS_CAP = 320;
+    const auto TIMESTEP = 64;
+    
+    enum class Scene { MENU_SCENE = 0, GAME_SCENE = 1 };
 
     // https://www.reddit.com/r/sfml/comments/oyms57/how_t
     // https://youtu.be/lFzpkvrscs4?si=9lYiXu4090IKJ1o1
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), TITLE,
-        sf::Style::Fullscreen);
+    sf::RenderWindow window{ sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), TITLE,
+        sf::Style::Fullscreen };
 
     window.setFramerateLimit(FPS_CAP);
 
@@ -102,10 +105,10 @@ int main() {
 
     //////////////////////////////////////////////////////
 
-    bool quit = false;
+    auto quit = false;
     
     // enum.
-    Scene currentScene = MENU_SCENE;
+    auto currentScene = Scene::MENU_SCENE;
 
     Menu menu{ font, menuBackgroundTexture, buttonTexture };
     Game game{ score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
@@ -126,7 +129,7 @@ int main() {
         window.clear(sf::Color::Magenta);
 
         // scene.draw();
-        int frameReturnCode = currentScene == MENU_SCENE ?
+        int frameReturnCode = currentScene == Scene::MENU_SCENE ?
             menu.update(window) : game.update(window, score, time, scoreBoard);
 
         // !nesting.
@@ -139,12 +142,11 @@ int main() {
             break;
 
         case 1:
-            // lol if this works.
-            // only in c++
-            currentScene = (Scene)!currentScene;
+            // toggle.
+            currentScene = (Scene)!(bool)currentScene;
 
             // depending on the new scene, we refresh it.
-            if (currentScene == MENU_SCENE) {
+            if (currentScene == Scene::MENU_SCENE) {
                 menu.refresh(score, scoreBoard, font);
             }
             else {

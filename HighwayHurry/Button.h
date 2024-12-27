@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 
-class Button : public Entity {
+class Button : public Drawable {
 public:
 	Vector3 position{};
 	
@@ -10,9 +10,9 @@ public:
 	/// </summary>
 	Button();
 	Button(const int sizeX, const int sizeY, const Vector3 position, const sf::Color normalColor,
-		const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
+		const sf::Color hoveringColor, const sf::Font& font, const std::string writing);
 
-	Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
+	Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font& font, const std::string writing);
 	//virtual ~Button();
    
 	bool getIsHovering() const;
@@ -27,14 +27,14 @@ public:
 	/// Also does hovering logic.
 	/// </summary>
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
-	virtual void move(const Time& time) override;
+	//virtual void move(const Time& time) override;
 	// we cant make this const because reference. 
 
 private:
 	bool isHovering{};
 	bool isClicked{};
 
-	sf::String textOnButton{};
+	sf::String writing{};
 	sf::Color hoveringColor{};
 	sf::Color normalColor{};
 	sf::Text text{};

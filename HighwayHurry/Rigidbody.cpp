@@ -1,11 +1,6 @@
 #include "Rigidbody.h"
 #include "Utils.h"
 
-/// <summary>
-/// Used for friction.
-/// </summary>
-const float GRAVITY = 10;
-
 Rigidbody::Rigidbody() = default;
 
 Rigidbody::Rigidbody(float mass, const int maxX, const int maxY, const int minX, const int minY) {

@@ -2,8 +2,6 @@
 #include "Vector3.h"
 #include "Time.h"
 
-extern const float GRAVITY;
-
 /// <summary>
 /// Add: mass, ? friction ?, etc
 /// </summary>

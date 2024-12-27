@@ -7,6 +7,8 @@
 
 const float PLAYER_FORWARD_SPEED = 3500;
 
+// IDEA: you can maybe get more score points in the middle of the road because its more dangerous there ?
+
 Player::Player() = default;
 
 Player::Player(const int sizeX, const int sizeY) : Entity{ sizeX, sizeY } {
@@ -56,7 +58,8 @@ void Player::move(const Time& time) {
 		rigidbody.velocity.xComponent = 0;
 	}
 
-	// Technically, these aren't necessary but they're here just in case.
+	// Technically, these aren't necessary but they're here just in case / for future.
+	// I could add a bool for that.
 
 	if (rigidbody.position.yComponent < rigidbody.getMinY()) {
 		rigidbody.position.yComponent = rigidbody.getMinY();
@@ -99,8 +102,11 @@ bool Player::checkCollision(const Obstacle& obstacle) const {
 	return checkCircleTouch(rigidbody.position, obstacle.getPosition(), collisionLeniancy * sizeX / 2, collisionLeniancy * obstacle.getSizeX() / 2);
 }
 
-
-// should be referecne.
+/// <summary>
+/// Questionable if we wanna make a new vector3 here.
+/// We only take A and D keys or arrows so the player can only
+/// move left to right.
+/// </summary>
 Vector3 Player::calculateMovement() const {
 	Vector3 movement { };
 	
