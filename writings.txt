@@ -1,3 +1,5 @@
+buttons is your new feature.
+
 dont forget the video about the cpp game. and other requirements
 make player move a little more realistic.
 how tf make player mvoe with friction tf?? like 

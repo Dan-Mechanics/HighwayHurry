@@ -12,7 +12,6 @@ public:
 	Player(const int sizeX, const int sizeY);
 
 	void reset();
-
 	bool checkCollision(const Obstacle& obstacle) const;
 
 	// Inherited via Car.
@@ -20,10 +19,10 @@ public:
 	virtual void move(const Time& time) override;
 
 private:
-	float topSpeed = 1100;
+	float topSpeed = 1050;
 	float movementForceScalar = 7500;
 	float counterMovementMult = 0.195f;
-	float collisionLeniancy = 0.75f;
+	float collisionLeniancy = 0.8f;
 	Rigidbody rigidbody{};
 
 	Vector3 calculateMovement() const;

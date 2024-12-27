@@ -13,6 +13,13 @@ Button::Button(const int sizeX, const int sizeY, const Vector3 position, const s
     text.setString(textOnButton);
 }
 
+Button::Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font & font, const std::string textOnButton) : Entity{ sizeX, sizeY }, position{ Vector3{ } },
+normalColor{ sf::Color::White }, hoveringColor{ hoveringColor } {
+
+    applyTextBranding(text, font);
+    text.setString(textOnButton);
+}
+
 bool Button::getIsHovering() const {
 
     return isHovering;

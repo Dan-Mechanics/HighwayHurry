@@ -28,7 +28,7 @@ void Obstacle::reset(const Time& time) {
 
 	// if u wanna know why not fast car look here :
 	spriteIndex = randomInclusive(0, 1);
-	rigidbody.mass = spriteIndex * -0.25f + 1.45f;
+	rigidbody.setMass(getMassFromSpriteIndex(spriteIndex));
 
 	rigidbody.velocity.xComponent = 0;
 
@@ -97,4 +97,8 @@ void Obstacle::constrain(const Time& time, Score& score) {
 		score.AddScore(1);
 		// if we get here that means we did not hit this car.
 	}
+}
+
+float Obstacle::getMassFromSpriteIndex(int spriteIndex) const {
+	return spriteIndex * -0.25f + 1.45f;
 }

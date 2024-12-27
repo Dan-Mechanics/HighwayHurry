@@ -9,12 +9,7 @@ const float GRAVITY = 10;
 Rigidbody::Rigidbody() = default;
 
 Rigidbody::Rigidbody(float mass, const int maxX, const int maxY, const int minX, const int minY) {
-	if (mass <= 0) {
-		print("if (mass <= 0) ");
-		mass = 1;
-	}
-
-	this->mass = mass;
+	setMass(mass);
 
 	this->minX = minX;
 	this->minY = minY;
@@ -80,4 +75,17 @@ int Rigidbody::getMinX() const {
 
 int Rigidbody::getMinY() const {
 	return minY;
+}
+
+void Rigidbody::setMass(float mass) {
+	if (mass <= 0) {
+		print("mass cannot be zero.");
+		mass = 1;
+	}
+
+	this->mass = mass;
+}
+
+float Rigidbody::getMass() const {
+	return mass;
 }

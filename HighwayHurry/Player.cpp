@@ -91,7 +91,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	//rigidbody.addVelocity(counterMovement);
 
 	// convert to force.
-	counterMovement.multiply(rigidbody.mass / fixedInterval);
+	counterMovement.multiply(rigidbody.getMass() / fixedInterval);
 	rigidbody.addForce(counterMovement);
 }
 

@@ -12,11 +12,6 @@ public:
 	Vector3 position{};
 	Vector3 velocity{};
 
-	float mass = 1;
-	//float staticFrictionCoefficient{};
-	//float dynamicFrictionCoefficient{}; // or just one
-	// float drag{};
-
 	Rigidbody();
 	Rigidbody(float mass, const int maxX, const int maxY, const int minX, const int minY);
 
@@ -39,9 +34,15 @@ public:
 
 	int getMinX() const;
 	int getMinY() const;
+
+	void setMass(float mass);
+	float getMass() const;
+
 private:
 	Vector3 acceleration{}; // have an add force thing that adds acceleration.
 	Vector3 force{}; // have an add force thing that adds acceleration.
+
+	float mass = 1;
 
 	int minX{}, minY{};
 	int maxX{}, maxY{};

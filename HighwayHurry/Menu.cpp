@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
+const sf::Color BUTTON_HOVERING_COLOR = { 98, 106, 120 };
+
 Menu::Menu() = default;
 
 Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture) {  
@@ -20,7 +22,7 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
     applyGlobalScale(playButtonSprite);
     applyGlobalScale(quitButtonSprite);
 
-    quitButton = { 160, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Quit" };
+    quitButton = { 160, 100, BUTTON_HOVERING_COLOR, font, "Quit" };
 
     applyTextBranding(titleText, font);
     applyTextBranding(scoreText, font);
@@ -43,7 +45,7 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
     
     debugInstructions.setCharacterSize(40);
 
-    playButton = { 160, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play" };
+    playButton = { 160, 100, BUTTON_HOVERING_COLOR, font, "Play" };
 
     playButton.centerAll();
 }
@@ -74,7 +76,8 @@ void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::F
     centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 425);
 
     // in the future i could make this button different that's why construvtor here.
-    playButton = { 160  * 2, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    //playButton = { 160  * 2, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
+    playButton = { 320, 100, BUTTON_HOVERING_COLOR, font, "Play Again" };
     playButton.centerAll();
 
     firstMenuOpen = false;

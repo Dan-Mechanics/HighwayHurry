@@ -74,7 +74,7 @@ void Game::refresh(Score& score, Time& time) {
 int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
 
     // make this enum?
-    unsigned int result = 0;
+    int result = 0;
     
     // we have FixedUpdate() at home :
     // !nesting

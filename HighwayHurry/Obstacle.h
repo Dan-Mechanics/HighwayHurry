@@ -19,10 +19,12 @@ public:
 	void constrain(const Time& time, Score& score);
 
 private:
+	float getMassFromSpriteIndex(int spriteIndex) const;
+
 	float airDrag = 0.00002f;
-	float driveForceVariance = 250;
+	float driveForceVariance = 500;
 	float steerForceVariance = 40000;
-	int highestSpawnPoint = -1080;
+	int highestSpawnPoint = -1080*3;
 	int spriteIndex{};
 	Rigidbody rigidbody{};
 

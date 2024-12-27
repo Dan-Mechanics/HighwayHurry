@@ -11,6 +11,7 @@ public:
 	Button();
 	Button(const int sizeX, const int sizeY, const Vector3 position, const sf::Color normalColor,
 		const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
+	Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton);
 	//virtual ~Button();
    
 	bool getIsHovering() const;
