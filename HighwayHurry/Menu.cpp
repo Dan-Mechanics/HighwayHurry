@@ -63,20 +63,15 @@ void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::F
     // we dont have to do this over stuff.
     if (!firstMenuOpen) { return; }
     
-    titleText.setString("GAME OVER"); // use some to upper method.
-    
-    //playButtonSprite.setScale(playButtonSprite.getScale().y * 2, playButtonSprite.getScale().y);
+    titleText.setString("GAME OVER"); 
+
     playButtonSprite.setScale(20, 10);
 
-    //scoreText.setString(scoreboard.getMenuString(score));
     scoreText.setCharacterSize(100);
 
-    // is window.getsize() allowed ???? we can also just define and width and height somewhere and fix this whole skibiidi.
     centerText(scoreText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 250);
     centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 425);
 
-    // in the future i could make this button different that's why construvtor here.
-    //playButton = { 160  * 2, 100, Vector3{ }, sf::Color::White, { 98, 106, 120 }, font, "Play Again" };
     playButton = { 320, 100, BUTTON_HOVERING_COLOR, font, "Play Again" };
     playButton.centerAll();
 
@@ -97,7 +92,6 @@ int Menu::update(sf::RenderWindow& window) {
 
         if (quitButton.getIsClicked()) {
             print("quitButton.");
-            //window.close();
             result = 2;
         }
     }

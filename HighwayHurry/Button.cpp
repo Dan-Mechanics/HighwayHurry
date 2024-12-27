@@ -7,14 +7,14 @@ Button::Button() = default;
 
 Button::Button(const int sizeX, const int sizeY, const Vector3 position, const sf::Color normalColor,
     const sf::Color hoveringColor, const sf::Font& font, const std::string textOnButton) : Entity{ sizeX, sizeY }, position{ position },
-    normalColor{ normalColor }, hoveringColor{ hoveringColor } {
+    normalColor{ normalColor }, hoveringColor{ hoveringColor }, textOnButton{ textOnButton } {
 
     applyTextBranding(text, font);
     text.setString(textOnButton);
 }
 
 Button::Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font & font, const std::string textOnButton) : Entity{ sizeX, sizeY }, position{ Vector3{ } },
-normalColor{ sf::Color::White }, hoveringColor{ hoveringColor } {
+normalColor{ sf::Color::White }, hoveringColor{ hoveringColor }, textOnButton{ textOnButton } {
 
     applyTextBranding(text, font);
     text.setString(textOnButton);
@@ -42,8 +42,7 @@ void Button::centerAll() {
     centerY();
 }
 
-void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
-{
+void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
     int mouseX = sf::Mouse::getPosition().x;
     int mouseY = sf::Mouse::getPosition().y;
 
@@ -66,6 +65,8 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite)
         window.hasFocus();
 
     isClicked = isHovering && sf::Mouse::isButtonPressed(sf::Mouse::Left);
+
+    if (isClicked) { print(textOnButton); }
 
     sprite.setColor(isHovering ? hoveringColor : normalColor);
     text.setFillColor(isHovering ? sf::Color::White : sf::Color::Black);
