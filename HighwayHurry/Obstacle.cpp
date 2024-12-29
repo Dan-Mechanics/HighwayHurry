@@ -27,7 +27,7 @@ void Obstacle::reset(const Time& time) {
 	color = randomColor();
 
 	// This is where we dictate which cars exist basically.
-	spriteIndex = randomInclusive(0, 1);
+	spriteIndex = randomInclusive(0, 2);
 	rigidbody.setMass(getMassFromSpriteIndex(spriteIndex));
 
 	rigidbody.velocity.xComponent = 0;
@@ -68,8 +68,7 @@ void Obstacle::move(const Time& time) {
 	rigidbody.addForce(steerForce);
 
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
-	// acceleration because I want drag to be the same for all.
-	rigidbody.addAcceleraton(rigidbody.velocity * rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
+	rigidbody.addForce(rigidbody.velocity * rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
 
 	// Because the motion is relative to the player because the player is "stationary."
 	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
@@ -101,5 +100,5 @@ void Obstacle::constrain(const Time& time, Score& score) {
 }
 
 float Obstacle::getMassFromSpriteIndex(int spriteIndex) const {
-	return spriteIndex * -0.25f + 1.45f;
+	return spriteIndex * -0.19f + 1.45f;
 }

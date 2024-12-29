@@ -11,8 +11,8 @@
 
 const sf::String TITLE = "Highway Hurry";
 
-const auto SCREEN_WIDTH = 1920;
-const auto SCREEN_HEIGHT = 1080;
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
 
 Game::Game() = default;
 

@@ -8,8 +8,8 @@
 
 extern const sf::String TITLE;
 
-extern const auto SCREEN_WIDTH;
-extern const auto SCREEN_HEIGHT;
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
 
 class Game {
 public:
@@ -26,7 +26,7 @@ public:
 	/// We do this because the fixed amount of enemies never changes.
 	/// It also saves heap new and delete.
 	/// <summary>
-	Obstacle obstacles[8]{};
+	Obstacle obstacles[10]{};
 
 private:
 	Player player{};
