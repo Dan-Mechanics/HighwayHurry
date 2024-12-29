@@ -101,29 +101,6 @@ int main() {
         // !nesting.
         window.display();
 
-        //switch (frameResult) {
-        //case 2:
-        //    // retrun code 2 = quit game.
-        //    quit = true;
-        //    break;
-
-        //case 1:
-        //    // toggle.
-        //    currentScene = (Scene)!(bool)currentScene;
-
-        //    // depending on the new scene, we refresh it.
-        //    if (currentScene == Scene::MENU_SCENE) {
-        //        menu.refresh(score, scoreBoard, font);
-        //    }
-        //    else {
-        //        game.refresh(score, time);
-        //    }
-
-        //    break;
-        //default:
-        //    break;
-        //}
-
         switch (frameResult) {
         case FrameResult::NEXT_FRAME:
             break;
