@@ -1,3 +1,42 @@
+try to minimze get something methods sfml
+
+make return code an enum ofr clarity.
+invite rosa to github.
+
+///
+
+//#include <iostream>
+//using namespace std;
+
+// next stuff :
+// menu width and height so no canvas send
+// make it so that you dont have to send sprite because collision is yeet.
+// then dont send canvas and sprtiei n construcutro. only set no get methdos for better yeet.
+// more const vars.
+// make relative velocities make more sense ish.
+// ask rosa if it makes sense.
+// 
+// implement global vars for window so drawalbe no refernec.e
+// everytinh looks pretty aight to him, 
+// mass makes sense for movement, make the "friction" and "forces" make more sense
+// what you could do is make a thing where the relative veloity makes snes.e
+// make the enemies do forces a little bit better. make it with drag and everything. the physics for the player makes sense.
+
+// make the enemies bounce back and forth.
+
+// make het zodat je de sprties niet de collision maken maar andersom.
+
+/// <summary>
+/// https://www.youtube.com/watch?v=Fqn4pSRH6Ec
+/// Enums suck.
+/// </summary>
+
+/// <summary>
+/// Make sprite conform to playersize and dont use getsize on sprite and window ??.
+/// </summary>
+
+///
+
 remove comments before upload and start with script soon and also focus on the actual dev
 part of vogue vr and make the songs lowkey.
 

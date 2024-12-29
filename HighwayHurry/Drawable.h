@@ -4,6 +4,7 @@
 
 /// <summary>
 /// Something you can see.
+/// https://www.sfml-dev.org/tutorials/2.6/graphics-sprite.php
 /// </summary>
 class Drawable {
 public:

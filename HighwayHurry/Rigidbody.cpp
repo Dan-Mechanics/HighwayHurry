@@ -17,16 +17,13 @@ void Rigidbody::addVelocity(Vector3 velocity) {
 }
 
 void Rigidbody::addAcceleraton(Vector3 acceleration) {
-	//accel.mult(time.fixedInterval);
 	this->acceleration.add(acceleration);
 }
 
 void Rigidbody::addForce(Vector3 force) {
-	//force.mult(1 / mass);
-
 	this->force.add(force);
 
-	// friction hook ???
+	// friction hook ??
 }
 
 void Rigidbody::resetAll() {
@@ -74,7 +71,7 @@ int Rigidbody::getMinY() const {
 
 void Rigidbody::setMass(float mass) {
 	if (mass <= 0) {
-		print("mass cannot be zero.");
+		print("mass cannot be zero or negative.");
 		mass = 1;
 	}
 

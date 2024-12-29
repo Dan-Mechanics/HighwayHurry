@@ -33,18 +33,15 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     backgroundTexture.setRepeated(true);
 
-    // smoothe the texture yeet ?
+    // possible: smooth texture.
 
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
 
-    // we love cPP!!
     // https://www.youtube.com/watch?v=a4P4ial8OgQ
     for (int i = 0; i < sizeof(obstacleSprites) / sizeof(sf::Sprite); i++) {
         applyGlobalScale(obstacleSprites[i]);
     }
-
-    // this makes the random fixed ? yep.
 
     player = { 160, 160 };
     environment = { 1920, 2160 };
@@ -107,6 +104,5 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
 
     scoreboard.draw(window, score);
 
-    // next frame.
     return result;
 }

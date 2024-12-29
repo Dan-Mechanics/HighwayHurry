@@ -13,22 +13,17 @@ public:
 		const sf::Color hoveringColor, const sf::Font& font, const std::string writing);
 
 	Button(const int sizeX, const int sizeY, const sf::Color hoveringColor, const sf::Font& font, const std::string writing);
-	//virtual ~Button();
-   
+
 	bool getIsHovering() const;
 	bool getIsClicked() const;
 	void centerY();
 	void centerX();
 	void centerAll();
 
-	// Inherited via Entity.
-
 	/// <summary>
 	/// Also does hovering logic.
 	/// </summary>
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
-	//virtual void move(const Time& time) override;
-	// we cant make this const because reference. 
 
 private:
 	bool isHovering{};

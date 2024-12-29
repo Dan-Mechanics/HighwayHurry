@@ -43,21 +43,16 @@ void Button::centerAll() {
 }
 
 void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
+    // !performance?
     auto mouseX = sf::Mouse::getPosition().x;
     auto mouseY = sf::Mouse::getPosition().y;
 
-    // !performance ?
     auto xMin = roundToInt(position.xComponent); // yes, we will downcast.
     auto yMin = roundToInt(position.yComponent);
     auto xMax = xMin + sizeX;
     auto yMax = yMin + sizeY;
 
-    // we gotta see if thing is within thing.
-
-    // we know pos is topleft.
-
-    // otherwise random memory !!
-    // technically this is not allowed.
+    // check if our mouse pos is inside of the button bounds.
     isHovering = 
         mouseX >= xMin && mouseY >= yMin && 
         mouseX <= xMax && mouseY <= yMax &&
@@ -77,8 +72,3 @@ void Button::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
     window.draw(sprite);
     window.draw(text);
 }
-
-//void Button::move(const Time& time) {
-//    // future: add animation for hovering.
-//    // for now: center text on button.
-//}

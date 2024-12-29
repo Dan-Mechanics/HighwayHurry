@@ -3,7 +3,7 @@
 #include "Utils.h"
 
 Time::Time() {
-    int timestep = 50; // Like in Unity.
+    int timestep = 50; 
 
     fixedInterval = 1.0f / timestep;
 
@@ -12,11 +12,10 @@ Time::Time() {
 
 Time::Time(int timestep) {
     if (timestep <= 0) {
-        timestep = 50; // Like in Unity.
+        timestep = 50; 
         print("ERROR: if (timestep <= 0) ");
     }
 
-    // Is this cast good ?
     fixedInterval = 1.0f / timestep;
 
     reset();

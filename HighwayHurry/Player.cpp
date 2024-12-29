@@ -20,8 +20,7 @@ Player::Player(const int sizeX, const int sizeY) : Entity{ sizeX, sizeY } {
 	minX += ENVIRONMENT_MARGIN;
 	maxX -= ENVIRONMENT_MARGIN;
 
-	// maybe we just need to give the rigidbody the sizeX and SizeY and the margins and thenwe good.
-	// in ieder geval kan ik dit optimizen.
+	// Give rigidbody mass + collision bounds.
 	rigidbody = { 1, maxX, maxY, minX, minY };
 
 	reset();
@@ -76,11 +75,13 @@ void Player::move(const Time& time) {
 /// Aka doFriction()
 /// </summary>
 void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
+	// Because we want to resist the velocity.
 	Vector3 counterMovement = rigidbody.velocity;
 
 	counterMovement.normalize();
 	counterMovement.remove(movement);
 
+	// Invert, scale, etc.
 	counterMovement.multiply(-1 * movementForceScalar * counterMovementMult * fixedInterval);
 
 	float velMag = rigidbody.velocity.calculateMagnitude();
@@ -90,10 +91,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 		counterMovement.multiply(-1);
 	}
 
-	// but if this is too cool for you.
-	//rigidbody.addVelocity(counterMovement);
-
-	// convert to force.
+	// Convert to force because forces.
 	counterMovement.multiply(rigidbody.getMass() / fixedInterval);
 	rigidbody.addForce(counterMovement);
 }
@@ -103,7 +101,7 @@ bool Player::checkCollision(const Obstacle& obstacle) const {
 }
 
 /// <summary>
-/// Questionable if we wanna make a new vector3 here.
+/// Questionable if we wanna make a "new" ( not really ) Vector3 here.
 /// We only take A and D keys or arrows so the player can only
 /// move left to right.
 /// </summary>

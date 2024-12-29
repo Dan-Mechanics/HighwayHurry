@@ -21,9 +21,12 @@ public:
 	int update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
 
 	sf::Sprite obstacleSprites[3]{};
+
+	/// <summary>
+	/// We do this because the fixed amount of enemies never changes.
+	/// It also saves heap new and delete.
+	/// <summary>
 	Obstacle obstacles[8]{};
-	// add memory managmentsi n the future: 
-	// deload method or destructor thing if you wanna have crazy amount of enemies increasing.
 
 private:
 	Player player{};
@@ -32,5 +35,8 @@ private:
 	sf::Sprite backgroundSprite{};
 	sf::Sprite playerSprite{};
 
+	/// <summary>
+	/// Because apparently the size of an array has a complex equation.
+	/// </summary>
 	int obstacleCount{};
 };

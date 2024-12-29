@@ -4,6 +4,7 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include "Utils.h"
 
 void print(const std::string value) {
 	std::cout << " > " << value << std::endl;
@@ -38,9 +39,6 @@ void applyGlobalScale(sf::Sprite& sprite) {
 	sprite.setScale(10, 10);
 }
 
-/// <summary>
-/// Is this allowed?
-/// </summary>
 void centerText(sf::Text& text, const float x, const float y) {
 	sf::FloatRect textRect = text.getLocalBounds();
 

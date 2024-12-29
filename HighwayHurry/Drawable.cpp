@@ -1,5 +1,3 @@
-// https://www.sfml-dev.org/tutorials/2.6/graphics-sprite.php
-
 #include "Drawable.h"
 #include "Utils.h"
 

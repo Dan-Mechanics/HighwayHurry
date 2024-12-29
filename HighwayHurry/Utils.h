@@ -22,7 +22,7 @@ void centerText(sf::Text& text, const float x, const float y);
 /// <summary>
 /// https://stackoverflow.com/questions/14505571/centering-text-on-the-screen-with-sfml
 /// </summary>
-void centerText(sf::Text& text, const sf::RenderWindow& window);
+void centerText(sf::Text& text);
 
 void applyTextBranding(sf::Text& text, const sf::Font& font);
 

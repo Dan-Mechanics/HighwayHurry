@@ -13,4 +13,5 @@ float distance(const Vector3& a, const Vector3& b);
 int roundToInt(const float f);
 
 float toDegrees(const float rad);
+
 float toRadians(const float deg);

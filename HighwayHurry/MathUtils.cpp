@@ -6,8 +6,6 @@ const float PI = 3.141592653589793238463f;
 const float RAD2DEG = 180 / PI;
 
 int roundToInt(const float f) {
-	//return (int)round(f);
-	// idk.
 	return round(f);
 }
 
@@ -15,7 +13,6 @@ int roundToInt(const float f) {
 /// https://stackoverflow.com/questions/40776703/converting-from-radians-to-degrees
 /// </summary>
 float toDegrees(const float rad) {
-	//degrees = radians * (180.0 / 3.141592653589793238463)
 	return rad * RAD2DEG;
 }
 

@@ -1,12 +1,12 @@
 #pragma once
 
 struct Vector3 {
-public: // Technically speaking this doesnt have to be here since classes are default public.
+public: // Technically speaking, this doesnt have to be here since classes are default public.
 	float xComponent{};
 	float yComponent{};
 
 	/// <summary>
-	/// I could use quicksort for the sorting order of the zComponent entity.
+	/// FUTURE: I could use quicksort for the sorting order of the zComponent entity.
 	/// </summary>
 	float zComponent{};
 

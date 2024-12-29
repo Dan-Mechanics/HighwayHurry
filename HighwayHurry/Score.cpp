@@ -5,7 +5,7 @@ Score::Score() = default;
 /// <summary>
 /// Deal damage to player, which will eventually end game.
 /// </summary>
-/// <returns>If has died from damage.</returns>
+/// <returns>Has died from damage.</returns>
 bool Score::Damage(const int amount) {
 	// we are already dead.
 	if (lives <= 0) { return true; }

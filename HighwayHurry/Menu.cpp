@@ -29,13 +29,11 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
     applyTextBranding(titleText, font);
     applyTextBranding(scoreText, font);
 
-    //titleText.setString("HIGHWAY HURRY"); // use some to upper method.
     titleText.setString(makeUppercase(TITLE));
     titleText.setCharacterSize(250);
 
     quitButton.centerAll();
     quitButton.position.yComponent += quitButton.getSizeY() + 15;
-    // depends on the bool.
 
     centerText(titleText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 225);
 
@@ -54,15 +52,14 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
 
 /// <summary>
 /// Make the changes required for the second menu version.
-/// Dont repeat if already second.
-/// ARE WE ALLOWED TO USE GET METHOD ?
+/// Don't repeat if already second.
 /// </summary>
 void Menu::refresh(const Score& score, const Scoreboard& scoreboard, const sf::Font& font) {
     print("Refresh @ menu.");
     
     scoreText.setString(scoreboard.getMenuString(score));
     
-    // we dont have to do this over stuff.
+    // We don't have to do this again.
     if (!firstMenuOpen) { return; }
     
     titleText.setString("GAME OVER"); 
@@ -93,7 +90,6 @@ int Menu::update(sf::RenderWindow& window) {
         quitButton.draw(window, quitButtonSprite);
 
         if (quitButton.getIsClicked()) {
-            //print("quitButton.");
             result = 2;
         }
     }
@@ -101,11 +97,12 @@ int Menu::update(sf::RenderWindow& window) {
     window.draw(titleText);
 
     if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) {
-        //print("playButton.");
         result =  1;
     }
 
-    if (firstMenuOpen) { window.draw(debugInstructions); }
+    if (firstMenuOpen) { 
+        window.draw(debugInstructions);
+    }
 
     return result;
 }

@@ -14,7 +14,7 @@ public:
 
 	void refresh(const Score& score, const Scoreboard& scoreboard, const sf::Font& font);
 	int update(sf::RenderWindow& window);
-	//bool open(bool start, Score& score, Scoreboard& scoreboard, sf::Font& font, sf::RenderWindow& window, sf::Sprite& backgroundSprite, sf::Sprite& quitButtonSprite, sf::Sprite& playButtonSprite) const;
+
 private:
 	Button playButton{};
 	Button quitButton{};
