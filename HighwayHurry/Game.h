@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Score.h"
 #include "Scoreboard.h"
+#include "Utils.h"
 
 extern const sf::String TITLE;
 
@@ -18,7 +19,7 @@ public:
 		const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow);
 
 	void refresh(Score& score, Time& time);
-	int update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
+	FrameResult update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
 
 	sf::Sprite obstacleSprites[3]{};
 

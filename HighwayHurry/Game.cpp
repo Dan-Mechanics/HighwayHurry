@@ -69,13 +69,10 @@ void Game::refresh(Score& score, Time& time) {
     }
 }
 
-int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
-
-    // make this enum?
-    auto result = 0;
+FrameResult Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
+    auto result = FrameResult::NEXT_FRAME;
     
-    // we have FixedUpdate() at home :
-    // !nesting
+    // nesting + fixedupdate:
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
@@ -89,7 +86,9 @@ int Game::update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard&
             if (hasCollision) {
                 obstacles[j].reset(time);
 
-                result = score.Damage(1);
+                if (score.Damage(1)) {
+                    result =  FrameResult::NEXT_SCENE;
+                }
             }
         }
     }

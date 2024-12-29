@@ -6,14 +6,12 @@
 #include "Scoreboard.h"
 #include "Button.h"
 
+
 int main() {
     print(TITLE);
 
     const auto FPS_CAP = 320;
     const auto TIMESTEP = 64;
-    
-    /// https://www.youtube.com/watch?v=Fqn4pSRH6Ec
-    enum class Scene { MENU_SCENE = 0, GAME_SCENE = 1 };
 
     // https://www.reddit.com/r/sfml/comments/oyms57/how_t
     // https://youtu.be/lFzpkvrscs4?si=9lYiXu4090IKJ1o1
@@ -96,19 +94,41 @@ int main() {
         window.clear(sf::Color::Magenta);
 
         // scene.draw();
-        int frameReturnCode = currentScene == Scene::MENU_SCENE ?
+        // future, use switch again maybe.
+        auto frameResult = currentScene == Scene::MENU_SCENE ?
             menu.update(window) : game.update(window, score, time, scoreBoard);
 
         // !nesting.
         window.display();
 
-        switch (frameReturnCode) {
-        case 2:
-            // retrun code 2 = quit game.
-            quit = true;
+        //switch (frameResult) {
+        //case 2:
+        //    // retrun code 2 = quit game.
+        //    quit = true;
+        //    break;
+
+        //case 1:
+        //    // toggle.
+        //    currentScene = (Scene)!(bool)currentScene;
+
+        //    // depending on the new scene, we refresh it.
+        //    if (currentScene == Scene::MENU_SCENE) {
+        //        menu.refresh(score, scoreBoard, font);
+        //    }
+        //    else {
+        //        game.refresh(score, time);
+        //    }
+
+        //    break;
+        //default:
+        //    break;
+        //}
+
+        switch (frameResult) {
+        case FrameResult::NEXT_FRAME:
             break;
 
-        case 1:
+        case FrameResult::NEXT_SCENE:
             // toggle.
             currentScene = (Scene)!(bool)currentScene;
 
@@ -121,6 +141,12 @@ int main() {
             }
 
             break;
+
+        case FrameResult::CLOSE_GAME:
+            // retrun code 2 = quit game.
+            quit = true;
+            break;
+
         default:
             break;
         }

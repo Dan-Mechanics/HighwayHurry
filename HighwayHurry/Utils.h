@@ -4,6 +4,10 @@
 #include <SFML/Graphics.hpp>
 #include "MathUtils.h"
 
+/// https://www.youtube.com/watch?v=Fqn4pSRH6Ec
+enum class Scene { MENU_SCENE = 0, GAME_SCENE = 1 };
+enum class FrameResult { NEXT_FRAME = 0, NEXT_SCENE = 1, CLOSE_GAME = 2 };
+
 void print(const std::string value);
 void print(const int value);
 void print(const float value);
