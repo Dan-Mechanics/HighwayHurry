@@ -30,7 +30,7 @@ public:
 	Obstacle obstacles[10]{};
 
 private:
-	FrameResult processObstacle(const Obstacle& obstacle, Score& score) const;
+	bool processObstacle(Obstacle& obstacle, Score& score, const Time& time) const;
 	
 	Player player{};
 	Environment environment{};

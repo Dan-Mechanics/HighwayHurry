@@ -72,24 +72,15 @@ void Game::refresh(Score& score, Time& time) {
 FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
     auto result = FrameResult::NEXT_FRAME;
     
-    // nesting + fixedupdate:
+    // add fixedupdate.
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
 
         for (int j = 0; j < obstacleCount; j++) {
-            /*obstacles[j].move(time);
-            obstacles[j].constrain(time, score);
-
-            auto hasCollision = player.checkCollision(obstacles[j]);
-
-            if (hasCollision) {
-                obstacles[j].reset(time);
-
-                if (score.Damage(1)) {
-                    result =  FrameResult::NEXT_SCENE;
-                }
-            }*/
+            if (processObstacle(obstacles[j], score, time)) {
+                result = FrameResult::NEXT_SCENE;
+            }
         }
     }
 
@@ -107,8 +98,6 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
 }
 
 bool Game::processObstacle(Obstacle& obstacle, Score& score, const Time& time) const {
-    bool hasDied = false;
-    
     obstacle.move(time);
     obstacle.constrain(time, score);
 
@@ -116,13 +105,6 @@ bool Game::processObstacle(Obstacle& obstacle, Score& score, const Time& time) c
 
     if (hasCollision) {
         obstacle.reset(time);
-
-        // we cant set the hasdied to damage directly because we do multible damages or something.
-        if (score.Damage(1)) {
-            //result = FrameResult::NEXT_SCENE;
-            hasDied = true;
-        }
+        return score.Damage(1);
     }
-
-    return hasDied;
 }
