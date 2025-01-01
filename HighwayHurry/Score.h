@@ -23,4 +23,3 @@ private:
 	int maxLives = 5;
 	sf::Clock clock{};
 };
-

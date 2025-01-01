@@ -45,4 +45,3 @@ private:
 	int minX{}, minY{};
 	int maxX{}, maxY{};
 };
-

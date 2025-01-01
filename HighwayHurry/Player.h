@@ -28,4 +28,3 @@ private:
 	Vector3 calculateMovement() const;
 	void doCounterMovement(float fixedInterval, Vector3 movement);
 };
-

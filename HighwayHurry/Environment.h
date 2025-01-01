@@ -19,4 +19,3 @@ private:
 	/// </summary>
 	Vector3 position{};
 };
-

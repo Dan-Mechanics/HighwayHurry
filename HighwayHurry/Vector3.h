@@ -40,4 +40,3 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 	void setWithAngleAndLength(float angle, const float length);
 	float calculateDistanceTo(const Vector3& other) const;
 };
-

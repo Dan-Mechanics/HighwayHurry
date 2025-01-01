@@ -16,4 +16,3 @@ private:
 	float timer = 0;
 	sf::Clock deltaClock;
 };
-

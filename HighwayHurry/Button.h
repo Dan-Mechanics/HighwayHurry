@@ -34,4 +34,3 @@ private:
 	sf::Color normalColor{};
 	sf::Text text{};
 };
-

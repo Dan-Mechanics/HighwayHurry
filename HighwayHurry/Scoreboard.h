@@ -19,4 +19,3 @@ private:
 	sf::String gameString{};
 	sf::String menuString{};
 };
-

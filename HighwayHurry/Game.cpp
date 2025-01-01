@@ -72,7 +72,7 @@ void Game::refresh(Score& score, Time& time) {
 FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
     auto result = FrameResult::NEXT_FRAME;
     
-    // add fixedupdate.
+    // POSSIBLE: add fixedupdate.
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
