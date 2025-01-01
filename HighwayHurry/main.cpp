@@ -6,6 +6,7 @@
 #include "Scoreboard.h"
 #include "Button.h"
 
+// more auto ?
 
 int main() {
     print(TITLE);
@@ -93,39 +94,38 @@ int main() {
         // background color so we can clearly see transparent glitches etc.
         window.clear(sf::Color::Magenta);
 
-        // scene.draw();
+        // scene.draw(); --> not possible because each scene.draw() needs differents params.
         // future, use switch again maybe.
         auto frameResult = currentScene == Scene::MENU_SCENE ?
-            menu.update(window) : game.update(window, score, time, scoreBoard);
+            menu.draw(window) : game.draw(window, score, time, scoreBoard);
 
-        // !nesting.
         window.display();
 
+        /// <summary>
+        /// https://www.w3schools.com/cpp/cpp_switch.asp
+        /// </summary>
         switch (frameResult) {
-        case FrameResult::NEXT_FRAME:
-            break;
+            case FrameResult::NEXT_FRAME:
+                break;
+            case FrameResult::NEXT_SCENE:
+                // toggle.
+                currentScene = (Scene)!(bool)currentScene;
 
-        case FrameResult::NEXT_SCENE:
-            // toggle.
-            currentScene = (Scene)!(bool)currentScene;
+                // depending on the new scene, we refresh it.
+                if (currentScene == Scene::MENU_SCENE) {
+                    menu.refresh(score, scoreBoard, font);
+                }
+                else {
+                    game.refresh(score, time);
+                }
 
-            // depending on the new scene, we refresh it.
-            if (currentScene == Scene::MENU_SCENE) {
-                menu.refresh(score, scoreBoard, font);
-            }
-            else {
-                game.refresh(score, time);
-            }
-
-            break;
-
-        case FrameResult::CLOSE_GAME:
-            // retrun code 2 = quit game.
-            quit = true;
-            break;
-
-        default:
-            break;
+                break;
+            case FrameResult::CLOSE_GAME:
+                // retrun code 2 = quit game.
+                quit = true;
+                break;
+            default:
+                break;
         }
     }
 

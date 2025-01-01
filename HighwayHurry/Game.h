@@ -19,7 +19,7 @@ public:
 		const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow);
 
 	void refresh(Score& score, Time& time);
-	FrameResult update(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
+	FrameResult draw(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
 
 	sf::Sprite obstacleSprites[3]{};
 
@@ -30,6 +30,8 @@ public:
 	Obstacle obstacles[10]{};
 
 private:
+	FrameResult processObstacle(const Obstacle& obstacle, Score& score) const;
+	
 	Player player{};
 	Environment environment{};
 
