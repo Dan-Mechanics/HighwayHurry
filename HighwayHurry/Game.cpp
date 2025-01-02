@@ -65,22 +65,29 @@ void Game::refresh(Score& score, Time& time) {
     time.reset();
 
     for (int i = 0; i < obstacleCount; i++) {
-        obstacles[i].reset(time);
+        obstacles[i].reset();
     }
 }
 
 FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
-    auto result = FrameResult::NEXT_FRAME;
+    auto frameResult = FrameResult::NEXT_FRAME;
     
-    // POSSIBLE: add fixedupdate.
+    // Similar to FixedUpdate().
+    // This returns the amount of ticks we have to process
+    // in order to be independant of framerate.
     for (int i = 0; i < time.processFrame(); i++) {
         environment.move(time);
         player.move(time);
 
         for (int j = 0; j < obstacleCount; j++) {
-            if (processObstacle(obstacles[j], score, time)) {
-                result = FrameResult::NEXT_SCENE;
-            }
+            obstacles[j].move(time);
+            obstacles[j].constrain(time, score);
+
+            player.checkCollisionWithObstacle(obstacles[j], score);
+        }
+
+        if (score.checkGameOver()) {
+            frameResult = FrameResult::NEXT_SCENE;
         }
     }
 
@@ -94,17 +101,5 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
 
     scoreboard.draw(window, score);
 
-    return result;
-}
-
-bool Game::processObstacle(Obstacle& obstacle, Score& score, const Time& time) const {
-    obstacle.move(time);
-    obstacle.constrain(time, score);
-
-    auto hasCollision = player.checkCollision(obstacle);
-
-    if (hasCollision) {
-        obstacle.reset(time);
-        return score.Damage(1);
-    }
+    return frameResult;
 }

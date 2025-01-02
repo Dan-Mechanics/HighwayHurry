@@ -10,7 +10,7 @@ class Obstacle : public Entity {
 public:
 	Obstacle();
 	Obstacle(const int sizeX, const int sizeY, Score& score);
-	void reset(const Time& time);
+	void reset();
 
 	int getSpriteIndex() const;
 	Vector3 getPosition() const;

@@ -7,6 +7,7 @@
 #include "Button.h"
 
 // more auto ?
+// check all method and fucntion names for capitalization --> clang tidy?
 
 int main() {
     print(TITLE);
@@ -77,7 +78,9 @@ int main() {
     auto currentScene = Scene::MENU_SCENE;
 
     Menu menu{ font, menuBackgroundTexture, buttonTexture };
-    Game game{ score, time, gameBackgroundTexture, playerTexture, fastCarTexture, midCarTexture, slowCarTexture };
+
+    Game game{ score, time, gameBackgroundTexture, playerTexture,
+        fastCarTexture, midCarTexture, slowCarTexture };
 
     while (window.isOpen()) {
         sf::Event event;
@@ -121,7 +124,6 @@ int main() {
 
                 break;
             case FrameResult::CLOSE_GAME:
-                // retrun code 2 = quit game.
                 quit = true;
                 break;
             default:

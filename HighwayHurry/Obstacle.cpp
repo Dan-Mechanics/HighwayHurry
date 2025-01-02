@@ -23,7 +23,7 @@ Obstacle::Obstacle(const int sizeX, const int sizeY, Score& score) :
 	rigidbody.addVelocity(Vector3{ 0, -PLAYER_FORWARD_SPEED * 2.5f, 0 });
 }
 
-void Obstacle::reset(const Time& time) {
+void Obstacle::reset() {
 	color = randomColor();
 
 	// This is where we dictate which cars exist basically.
@@ -94,7 +94,7 @@ void Obstacle::constrain(const Time& time, Score& score) {
 
 	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {
 		reset(time);
-		score.AddScore(1);
+		score.addScore(1);
 		// if we get here that means we did not hit this car.
 	}
 }

@@ -25,13 +25,12 @@ public:
 
 	/// <summary>
 	/// We do this because the fixed amount of enemies never changes.
-	/// It also saves heap new and delete.
+	/// It also saves heap new and delete. 
+	/// Maybe make this vector and see if it works ?
 	/// <summary>
 	Obstacle obstacles[10]{};
 
 private:
-	bool processObstacle(Obstacle& obstacle, Score& score, const Time& time) const;
-	
 	Player player{};
 	Environment environment{};
 

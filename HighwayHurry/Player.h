@@ -12,7 +12,7 @@ public:
 	Player(const int sizeX, const int sizeY);
 
 	void reset();
-	bool checkCollision(const Obstacle& obstacle) const;
+	void checkCollisionWithObstacle(Obstacle& obstacle, Score& score) const;
 
 	// Inherited via Car.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;

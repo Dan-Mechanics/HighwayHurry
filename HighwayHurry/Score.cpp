@@ -5,24 +5,15 @@ Score::Score() = default;
 /// <summary>
 /// Deal damage to player, which will eventually end game.
 /// </summary>
-/// <returns>Has died from damage.</returns>
-bool Score::Damage(const int amount) {
-	// we are already dead.
-	if (lives <= 0) { return true; }
-	
+void Score::damage(const int amount) {
 	lives -= amount;
 
-	// we have been killed.
-	if (lives > 0) { return false; }
-
-	lives = 0;
-
-	// game over.
-
-	return true;
+	if (lives < 0) {
+		lives = 0;
+	}
 }
 
-void Score::AddScore(const int amount) {
+void Score::addScore(const int amount) {
 	if (amount <= 0) { return; }
 	
 	score += amount;
@@ -48,4 +39,8 @@ int Score::getMaxLives() const {
 
 float Score::getTime() const {
 	return clock.getElapsedTime().asSeconds();
+}
+
+bool Score::checkGameOver() const {
+	return lives <= 0;
 }
