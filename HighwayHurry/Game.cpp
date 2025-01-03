@@ -4,7 +4,7 @@
 #include "Environment.h"
 #include "Utils.h"
 #include "MathUtils.h"
-#include "Scoreboard.h"
+#include "ScoreHUD.h"
 #include "Button.h"
 #include "Obstacle.h"
 #include <random>
@@ -33,7 +33,8 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     backgroundTexture.setRepeated(true);
 
-    // possible: smooth texture.
+    // POSSIBLE: smooth texture.
+    // But I think it looks beter pixelated.
 
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
@@ -58,6 +59,7 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 void Game::refresh(Score& score, Time& time) {
     print("Refresh @ game.");
     
+    // Do this so that the random is different each time.
     srand(std::time(NULL));
 
     player.reset();
@@ -69,7 +71,7 @@ void Game::refresh(Score& score, Time& time) {
     }
 }
 
-FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, ScoreHUD& scoreboard) {
+FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, ScoreHUD& scoreHUD) {
     auto frameResult = FrameResult::NEXT_FRAME;
     
     // Similar to FixedUpdate().
@@ -99,7 +101,7 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
 
     player.draw(window, playerSprite);
 
-    scoreboard.draw(window, score);
+    scoreHUD.draw(window, score);
 
     return frameResult;
 }

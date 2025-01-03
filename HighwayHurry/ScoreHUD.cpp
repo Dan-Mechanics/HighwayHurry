@@ -10,8 +10,6 @@ ScoreHUD::ScoreHUD(const sf::Font& font) {
 }
 
 void ScoreHUD::draw(sf::RenderWindow& window, const Score& score) {
-    //menuString = getGameString(score);
-    
     gameText.setString(getGameString(score));
 
     window.draw(gameText);

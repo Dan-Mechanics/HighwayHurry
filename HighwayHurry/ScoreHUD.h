@@ -15,7 +15,4 @@ public:
 
 private:
 	sf::Text gameText{};
-
-	/*sf::String gameString{};
-	sf::String menuString{};*/
 };

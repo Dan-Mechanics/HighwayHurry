@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include "Time.h"
 #include "Utils.h"
-#include "Scoreboard.h"
+#include "ScoreHUD.h"
 #include "Button.h"
 #include <SFML/Graphics.hpp>
 #include "Game.h"
@@ -54,10 +54,10 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
 /// Make the changes required for the second menu version.
 /// Don't repeat if already second.
 /// </summary>
-void Menu::refresh(const Score& score, const ScoreHUD& scoreboard, const sf::Font& font) {
+void Menu::refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font& font) {
     print("Refresh @ menu.");
     
-    scoreText.setString(scoreboard.getMenuString(score));
+    scoreText.setString(scoreHUD.getMenuString(score));
     
     // We don't have to do this again.
     if (!firstMenuOpen) { return; }
