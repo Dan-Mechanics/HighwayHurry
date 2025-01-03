@@ -17,17 +17,20 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 	Vector3();
 	Vector3(const float x, const float y, const float z);
 
-	//Vector3& operator=(const Vector3& container);
+	
 
-	/*Vector3 operator+(const Vector3& container) const;
+	Vector3 operator+(const Vector3& container) const;
 	Vector3& operator+=(const Vector3& container);
 
 	Vector3 operator-(const Vector3& container) const;
 	Vector3& operator-=(const Vector3& container);
 
-	
+	/// <summary>
+	/// BUG FIX: this was programmed wrong and messed with the obstacle
+	/// speeds but somehow still worked, but is fixed now.
+	/// </summary>
 	Vector3 operator*(const float scalar) const;
-	Vector3& operator*=(const float scalar);*/
+	Vector3& operator*=(const float scalar);
 
 	void setAll(const float x, const float y, const float z);
 	void logComponents() const;

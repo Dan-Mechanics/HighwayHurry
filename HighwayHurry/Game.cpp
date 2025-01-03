@@ -43,13 +43,10 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
         applyGlobalScale(obstacleSprites[i]);
     }
 
-    //obstacles = Obstacle[10];
-
-    count = sizeof(obstacles) / sizeof(Obstacle);
-
-    for (int i = 0; i < count; i++) {
-        //obstacles.emplace_back(160, 160, score);
-        obstacles[i] = { 160, 160, score };
+    // Now we can dynamically add and remove enemies if we wanted to.
+    for (int i = 0; i < 10; i++) {
+        obstacles.emplace_back(160, 160, score);
+        // obstacles[i] = { 160, 160, score };
     }
 
     player = { 160, 160 };
@@ -69,7 +66,7 @@ void Game::refresh(Score& score, Time& time, sf::RenderWindow& window) {
     score.reset();
     time.reset();
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < obstacles.size(); i++) {
         obstacles[i].reset();
     }
 }
@@ -86,7 +83,7 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
         environment.move(time);
         player.move(time);
 
-        for (int j = 0; j < count; j++) {
+        for (int j = 0; j < obstacles.size(); j++) {
             obstacles[j].move(time);
             obstacles[j].constrain(time, score);
 
@@ -100,7 +97,7 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
 
     environment.draw(window, backgroundSprite);
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < obstacles.size(); i++) {
         obstacles[i].draw(window, obstacleSprites[obstacles[i].getSpriteIndex()]);
     }
 

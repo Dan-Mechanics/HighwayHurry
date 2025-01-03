@@ -71,13 +71,13 @@ void Obstacle::move(const Time& time) {
 	rigidbody.addForce(driveForce);
 	rigidbody.addForce(steerForce);
 
-	Vector3 dragForce;
-	dragForce.setAll(rigidbody.velocity.xComponent, rigidbody.velocity.yComponent, rigidbody.velocity.zComponent);
-	dragForce.invert();
-	dragForce.multiply(rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
+	// Make a copy.
+	Vector3 dragForce = rigidbody.velocity;
+
+	// We do this instead of operator because it means less vector math for computer.
+	dragForce.multiply(-rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
 
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
-	//rigidbody.addAcceleraton(dragForce);
 	rigidbody.addForce(dragForce);
 
 	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
