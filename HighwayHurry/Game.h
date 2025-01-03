@@ -4,7 +4,7 @@
 #include "Environment.h"
 #include "Player.h"
 #include "Score.h"
-#include "Scoreboard.h"
+#include "ScoreHUD.h"
 #include "Utils.h"
 
 extern const sf::String TITLE;

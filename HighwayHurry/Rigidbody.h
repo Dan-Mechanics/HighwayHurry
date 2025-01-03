@@ -2,9 +2,6 @@
 #include "Vector3.h"
 #include "Time.h"
 
-/// <summary>
-/// Add: mass, ? friction ?, etc
-/// </summary>
 class Rigidbody {
 public:
 	Vector3 position{};

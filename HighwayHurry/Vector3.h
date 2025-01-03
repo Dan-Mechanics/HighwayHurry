@@ -19,8 +19,9 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 	Vector3 operator-(const Vector3& container) const;
 	Vector3& operator-=(const Vector3& container);
 
-	Vector3 operator*=(const float scalar) const;
-	Vector3& operator*(const float scalar);
+	
+	Vector3 operator*(const float scalar) const;
+	Vector3& operator*=(const float scalar);
 
 	void setAll(const float x, const float y, const float z);
 	void logComponents() const;
@@ -29,6 +30,7 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 	void remove(const Vector3 vec);
 	void multiply(const float scalar);
 	void divide(const float scalar);
+	void invert();
 	float calculateMagnitude();
 	void normalize();
 	void clampMagnitude(const float magnitude);

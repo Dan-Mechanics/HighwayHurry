@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Utils.h"
 #include "Menu.h"
-#include "Scoreboard.h"
+#include "ScoreHUD.h"
 #include "Button.h"
 
 // more auto ?
@@ -35,7 +35,7 @@ int main() {
 
     Time time{ TIMESTEP };
     Score score{ };
-    ScoreHUD scoreBoard{ font };
+    ScoreHUD scoreHUD{ font };
 
     //////////////////////////////////////////////////////
 
@@ -100,7 +100,7 @@ int main() {
         // scene.draw(); --> not possible because each scene.draw() needs differents params.
         // future, use switch again maybe.
         auto frameResult = currentScene == Scene::MENU_SCENE ?
-            menu.draw(window) : game.draw(window, score, time, scoreBoard);
+            menu.draw(window) : game.draw(window, score, time, scoreHUD);
 
         window.display();
 
@@ -116,7 +116,7 @@ int main() {
 
                 // depending on the new scene, we refresh it.
                 if (currentScene == Scene::MENU_SCENE) {
-                    menu.refresh(score, scoreBoard, font);
+                    menu.refresh(score, scoreHUD, font);
                 }
                 else {
                     game.refresh(score, time);

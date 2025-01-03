@@ -18,6 +18,7 @@ void ScoreHUD::draw(sf::RenderWindow& window, const Score& score) {
 /// <summary>
 /// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder :
 /// "The C++ way would be to use std::stringstream or just plain string concatenations. C++ strings are mutable so the performance considerations of concatenation are less of a concern."
+/// https://www.geeksforgeeks.org/stringstream-c-applications/
 /// </summary>
 sf::String ScoreHUD::getGameString(const Score& score) const {
 

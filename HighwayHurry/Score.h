@@ -4,6 +4,8 @@
 /// <summary>
 /// Maybe refactor to ScoreManager ??
 /// Manages score and gameover but not the scoreboard.
+/// I'm choosing to have the player lives here because otherwise we also have to give
+/// the player to the scoreHUD and aslo the lives and score and related together.
 /// </summary>
 class Score {
 public:

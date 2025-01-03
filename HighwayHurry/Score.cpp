@@ -15,7 +15,8 @@ void Score::damage(const int amount) {
 
 void Score::addScore(const int amount) {
 	if (amount <= 0) { return; }
-	
+	if (checkGameOver()) { return; }
+
 	score += amount;
 }
 

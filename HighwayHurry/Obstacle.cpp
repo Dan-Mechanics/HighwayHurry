@@ -83,13 +83,13 @@ void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.multiply(-1);
+		steerForce.invert();
 	}
 
 	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
 		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.multiply(-1);
+		steerForce.invert();
 	}
 
 	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {

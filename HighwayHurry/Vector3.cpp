@@ -30,14 +30,11 @@ Vector3& Vector3::operator-=(const Vector3& container) {
 	return *this;
 }
 
-/// <summary>
-/// Does this need to be reference to float ? or just float will do ?
-/// </summary>
-Vector3 Vector3::operator*=(const float scalar) const {
+Vector3 Vector3::operator*(const float scalar) const {
 	return Vector3(xComponent * scalar, yComponent * scalar, zComponent * scalar);
 }
 
-Vector3& Vector3::operator*(const float scalar) {
+Vector3& Vector3::operator*=(const float scalar) {
 	multiply(scalar);
 
 	return *this;
@@ -100,6 +97,13 @@ void Vector3::divide(const float amount) {
 	xComponent /= amount;
 	yComponent /= amount;
 	zComponent /= amount;
+}
+
+/// <summary>
+/// Flip vector.
+/// </summary>
+void Vector3::invert() {
+	multiply(-1);
 }
 
 /// <summary>
