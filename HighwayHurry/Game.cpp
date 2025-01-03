@@ -39,19 +39,13 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
 
-    // https://www.youtube.com/watch?v=a4P4ial8OgQ
-    for (int i = 0; i < sizeof(obstacleSprites) / sizeof(sf::Sprite); i++) {
-        applyGlobalScale(obstacleSprites[i]);
+    for (int i = 0; i < count; i++) {
+        //obstacles.emplace_back(160, 160, score);
+        obstacles[i] = { 160, 160, score };
     }
 
     player = { 160, 160 };
     environment = { 1920, 2160 };
-
-    obstacleCount = sizeof(obstacles) / sizeof(Obstacle);
-
-    for (auto i = 0; i < obstacleCount; i++) {
-        obstacles[i] = { 160, 160, score };
-    }
 
     refresh(score, time);
 }
@@ -66,7 +60,7 @@ void Game::refresh(Score& score, Time& time) {
     score.reset();
     time.reset();
 
-    for (int i = 0; i < obstacleCount; i++) {
+    for (int i = 0; i < count; i++) {
         obstacles[i].reset();
     }
 }
@@ -77,11 +71,14 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
     // Similar to FixedUpdate().
     // This returns the amount of ticks we have to process
     // in order to be independant of framerate.
-    for (int i = 0; i < time.processFrame(); i++) {
+    int fixedTicks = time.processFrame();
+
+    for (int i = 0; i < fixedTicks; i++) {
         environment.move(time);
         player.move(time);
 
-        for (int j = 0; j < obstacleCount; j++) {
+        for (int j = 0; j < count; j++) {
+            if (j == 0) { print(obstacles[j].getPosition().yComponent); }
             obstacles[j].move(time);
             obstacles[j].constrain(time, score);
 
@@ -95,7 +92,7 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
 
     environment.draw(window, backgroundSprite);
 
-    for (int i = 0; i < obstacleCount; i++) {
+    for (int i = 0; i < count; i++) {
         obstacles[i].draw(window, obstacleSprites[obstacles[i].getSpriteIndex()]);
     }
 

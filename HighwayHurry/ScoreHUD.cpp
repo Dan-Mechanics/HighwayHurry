@@ -1,5 +1,7 @@
 #include "ScoreHUD.h"
 #include "Utils.h"
+#include <iostream>
+#include <sstream>
 
 ScoreHUD::ScoreHUD() = default;
 
@@ -15,43 +17,33 @@ void ScoreHUD::draw(sf::RenderWindow& window, const Score& score) {
     window.draw(gameText);
 }
 
-/// <summary>
-/// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder :
-/// "The C++ way would be to use std::stringstream or just plain string concatenations. C++ strings are mutable so the performance considerations of concatenation are less of a concern."
-/// https://www.geeksforgeeks.org/stringstream-c-applications/
-/// </summary>
 sf::String ScoreHUD::getGameString(const Score& score) const {
+    std::stringstream result;
 
-    // we do this because this fucntion is const.
-    // maybe pre-alocate this ?
-    sf::String result;
-    result.clear();
+    result << std::to_string(score.getScore());
+    result << " | ";
+    result << "( ";
+    result << std::to_string(score.getLives());
+    result << " / ";
+    result << std::to_string(score.getMaxLives());
+    result << " )";
+    result << " | ";
+    result << std::to_string(score.getTime());
 
-    result += std::to_string(score.getScore());
-    result += " | ";
-    result += "( ";
-    result += std::to_string(score.getLives());
-    result += " / ";
-    result += std::to_string(score.getMaxLives());
-    result += " )";
-    result += " | ";
-    result += std::to_string(score.getTime());
-
-    return result;  
+    return result.str();
 }
 
 /// <summary>
 /// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder
 /// </summary>
 sf::String ScoreHUD::getMenuString(const Score& score) const {
-    sf::String result;
-    result.clear();
+    std::stringstream result;
 
-    result += "SCORE : ";
-    result += std::to_string(score.getScore());
-    result += " | ";
-    result += "TIME : ";
-    result += std::to_string(score.getTime());
+    result << "SCORE : ";
+    result << std::to_string(score.getScore());
+    result << " | ";
+    result << "TIME : ";
+    result << std::to_string(score.getTime());
 
-    return result;
+    return result.str();
 }
