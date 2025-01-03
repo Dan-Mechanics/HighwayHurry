@@ -1,5 +1,9 @@
 #pragma once
 
+/// <summary>
+/// TODO: fix operators
+/// and add assigment operator. assignment should be valeu type not reference
+/// </summary>
 struct Vector3 {
 public: // Technically speaking, this doesnt have to be here since classes are default public.
 	float xComponent{};
@@ -13,7 +17,9 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 	Vector3();
 	Vector3(const float x, const float y, const float z);
 
-	Vector3 operator+(const Vector3& container) const;
+	//Vector3& operator=(const Vector3& container);
+
+	/*Vector3 operator+(const Vector3& container) const;
 	Vector3& operator+=(const Vector3& container);
 
 	Vector3 operator-(const Vector3& container) const;
@@ -21,7 +27,7 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 
 	
 	Vector3 operator*(const float scalar) const;
-	Vector3& operator*=(const float scalar);
+	Vector3& operator*=(const float scalar);*/
 
 	void setAll(const float x, const float y, const float z);
 	void logComponents() const;

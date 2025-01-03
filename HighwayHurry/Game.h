@@ -23,12 +23,13 @@ public:
 
 	// why does this need to be public again ?
 	sf::Sprite obstacleSprites[3]{};
-	std::vector<Obstacle> obstacles{};
-
+	//std::vector<Obstacle> obstacles{};
+	Obstacle obstacles[1]{};
 private:
 	Player player{};
 	Environment environment{};
 
+	int count = 1;
 	sf::Sprite backgroundSprite{};
 	sf::Sprite playerSprite{};
 };
