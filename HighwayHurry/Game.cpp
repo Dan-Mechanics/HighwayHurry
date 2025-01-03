@@ -45,7 +45,7 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     //obstacles = Obstacle[10];
 
-    count = 1;
+    count = sizeof(obstacles) / sizeof(Obstacle);
 
     for (int i = 0; i < count; i++) {
         //obstacles.emplace_back(160, 160, score);

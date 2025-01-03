@@ -65,7 +65,7 @@ void Obstacle::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
 void Obstacle::move(const Time& time) {
 	rigidbody.velocity.yComponent -= PLAYER_FORWARD_SPEED;
 	
-	//rigidbody.addForce(driveForce);
+	rigidbody.addForce(driveForce);
 	rigidbody.addForce(steerForce);
 
 	//// here is the problem ?
@@ -77,18 +77,14 @@ void Obstacle::move(const Time& time) {
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
 	rigidbody.addForce(dragForce);
 
-	rigidbody.velocity.yComponent = -1200;
+	//rigidbody.velocity.yComponent = -1200;
 
 	// Because the motion is relative to the player because the player is "stationary."
 	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
 
-	print("vel " + std::to_string(rigidbody.velocity.yComponent));
-
 	rigidbody.process(time);
 
 	print(rigidbody.position.yComponent);
-	
-	//rigidbody.position = { SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f, 0 };
 }
 
 /// <summary>
