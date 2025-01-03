@@ -19,7 +19,7 @@ public:
 		const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow);
 
 	void refresh(Score& score, Time& time);
-	FrameResult draw(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard);
+	FrameResult draw(sf::RenderWindow& window, Score& score, Time& time, ScoreHUD& scoreboard);
 
 	sf::Sprite obstacleSprites[3]{};
 

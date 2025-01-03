@@ -35,7 +35,7 @@ int main() {
 
     Time time{ TIMESTEP };
     Score score{ };
-    Scoreboard scoreBoard{ font };
+    ScoreHUD scoreBoard{ font };
 
     //////////////////////////////////////////////////////
 

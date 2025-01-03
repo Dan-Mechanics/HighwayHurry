@@ -1,27 +1,27 @@
-#include "Scoreboard.h"
+#include "ScoreHUD.h"
 #include "Utils.h"
 
-Scoreboard::Scoreboard() = default;
+ScoreHUD::ScoreHUD() = default;
 
-Scoreboard::Scoreboard(const sf::Font& font) {
-    applyTextBranding(text, font);
+ScoreHUD::ScoreHUD(const sf::Font& font) {
+    applyTextBranding(gameText, font);
 
-    text.setPosition(15, -40);
+    gameText.setPosition(15, -40);
 }
 
-void Scoreboard::draw(sf::RenderWindow& window, const Score& score) {
-    menuString = getGameString(score);
+void ScoreHUD::draw(sf::RenderWindow& window, const Score& score) {
+    //menuString = getGameString(score);
     
-    text.setString(menuString);
+    gameText.setString(getGameString(score));
 
-    window.draw(text);
+    window.draw(gameText);
 }
 
 /// <summary>
 /// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder :
 /// "The C++ way would be to use std::stringstream or just plain string concatenations. C++ strings are mutable so the performance considerations of concatenation are less of a concern."
 /// </summary>
-sf::String Scoreboard::getGameString(const Score& score) const {
+sf::String ScoreHUD::getGameString(const Score& score) const {
 
     // we do this because this fucntion is const.
     // maybe pre-alocate this ?
@@ -44,7 +44,7 @@ sf::String Scoreboard::getGameString(const Score& score) const {
 /// <summary>
 /// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder
 /// </summary>
-sf::String Scoreboard::getMenuString(const Score& score) const {
+sf::String ScoreHUD::getMenuString(const Score& score) const {
     sf::String result;
     result.clear();
 

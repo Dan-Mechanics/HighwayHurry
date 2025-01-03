@@ -69,7 +69,7 @@ void Game::refresh(Score& score, Time& time) {
     }
 }
 
-FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Scoreboard& scoreboard) {
+FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, ScoreHUD& scoreboard) {
     auto frameResult = FrameResult::NEXT_FRAME;
     
     // Similar to FixedUpdate().

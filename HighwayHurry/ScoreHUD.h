@@ -4,18 +4,18 @@
 #include "Score.h"
 #include <iostream>
 
-class Scoreboard {
+class ScoreHUD {
 public:
-	Scoreboard();
-	Scoreboard(const sf::Font& font);
+	ScoreHUD();
+	ScoreHUD(const sf::Font& font);
 
 	void draw(sf::RenderWindow& window, const Score& score);
 	sf::String getGameString(const Score& score) const;
 	sf::String getMenuString(const Score& score) const;
 
 private:
-	sf::Text text{};
+	sf::Text gameText{};
 
-	sf::String gameString{};
-	sf::String menuString{};
+	/*sf::String gameString{};
+	sf::String menuString{};*/
 };

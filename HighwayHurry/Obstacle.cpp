@@ -93,7 +93,7 @@ void Obstacle::constrain(const Time& time, Score& score) {
 	}
 
 	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {
-		reset(time);
+		reset();
 		score.addScore(1);
 		// if we get here that means we did not hit this car.
 	}

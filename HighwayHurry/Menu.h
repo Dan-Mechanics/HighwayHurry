@@ -6,13 +6,14 @@
 #include "Score.h"
 #include "Button.h"
 #include "Scoreboard.h"
+#include "Utils.h"
 
 class Menu {
 public:
 	Menu();
 	Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture);
 
-	void refresh(const Score& score, const Scoreboard& scoreboard, const sf::Font& font);
+	void refresh(const Score& score, const ScoreHUD& scoreboard, const sf::Font& font);
 	FrameResult draw(sf::RenderWindow& window);
 
 private:
