@@ -88,7 +88,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 
 	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag) {
 		counterMovement = rigidbody.velocity;
-		counterMovement.multiply(-1);
+		counterMovement.invert();
 	}
 
 	// Convert to force because forces.
@@ -97,7 +97,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 }
 
 void Player::checkCollisionWithObstacle(Obstacle& obstacle, Score& score) const {
-	bool hit = checkCircleIntersection(rigidbody.position, obstacle.getPosition(),
+	bool hit = checkCircleTouch(rigidbody.position, obstacle.getPosition(),
 		collisionLeniancy * sizeX / 2, collisionLeniancy * obstacle.getSizeX() / 2);
 	
 	if (hit) { 

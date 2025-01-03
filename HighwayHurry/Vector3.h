@@ -30,7 +30,7 @@ public: // Technically speaking, this doesnt have to be here since classes are d
 	void remove(const Vector3 vec);
 	void multiply(const float scalar);
 	void divide(const float scalar);
-	//void invert();
+	void invert();
 	float calculateMagnitude();
 	void normalize();
 	void clampMagnitude(const float magnitude);

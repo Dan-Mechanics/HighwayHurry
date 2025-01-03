@@ -20,7 +20,6 @@ Obstacle::Obstacle(const int sizeX, const int sizeY, Score& score) :
 
 	rigidbody = { 1, maxX, maxY, minX, minY };
 
-	// Speed the obstacle up to the speed of the player.
 	rigidbody.addVelocity(Vector3{ 0, -PLAYER_FORWARD_SPEED * 2.5f, 0 });
 }
 
@@ -84,13 +83,13 @@ void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.multiply(-1);
+		steerForce.invert();
 	}
 
 	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
 		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.multiply(-1);
+		steerForce.invert();
 	}
 
 	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {

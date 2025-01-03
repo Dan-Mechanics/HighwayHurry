@@ -102,9 +102,9 @@ void Vector3::divide(const float amount) {
 /// <summary>
 /// Flip vector.
 /// </summary>
-//void Vector3::invert() {
-//	multiply(-1.f);
-//}
+void Vector3::invert() {
+	multiply(-1);
+}
 
 /// <summary>
 /// Get length.
