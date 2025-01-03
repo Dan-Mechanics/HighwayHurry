@@ -80,6 +80,7 @@ void Obstacle::move(const Time& time) {
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
 	rigidbody.addForce(dragForce);
 
+	// Because it's relative to the player's speed.
 	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
 
 	rigidbody.process(time);
