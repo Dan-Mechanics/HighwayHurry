@@ -13,7 +13,7 @@ public:
 	Menu();
 	Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture);
 
-	void refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font& font);
+	void refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font& font, sf::RenderWindow& window);
 	FrameResult draw(sf::RenderWindow& window);
 
 private:

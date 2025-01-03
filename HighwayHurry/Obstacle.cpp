@@ -31,6 +31,9 @@ void Obstacle::reset() {
 	spriteIndex = randomInclusive(0, 2);
 	rigidbody.setMass(getMassFromSpriteIndex(spriteIndex));
 
+	// because larger cars have more air resistance.
+	airDrag = 0.005f * rigidbody.getMass();
+
 	rigidbody.velocity.xComponent = 0;
 
 	rigidbody.position.setAll (
@@ -68,23 +71,18 @@ void Obstacle::move(const Time& time) {
 	rigidbody.addForce(driveForce);
 	rigidbody.addForce(steerForce);
 
-	//// here is the problem ?
 	Vector3 dragForce;
 	dragForce.setAll(rigidbody.velocity.xComponent, rigidbody.velocity.yComponent, rigidbody.velocity.zComponent);
 	dragForce.invert();
 	dragForce.multiply(rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
 
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
+	//rigidbody.addAcceleraton(dragForce);
 	rigidbody.addForce(dragForce);
 
-	//rigidbody.velocity.yComponent = -1200;
-
-	// Because the motion is relative to the player because the player is "stationary."
 	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
 
 	rigidbody.process(time);
-
-	print(rigidbody.position.yComponent);
 }
 
 /// <summary>
@@ -112,4 +110,5 @@ void Obstacle::constrain(const Time& time, Score& score) {
 
 float Obstacle::getMassFromSpriteIndex(int spriteIndex) const {
 	return spriteIndex * -0.19f + 1.45f;
+	//return spriteIndex * -0.3f + 1.45f;
 }

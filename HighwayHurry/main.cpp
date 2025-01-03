@@ -24,6 +24,7 @@ int main() {
         sf::Style::Fullscreen };
 
     window.setFramerateLimit(FPS_CAP);
+    window.setMouseCursorVisible(true);
 
     //////////////////////////////////////////////////////
 
@@ -119,10 +120,10 @@ int main() {
 
                 // depending on the new scene, we refresh it.
                 if (currentScene == Scene::MENU_SCENE) {
-                    menu.refresh(score, scoreHUD, font);
+                    menu.refresh(score, scoreHUD, font, window);
                 }
                 else {
-                    game.refresh(score, time);
+                    game.refresh(score, time, window);
                 }
 
                 break;

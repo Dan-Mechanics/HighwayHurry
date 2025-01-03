@@ -22,13 +22,14 @@ private:
 	float getMassFromSpriteIndex(int spriteIndex) const;
 
 	float airDrag = 0.005f;
-	float driveForceVariance = 500;
-	float steerForceVariance = 2000;
+	float driveForceVariance = 800;
+	//float driveForceVariance = 0;
+	float steerForceVariance = 3000;
 	int highestSpawnPoint = -3240;
 	int spriteIndex{};
 	Rigidbody rigidbody{};
 
 	Vector3 steerForce{};
-	Vector3 driveForce{0, -10000, 0};
+	Vector3 driveForce{0, -23500, 0};
 	sf::Color color = sf::Color::White;
 };

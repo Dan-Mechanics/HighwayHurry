@@ -54,13 +54,14 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     player = { 160, 160 };
     environment = { 1920, 2160 };
-
-    refresh(score, time);
 }
 
-void Game::refresh(Score& score, Time& time) {
+void Game::refresh(Score& score, Time& time, sf::RenderWindow& window) {
     print("Refresh @ game.");
     
+    window.setMouseCursorVisible(false);
+
+
     // Do this so that the random is different each time.
     srand(std::time(NULL));
 

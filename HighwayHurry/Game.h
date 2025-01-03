@@ -18,7 +18,7 @@ public:
 	Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::Texture& playerTexture,
 		const sf::Texture& fast, const sf::Texture& mid, const sf::Texture& slow);
 
-	void refresh(Score& score, Time& time);
+	void refresh(Score& score, Time& time, sf::RenderWindow& window);
 	FrameResult draw(sf::RenderWindow& window, Score& score, Time& time, ScoreHUD& scoreboard);
 
 	// why does this need to be public again ?

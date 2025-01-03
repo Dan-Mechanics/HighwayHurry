@@ -54,9 +54,11 @@ Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf:
 /// Make the changes required for the second menu version.
 /// Don't repeat if already second.
 /// </summary>
-void Menu::refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font& font) {
+void Menu::refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font& font, sf::RenderWindow& window) {
     print("Refresh @ menu.");
     
+    window.setMouseCursorVisible(true);
+
     scoreText.setString(scoreHUD.getMenuString(score));
     
     // We don't have to do this again.
