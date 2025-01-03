@@ -88,7 +88,9 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 
 	if (velMag != 0 && counterMovement.calculateMagnitude() > velMag) {
 		counterMovement = rigidbody.velocity;
-		counterMovement.multiply(-1);
+
+		// Invert velocity.
+		counterMovement.invert();
 	}
 
 	// Convert to force because forces.

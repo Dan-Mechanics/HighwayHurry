@@ -68,13 +68,19 @@ void Obstacle::move(const Time& time) {
 	rigidbody.addForce(driveForce);
 	rigidbody.addForce(steerForce);
 
+	// here is the problem ?
+	Vector3 dragForce = rigidbody.velocity;
+	dragForce.multiply(rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
+
 	// https://www1.grc.nasa.gov/wp-content/uploads/drageq.gif
-	rigidbody.addForce(rigidbody.velocity * rigidbody.velocity.calculateMagnitude() * 0.5f * airDrag);
+	rigidbody.addForce(dragForce);
 
 	// Because the motion is relative to the player because the player is "stationary."
 	rigidbody.velocity.yComponent += PLAYER_FORWARD_SPEED;
 
 	rigidbody.process(time);
+
+	print(rigidbody.position.yComponent);
 }
 
 /// <summary>
@@ -84,13 +90,13 @@ void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.multiply(-1);
+		steerForce.invert(); // or maybe we give a force to do this ?
 	}
 
 	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
 		rigidbody.position.xComponent = rigidbody.getMaxX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.multiply(-1);
+		steerForce.invert();
 	}
 
 	if (rigidbody.position.yComponent > rigidbody.getMaxY()) {

@@ -8,7 +8,7 @@
 
 // more auto ?
 // check all method and fucntion names for capitalization --> clang tidy?
-// note to self: all summaries should be in header
+// note to self: all summaries should be in header --> TODO
 // aslo maybe add audio ??? --> could be cool.
 // consistent commenting convention with capitals etc.
 

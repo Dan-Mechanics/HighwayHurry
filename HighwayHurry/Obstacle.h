@@ -24,7 +24,7 @@ private:
 	float airDrag = 0.00002f;
 	float driveForceVariance = 500;
 	float steerForceVariance = 40000;
-	int highestSpawnPoint = -1080 * 3;
+	int highestSpawnPoint = -3240;
 	int spriteIndex{};
 	Rigidbody rigidbody{};
 
