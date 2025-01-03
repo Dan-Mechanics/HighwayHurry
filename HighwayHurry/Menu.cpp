@@ -78,7 +78,7 @@ void Menu::refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font&
 }
 
 FrameResult Menu::draw(sf::RenderWindow& window) {
-    auto result = FrameResult::NEXT_FRAME;
+    auto frameResult = FrameResult::NEXT_FRAME;
     
     window.draw(backgroundSprite);
 
@@ -90,19 +90,19 @@ FrameResult Menu::draw(sf::RenderWindow& window) {
         quitButton.draw(window, quitButtonSprite);
 
         if (quitButton.getIsClicked()) {
-            result = FrameResult::CLOSE_GAME;
+            frameResult = FrameResult::CLOSE_GAME;
         }
     }
 
     window.draw(titleText);
 
     if (playButton.getIsClicked() || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::P)) {
-        result = FrameResult::NEXT_SCENE;
+        frameResult = FrameResult::NEXT_SCENE;
     }
 
     if (firstMenuOpen) { 
         window.draw(debugInstructions);
     }
 
-    return result;
+    return frameResult;
 }
