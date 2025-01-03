@@ -13,7 +13,7 @@
 // consistent commenting convention with capitals etc.
 
 int main() {
-    print(TITLE);
+    print(makeUppercase(TITLE));
 
     const auto FPS_CAP = 320;
     const auto TIMESTEP = 64;

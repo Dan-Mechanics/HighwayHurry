@@ -20,7 +20,7 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
  const sf::Texture& fast,
     const sf::Texture& mid, const sf::Texture& slow) {
 
-    print("Opening game.");
+    print("Constructing game.");
 
     playerSprite.setTexture(playerTexture);
     backgroundSprite.setTexture(backgroundTexture);
@@ -46,7 +46,6 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
     // Now we can dynamically add and remove enemies if we wanted to.
     for (int i = 0; i < 10; i++) {
         obstacles.emplace_back(160, 160, score);
-        // obstacles[i] = { 160, 160, score };
     }
 
     player = { 160, 160 };
@@ -56,8 +55,8 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 void Game::refresh(Score& score, Time& time, sf::RenderWindow& window) {
     print("Refresh @ game.");
     
+    // https://en.sfml-dev.org/forums/index.php?topic=16298.msg116988#msg116988
     window.setMouseCursorVisible(false);
-
 
     // Do this so that the random is different each time.
     srand(std::time(NULL));
@@ -98,6 +97,7 @@ FrameResult Game::draw(sf::RenderWindow& window, Score& score, Time& time, Score
     environment.draw(window, backgroundSprite);
 
     for (int i = 0; i < obstacles.size(); i++) {
+        // Loop over obstacles and give them their sprite.
         obstacles[i].draw(window, obstacleSprites[obstacles[i].getSpriteIndex()]);
     }
 

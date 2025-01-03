@@ -11,7 +11,7 @@ const sf::Color BUTTON_HOVERING_COLOR = { 98, 106, 120 };
 Menu::Menu() = default;
 
 Menu::Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture) {  
-    print("Opening menu.");
+    print("Constructing menu.");
     
     firstMenuOpen = true;
     
