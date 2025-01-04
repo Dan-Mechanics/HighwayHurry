@@ -12,6 +12,11 @@
 // aslo maybe add audio ??? --> could be cool.
 // consistent commenting convention with capitals etc.
 
+//
+
+// do we want to make it so that the player also has forward drag meme or what ?
+// check gitiginore for old names.
+
 int main() {
     print(makeUppercase(TITLE));
 
