@@ -2,9 +2,6 @@
 
 Score::Score() = default;
 
-/// <summary>
-/// Deal damage to player, which will eventually end game.
-/// </summary>
 void Score::damage(const int amount) {
 	lives -= amount;
 

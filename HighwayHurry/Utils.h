@@ -28,6 +28,13 @@ void centerText(sf::Text& text, const float x, const float y);
 /// </summary>
 void centerText(sf::Text& text);
 
+/// <summary>
+/// https://www.sfml-dev.org/tutorials/2.6/graphics-text.php
+/// https://www.dafont.com/gamer-2.font?text=hEllLo+this+is+ScoreSCORE+%3A+100
+/// </summary>
 void applyTextBranding(sf::Text& text, const sf::Font& font);
 
+/// <summary>
+/// https://stackoverflow.com/questions/735204/convert-a-string-in-c-to-upper-case
+/// </summary>
 sf::String makeUppercase(sf::String str);

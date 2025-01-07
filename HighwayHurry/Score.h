@@ -11,6 +11,9 @@ class Score {
 public:
 	Score();
 
+	/// <summary>
+	/// Deal damage to player, which will eventually end game.
+	/// </summary>
 	void damage(const int amount);
 	void addScore(const int amount);
 

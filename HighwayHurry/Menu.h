@@ -13,7 +13,12 @@ public:
 	Menu();
 	Menu(const sf::Font& font, const sf::Texture& backgroundTexture, const sf::Texture& buttonTexture);
 
+	/// <summary>
+	/// Make the changes required for the second menu version.
+	/// Don't repeat if already second.
+	/// </summary>
 	void refresh(const Score& score, const ScoreHUD& scoreHUD, const sf::Font& font, sf::RenderWindow& window);
+
 	FrameResult draw(sf::RenderWindow& window);
 
 private:

@@ -40,18 +40,12 @@ Vector3& Vector3::operator*=(const float scalar) {
 	return *this;
 }
 
-/// <summary>
-/// Alloc-free.
-/// </summary>
 void Vector3::setAll(const float x, const float y, const float z) {
 	xComponent = x;
 	yComponent = y;
 	zComponent = z;
 }
 
-/// <summary>
-/// Print components.
-/// </summary>
 void Vector3::logComponents() const {
 	std::cout <<
 		"( x : " << xComponent <<
@@ -66,9 +60,6 @@ void Vector3::add(const Vector3 pos) {
 	zComponent += pos.zComponent;
 }
 
-/// <summary>
-/// Multiply the components before adding them.
-/// </summary>
 void Vector3::add(const Vector3& other, const float mult) {
 	xComponent += other.xComponent * mult;
 	yComponent += other.yComponent * mult;
@@ -99,27 +90,15 @@ void Vector3::divide(const float amount) {
 	zComponent /= amount;
 }
 
-/// <summary>
-/// Flip vector.
-/// </summary>
 void Vector3::invert() {
 	multiply(-1);
 }
 
-/// <summary>
-/// Get length.
-/// </summary>
 float Vector3::calculateMagnitude() {
 	return powf(powf(xComponent, 2) + powf(yComponent, 2) + powf(zComponent, 2), 0.5f);
 }
 
-/// <summary>
-/// Make the length 1.
-/// </summary>
 void Vector3::normalize()  {
-	/*clampMagnitude(1);
-	return;*/
-	
 	float mag = calculateMagnitude();
 
 	// -1 magnitude is not possible,
@@ -134,9 +113,6 @@ void Vector3::normalize()  {
 	multiply(1 / mag);
 }
 
-/// <summary>
-/// Limit the length of the vector.
-/// </summary>
 void Vector3::clampMagnitude(const float magnitude) {
 	float mag = calculateMagnitude();
 
@@ -148,9 +124,6 @@ void Vector3::clampMagnitude(const float magnitude) {
 	multiply(magnitude / mag);
 }
 
-/// <summary>
-/// https://discussions.unity.com/t/using-mathf-round-for-a-vector3/88858
-/// </summary>
 void Vector3::round(const float grid) {
 	if (grid == 0) {
 		print("Cannot divide by zero!!");
@@ -170,14 +143,10 @@ float Vector3::calcDotProduct(const Vector3& other) const {
 		zComponent * other.zComponent;
 }
 
-// todo: refernces const const, physics les, komende weken aan de gang practicum,
-// implementeer formjles.
-// matrixes is optimzaiton.
-// fix pi and degs
 float Vector3::calcNormalizedDotProduct(Vector3 b) const {
 	b.normalize();
 
-	Vector3 a = Vector3(*this); // how could this not exist ??
+	Vector3 a = Vector3(*this);
 	a.normalize();
 
 	return
@@ -194,13 +163,11 @@ Vector3 Vector3::cross(const Vector3& other) const {
 	};
 }
 
-
 float Vector3::getAngle() const {
-	// convert to degrees and not PI ??
 	return toDegrees(atan2f(yComponent, xComponent));
 }
 
-void Vector3::setWithAngleAndLength(float angle, const float length) {
+void Vector3::setAngleAndLength(const float angle, const const float length) {
 	angle = toRadians(angle);
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
 }

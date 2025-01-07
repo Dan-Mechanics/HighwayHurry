@@ -33,9 +33,6 @@ sf::String ScoreHUD::getGameString(const Score& score) const {
     return result.str();
 }
 
-/// <summary>
-/// https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder
-/// </summary>
 sf::String ScoreHUD::getMenuString(const Score& score) const {
     std::stringstream result;
 

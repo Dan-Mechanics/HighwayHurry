@@ -15,7 +15,7 @@
 //
 
 // do we want to make it so that the player also has forward drag meme or what ?
-// check gitiginore for old names.
+// check gitiginore for old names. V
 
 int main() {
     print(makeUppercase(TITLE));

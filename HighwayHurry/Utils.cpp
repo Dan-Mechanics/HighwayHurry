@@ -50,10 +50,6 @@ void centerText(sf::Text& text) {
 	centerText(text, SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
 }
 
-/// <summary>
-/// https://www.sfml-dev.org/tutorials/2.6/graphics-text.php
-/// https://www.dafont.com/gamer-2.font?text=hEllLo+this+is+ScoreSCORE+%3A+100
-/// </summary>
 void applyTextBranding(sf::Text& text, const sf::Font& font) {
 	text.setFont(font);
 	text.setCharacterSize(80); 
@@ -61,9 +57,6 @@ void applyTextBranding(sf::Text& text, const sf::Font& font) {
 	text.setStyle(sf::Text::Bold);
 }
 
-/// <summary>
-/// https://stackoverflow.com/questions/735204/convert-a-string-in-c-to-upper-case
-/// </summary>
 sf::String makeUppercase(sf::String str) {
 	for (auto& c : str) c = toupper(c);
 

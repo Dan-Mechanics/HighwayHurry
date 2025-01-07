@@ -10,9 +10,6 @@ int roundToInt(const float f) {
 	return round(f);
 }
 
-/// <summary>
-/// https://stackoverflow.com/questions/40776703/converting-from-radians-to-degrees
-/// </summary>
 float toDegrees(const float rad) {
 	return rad * RAD2DEG;
 }
@@ -29,9 +26,6 @@ bool checkCircleIntersection(const Vector3& a, const Vector3& b, const float aR,
 	return distance(a, b) <= aR + bR;
 }
 
-/// <summary>
-/// https://stackoverflow.com/questions/12657962/how-do-i-generate-a-random-number-between-two-variables-that-i-have-stored
-/// </summary>
 int randomInclusive(const int min, const int max) {
 	return rand() % (max - min + 1) + min;
 }
