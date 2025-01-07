@@ -6,10 +6,6 @@
 
 extern const float PLAYER_FORWARD_SPEED;
 
-/// <summary>
-/// MAYBE: does the player need to have forward drag like the obstacles do ?
-/// and also forward speed then ?
-/// </summary>
 class Player : public Entity {
 public:
 	Player();
