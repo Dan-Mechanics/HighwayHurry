@@ -136,33 +136,6 @@ void Vector3::round(const float grid) {
 	zComponent = roundf(zComponent / grid) * grid;
 }
 
-float Vector3::calcDotProduct(const Vector3& other) const {
-	return
-		xComponent * other.xComponent +
-		yComponent * other.yComponent +
-		zComponent * other.zComponent;
-}
-
-float Vector3::calcNormalizedDotProduct(Vector3 b) const {
-	b.normalize();
-
-	Vector3 a = Vector3(*this);
-	a.normalize();
-
-	return
-		a.xComponent * b.xComponent +
-		a.yComponent * b.yComponent +
-		a.zComponent * b.zComponent;
-}
-
-Vector3 Vector3::cross(const Vector3& other) const {
-	return {
-		yComponent * other.zComponent + zComponent * other.yComponent,
-		zComponent * other.xComponent + xComponent * other.zComponent,
-		xComponent * other.yComponent + yComponent * other.xComponent
-	};
-}
-
 float Vector3::getAngle() const {
 	return toDegrees(atan2f(yComponent, xComponent));
 }
@@ -170,8 +143,4 @@ float Vector3::getAngle() const {
 void Vector3::setAngleAndLength(float angle, const const float length) {
 	angle = toRadians(angle);
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
-}
-
-float Vector3::calculateDistanceTo(const Vector3& other) const {
-	return distance(*this, other);
 }
