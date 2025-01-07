@@ -12,8 +12,6 @@
 // aslo maybe add audio ??? --> could be cool.
 // consistent commenting convention with capitals etc.
 
-//
-
 // do we want to make it so that the player also has forward drag meme or what ?
 // check gitiginore for old names. V
 
@@ -23,6 +21,9 @@
 
 // maybe i redo my video because the documentation is about the documentation and not the fucking comments
 // u dunce.
+
+// maybe try to add some particle or like cool effect feedback when you hit a yeet.
+// maybe add some tutorial text or a little background animation on the main menu or something.
 
 int main() {
     print(makeUppercase(TITLE));
