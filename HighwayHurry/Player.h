@@ -14,7 +14,7 @@ public:
 	void reset();
 	void checkCollisionWithObstacle(Obstacle& obstacle, Score& score) const;
 
-	// Inherited via Car.
+	// Inherited via Entity.
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
 	virtual void move(const Time& time) override;
 
