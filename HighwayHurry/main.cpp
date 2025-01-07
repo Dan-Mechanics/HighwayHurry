@@ -26,7 +26,7 @@
 // maybe add some tutorial text or a little background animation on the main menu or something.
 
 int main() {
-    print(makeUppercase(TITLE));
+    print(TITLE);
 
     const auto FPS_CAP = 320;
     const auto TIMESTEP = 64;
