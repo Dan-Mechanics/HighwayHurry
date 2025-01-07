@@ -15,6 +15,11 @@ public:
 	void addForce(const Vector3 force);
 	void resetAll();
 
+	/// <summary>
+	/// Move the force into accel,
+	/// accel into vel,
+	/// vel into pos.
+	/// </summary>
 	void process(const Time& time);
 	void limitVelocity(const float magnitude);
 	void stopInPlace();
