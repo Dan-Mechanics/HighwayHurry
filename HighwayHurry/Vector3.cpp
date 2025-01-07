@@ -167,7 +167,7 @@ float Vector3::getAngle() const {
 	return toDegrees(atan2f(yComponent, xComponent));
 }
 
-void Vector3::setAngleAndLength(const float angle, const const float length) {
+void Vector3::setAngleAndLength(float angle, const const float length) {
 	angle = toRadians(angle);
 	setAll(cosf(angle) * length, sinf(angle) * length, 0);
 }
