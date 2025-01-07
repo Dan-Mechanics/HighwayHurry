@@ -7,8 +7,6 @@
 
 const float PLAYER_FORWARD_SPEED = 3500;
 
-// IDEA: you can maybe get more score points in the middle of the road because its more dangerous there ?
-
 Player::Player() = default;
 
 Player::Player(const int sizeX, const int sizeY) : Entity{ sizeX, sizeY } {
@@ -57,8 +55,9 @@ void Player::move(const Time& time) {
 		rigidbody.velocity.xComponent = 0;
 	}
 
-	// Technically, these aren't necessary but they're here just in case / for future.
-	// I could add a bool for that.
+	// Technically, these aren't necessary
+	// but it's also not allowed so that's
+	// why it's here.
 
 	if (rigidbody.position.yComponent < rigidbody.getMinY()) {
 		rigidbody.position.yComponent = rigidbody.getMinY();
@@ -71,9 +70,6 @@ void Player::move(const Time& time) {
 	}
 }
 
-/// <summary>
-/// Aka doFriction()
-/// </summary>
 void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	// Because we want to resist the velocity.
 	Vector3 counterMovement = rigidbody.velocity;
@@ -81,7 +77,7 @@ void Player::doCounterMovement(float fixedInterval, Vector3 movement) {
 	counterMovement.normalize();
 	counterMovement.remove(movement);
 
-	// Invert, scale, etc.
+	// Invert, scale.
 	counterMovement.multiply(-1 * movementForceScalar * counterMovementMult * fixedInterval);
 
 	float velMag = rigidbody.velocity.calculateMagnitude();
@@ -108,11 +104,6 @@ void Player::checkCollisionWithObstacle(Obstacle& obstacle, Score& score) const 
 	}
 }
 
-/// <summary>
-/// Questionable if we wanna make a "new" ( not really ) Vector3 here.
-/// We only take A and D keys or arrows so the player can only
-/// move left to right.
-/// </summary>
 Vector3 Player::calculateMovement() const {
 	Vector3 movement { };
 	

@@ -26,6 +26,8 @@ private:
 	Environment environment{};
 
 	sf::Sprite obstacleSprites[3]{};
+
+	int obstacleCount = 10;
 	std::vector<Obstacle> obstacles{};
 
 	sf::Sprite backgroundSprite{};

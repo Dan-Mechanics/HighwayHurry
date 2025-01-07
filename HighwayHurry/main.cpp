@@ -17,6 +17,13 @@
 // do we want to make it so that the player also has forward drag meme or what ?
 // check gitiginore for old names. V
 
+// we need to add all the fricking art assets to the 
+// exe FOLDER. in the folder need to be all the stuff.
+// including the dll.
+
+// maybe i redo my video because the documentation is about the documentation and not the fucking comments
+// u dunce.
+
 int main() {
     print(makeUppercase(TITLE));
 
@@ -134,6 +141,7 @@ int main() {
                 break;
             case FrameResult::CLOSE_GAME:
                 quit = true;
+
                 break;
             default:
                 break;

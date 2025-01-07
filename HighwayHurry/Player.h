@@ -25,6 +25,15 @@ private:
 	float collisionLeniancy = 0.75f;
 	Rigidbody rigidbody{};
 
+	/// <summary>
+	/// Questionable if we wanna make a "new" ( not really ) Vector3 here.
+	/// We only take A and D keys or arrows so the player can only
+	/// move left to right.
+	/// </summary>
 	Vector3 calculateMovement() const;
+
+	/// <summary>
+	/// Does "friction" for the player.
+	/// </summary>
 	void doCounterMovement(float fixedInterval, Vector3 movement);
 };

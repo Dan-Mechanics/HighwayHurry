@@ -33,8 +33,8 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
 
     backgroundTexture.setRepeated(true);
 
-    // POSSIBLE: smooth texture.
-    // But I think it looks beter pixelated.
+    // POSSIBLE: smoothe texture.
+    // But I think it looks better pixelated.
 
     applyGlobalScale(playerSprite);
     applyGlobalScale(backgroundSprite);
@@ -43,8 +43,8 @@ Game::Game(Score& score, Time& time, sf::Texture& backgroundTexture, const sf::T
         applyGlobalScale(obstacleSprites[i]);
     }
 
-    // Now we can dynamically add and remove enemies if we wanted to.
-    for (int i = 0; i < 10; i++) {
+    // Now we can dynamically add or remove enemies if we wanted to.
+    for (int i = 0; i < obstacleCount; i++) {
         obstacles.emplace_back(160, 160, score);
     }
 

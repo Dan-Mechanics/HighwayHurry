@@ -9,7 +9,9 @@ public:
 	Environment();
 	Environment(const int sizeX, const int sizeY);
 
-	// Inherited via Entity.
+	/// <summary>
+	/// The question is wether or not we want to round everything to the nearest pixel.
+	/// </summary>
 	virtual void draw(sf::RenderWindow& window, sf::Sprite& sprite) override;
 	virtual void move(const Time& time) override;
 

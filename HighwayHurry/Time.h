@@ -13,8 +13,8 @@ public:
 	Time(int timestep);
 
 	/// <summary>
-	/// https://www.udacity.com/blog/2021/05/c-pass-by-reference-explained.html
 	/// Call this in a while loop.
+	/// Based on this --> https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.Simulate.html
 	/// </summary>
 	/// <returns>The amount of fixed ticks to perform.</returns>
 	int processFrame();

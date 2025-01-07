@@ -31,16 +31,15 @@ void Obstacle::reset() {
 	spriteIndex = randomInclusive(0, 2);
 	rigidbody.setMass(getMassFromSpriteIndex(spriteIndex));
 
-	// because larger cars have more air resistance.
+	// Because larger cars have more air resistance.
 	airDrag = 0.005f * rigidbody.getMass();
 
 	rigidbody.velocity.xComponent = 0;
 
 	rigidbody.position.setAll (
-		randomInclusive(rigidbody.getMinX(), rigidbody.getMaxX()), // x
-		randomInclusive(highestSpawnPoint, -sizeY), // y
-		0 // z
-	);
+		randomInclusive(rigidbody.getMinX(), rigidbody.getMaxX()), 
+		randomInclusive(highestSpawnPoint, -sizeY), 
+		0 );
 
 	steerForce.setAll(randomInclusive(-steerForceVariance, steerForceVariance), 0, 0);
 	driveForce.yComponent += randomInclusive(-driveForceVariance, driveForceVariance);
@@ -87,7 +86,7 @@ void Obstacle::constrain(const Time& time, Score& score) {
 	if (rigidbody.position.xComponent < rigidbody.getMinX()) {
 		rigidbody.position.xComponent = rigidbody.getMinX();
 		rigidbody.velocity.xComponent = 0;
-		steerForce.invert(); // or maybe we give a force to do this ?
+		steerForce.invert();
 	}
 
 	if (rigidbody.position.xComponent > rigidbody.getMaxX()) {
@@ -105,5 +104,4 @@ void Obstacle::constrain(const Time& time, Score& score) {
 
 float Obstacle::getMassFromSpriteIndex(int spriteIndex) const {
 	return spriteIndex * -0.19f + 1.45f;
-	//return spriteIndex * -0.3f + 1.45f;
 }

@@ -10,9 +10,6 @@ Environment::Environment(const int sizeX, const int sizeY) : Entity{ sizeX, size
     position.yComponent = -SCREEN_HEIGHT;
 }
 
-/// <summary>
-/// The question is wether or not we want to round everything to the nearest pixel.
-/// </summary>
 void Environment::draw(sf::RenderWindow& window, sf::Sprite& sprite) {
     sprite.setPosition(position.xComponent, position.yComponent);
 
