@@ -1,3 +1,5 @@
+future remove writings.txt and remove header comments in main.
+
 try to minimze get something methods sfml
 
 make return code an enum ofr clarity.
