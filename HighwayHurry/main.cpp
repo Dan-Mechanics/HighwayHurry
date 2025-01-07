@@ -25,6 +25,8 @@
 // maybe try to add some particle or like cool effect feedback when you hit a yeet.
 // maybe add some tutorial text or a little background animation on the main menu or something.
 
+// final thing before project is done: delete the comments here and writings maybe but writings is outside the yeet.
+
 int main() {
     print(TITLE);
 
@@ -91,7 +93,6 @@ int main() {
 
     auto quit = false;
     
-    // enum.
     auto currentScene = Scene::MENU_SCENE;
 
     Menu menu{ font, menuBackgroundTexture, buttonTexture };
@@ -107,15 +108,15 @@ int main() {
             
             quit = true;
 
-            // close early because we don't have to render on the frame we close.
+            // Close early because we don't have to render on the frame we close.
             return 0;
         }
 
-        // background color so we can clearly see transparent glitches etc.
+        // Background color so we can clearly see transparent glitches etc.
         window.clear(sf::Color::Magenta);
 
-        // scene.draw(); --> not possible because each scene.draw() needs differents params.
-        // future, use switch again maybe.
+        // Scene.draw(); --> not possible because each scene.draw() needs differents params.
+        // Future, use switch again maybe.
         auto frameResult = currentScene == Scene::MENU_SCENE ?
             menu.draw(window) : game.draw(window, score, time, scoreHUD);
 
@@ -128,10 +129,10 @@ int main() {
             case FrameResult::NEXT_FRAME:
                 break;
             case FrameResult::NEXT_SCENE:
-                // toggle.
+                // Toggle.
                 currentScene = (Scene)!(bool)currentScene;
 
-                // depending on the new scene, we refresh it.
+                // Depending on the new scene, we refresh it.
                 if (currentScene == Scene::MENU_SCENE) {
                     menu.refresh(score, scoreHUD, font, window);
                 }

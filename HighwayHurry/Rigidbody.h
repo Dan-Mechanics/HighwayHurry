@@ -15,11 +15,6 @@ public:
 	void addForce(const Vector3 force);
 	void resetAll();
 
-	/// <summary>
-	/// Move the force into accel,
-	/// accel into vel,
-	/// vel into pos.
-	/// </summary>
 	void process(const Time& time);
 	void limitVelocity(const float magnitude);
 	void stopInPlace();
@@ -34,8 +29,8 @@ public:
 	float getMass() const;
 
 private:
-	Vector3 acceleration{}; // have an add force thing that adds acceleration.
-	Vector3 force{}; // have an add force thing that adds acceleration.
+	Vector3 acceleration{}; // Have an add force thing that adds acceleration.
+	Vector3 force{}; // Have an add force thing that adds acceleration.
 
 	float mass = 1;
 
