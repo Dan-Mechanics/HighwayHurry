@@ -1,3 +1,13 @@
+//=============================================================================
+// Tim de Smidt
+// Dan-Mechanics
+//
+// Math for GDV - Calculate the Future
+// Eindopdracht 
+//
+// Highway Hurry
+//=============================================================================
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
@@ -5,27 +15,6 @@
 #include "Menu.h"
 #include "ScoreHUD.h"
 #include "Button.h"
-
-// more auto ?
-// check all method and fucntion names for capitalization --> clang tidy?
-// note to self: all summaries should be in header --> TODO
-// aslo maybe add audio ??? --> could be cool.
-// consistent commenting convention with capitals etc.
-
-// do we want to make it so that the player also has forward drag meme or what ?
-// check gitiginore for old names. V
-
-// we need to add all the fricking art assets to the 
-// exe FOLDER. in the folder need to be all the stuff.
-// including the dll.
-
-// maybe i redo my video because the documentation is about the documentation and not the fucking comments
-// u dunce.
-
-// maybe try to add some particle or like cool effect feedback when you hit a yeet.
-// maybe add some tutorial text or a little background animation on the main menu or something.
-
-// final thing before project is done: delete the comments here and writings maybe but writings is outside the yeet.
 
 int main() {
     print(TITLE);
